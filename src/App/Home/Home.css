@@ -1,0 +1,18 @@
+.home-title{
+	font-size: 50px;
+}
+
+.home-img{
+	float: right;
+	width: 400px;
+	border-radius: 20px; 
+}
+
+.home-content{
+	margin: 50px;
+	font-size: 20px;
+}
+
+.home-subcontent{
+	font-size: 15px;
+}
