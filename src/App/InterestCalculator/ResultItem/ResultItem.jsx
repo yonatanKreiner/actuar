@@ -23,21 +23,21 @@ class ResultItem extends React.Component {
 		});
 
 		$('#' + datePickerId).change(() => this.changeCalculationDate($('#' + datePickerId).val()));
-
-		return this.render();
 	}
 
 	changeCalculationDate(date) {
-		this.setState(prevState => ({
+		this.setState({
 			calculationDate: date,
-			result: prevState.result
-		}));
+		});
 	}
 	
 	async onClickCalculate(){
 		let date = $('#datepicker').val();
 		let finalDebt = await this.props.calculateDept(date);
 		console.log(finalDebt);
+		this.setState({
+			result: finalDebt,
+		});
 	}
 
 	render() {

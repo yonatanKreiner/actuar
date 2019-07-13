@@ -6,10 +6,6 @@ import PropTypes from 'prop-types';
 const $ = window.jQuery;
 
 class DeptRow extends React.Component{
-	constructor (props) {
-		super(props);
-	}
-
 	componentDidMount(){
 		let datePickerId = 'datepicker'+this.props.index;
 		$('#' + datePickerId).datepicker({
@@ -17,8 +13,6 @@ class DeptRow extends React.Component{
 		});
 
 		$('#' + datePickerId).change(() => this.props.handleDateChange(this.props.index, $('#' + datePickerId).val()));
-
-		return this.render();
 	}
 
 	render() {

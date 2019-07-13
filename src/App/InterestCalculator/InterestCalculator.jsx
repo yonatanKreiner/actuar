@@ -55,14 +55,17 @@ class InterestCalculator extends React.Component {
 		}))
 	}
 
-	handleCalculate(resultDate){
+	async handleCalculate(resultDate){
 		const requestData = {calculationDate: resultDate, debts: this.state.debts};
 
-		fetch('http://localhost:7001',{
+		const response = await fetch('http://localhost:7000/interest',{
 			method: 'post',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify(requestData)
-		}).then(response => response.finalDebt);
+		});
+
+		const data = await response.json();
+		return data.finalDebt;
 	}
 
 	render() {
