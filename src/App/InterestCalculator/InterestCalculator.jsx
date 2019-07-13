@@ -37,7 +37,7 @@ class InterestCalculator extends React.Component {
 		this.setState(prevState => ({
 			debts: [
 				...prevState.debts.slice(0, index), 
-				{date: prevState.debts[index].date, sum: parseInt(sum)}, 
+				{date: prevState.debts[index].date, sum: parseFloat(sum)}, 
 				...prevState.debts.slice(index + 1)
 			]
 		}));
