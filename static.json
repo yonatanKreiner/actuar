@@ -1,4 +1,8 @@
 {
+    "root": "build/",
+    "routes": {
+        "/**": "index.html"
+    },
     "proxies": {
         "/interest": {
             "origin": "https://actuar-calculator-interest.herokuapp.com/"
