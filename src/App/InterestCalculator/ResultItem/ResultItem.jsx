@@ -32,11 +32,10 @@ class ResultItem extends React.Component {
 	}
 	
 	async onClickCalculate(){
-		let date = $('#datepicker').val();
-		let finalDebt = await this.props.calculateDept(date);
-		console.log(finalDebt);
+		const date = $('#datepicker').val();
+		const finalDebt = await this.props.calculateDept(date);
 		this.setState({
-			result: finalDebt,
+			result: finalDebt.toFixed(2),
 		});
 	}
 
