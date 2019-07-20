@@ -60,7 +60,7 @@ class InterestCalculator extends React.Component {
 
 		const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:7000';
 
-		const response = await fetch(`${apiUrl}/interest`,{
+		const response = await fetch(`/interest`,{
 			method: 'post',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify(requestData)
