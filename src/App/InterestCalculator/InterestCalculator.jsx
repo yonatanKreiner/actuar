@@ -58,9 +58,9 @@ class InterestCalculator extends React.Component {
 	async handleCalculate(resultDate){
 		const requestData = {calculationDate: resultDate, debts: this.state.debts};
 
-		const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:7000';
+		const apiUrl = process.env.NODE_ENV === 'production' ? '/interest': 'http://localhost:7000/interest';
 
-		const response = await fetch(`/interest`,{
+		const response = await fetch(apiUrl,{
 			method: 'post',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify(requestData)
