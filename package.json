@@ -2,8 +2,8 @@
   "name": "actuar-client",
   "version": "0.1.0",
   "private": true,
-  "engines" : { 
-    "node" : ">=10.16.0" 
+  "engines": {
+    "node": "10.16.x"
   },
   "dependencies": {
     "react": "^16.8.6",
