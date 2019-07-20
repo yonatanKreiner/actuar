@@ -1,0 +1,7 @@
+{
+    "proxies": {
+        "/interest": {
+            "origin": "https://actuar-calculator-interest.herokuapp.com/"
+        }
+    }
+}
