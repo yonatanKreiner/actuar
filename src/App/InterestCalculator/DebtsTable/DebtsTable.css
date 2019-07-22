@@ -1,8 +1,10 @@
-.buttons-control .btn{
+.btn{
 	width: 120px;
 	color: white;
 	margin: 10px;
-	
+}
+
+.buttons-control {
 	max-height: 300px;
     overflow: auto;
 }
