@@ -2,4 +2,7 @@
 	width: 120px;
 	color: white;
 	margin: 10px;
+	
+	max-height: 300px;
+    overflow: auto;
 }
