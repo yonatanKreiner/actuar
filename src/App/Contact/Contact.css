@@ -17,3 +17,23 @@
 .contact-content{
 	font-size: 20px;
 }
+
+
+@media only screen and (max-width: 600px) {
+	.contacts-list{
+		margin: 0 -10px;
+		text-align: right;
+		list-style-type: none;
+	}
+	
+	.contact-content{
+		font-size: 15px;
+	}
+
+	.contact-img{
+		width: 550px;
+		margin: 10px auto;
+		border-radius: 20px; 
+	}
+	
+}

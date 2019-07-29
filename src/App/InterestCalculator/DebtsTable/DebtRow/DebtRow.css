@@ -13,3 +13,16 @@
 .row .datepicker{
 	width: 170px;
 }
+
+@media only screen and (max-width: 600px) {
+	.row{
+		position: static;
+		width: 70%;
+		left: 0;
+		margin: 2px auto;
+	}
+
+	.row .amoutpicker{
+		margin: 4px 0px;
+	}
+}
