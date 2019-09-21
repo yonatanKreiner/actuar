@@ -55,8 +55,8 @@ class InterestCalculator extends React.Component {
 		}))
 	}
 
-	async handleCalculate(resultDate){
-		const requestData = {calculationDate: resultDate, debts: this.state.debts};
+	async handleCalculate(resultDate, isLegalInterest){
+		const requestData = {calculationDate: resultDate, debts: this.state.debts, isLegalInterest};
 
 		const apiUrl = process.env.NODE_ENV === 'production' ? '/interest': 'http://localhost:7000/interest';
 

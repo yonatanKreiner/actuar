@@ -8,6 +8,12 @@
 	width: 200px;
 }
 
+.radio-block{
+	width: 200px;
+	margin: 0 auto;
+	text-align: center;
+}
+
 @media only screen and (max-width: 600px) {
 	.result-block .datepicker{
 		width: 179px;
