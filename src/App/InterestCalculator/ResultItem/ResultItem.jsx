@@ -49,7 +49,7 @@ class ResultItem extends React.Component {
 						<label class="custom-control-label" for="legalInterestRadio">ריבית חוקית</label>
 					</div>
 					<div class="custom-control custom-radio">
-						<input type="radio" class="custom-control-input" id="illegalInterestRadio" name="interestRadioGroup" disabled/>
+						<input type="radio" class="custom-control-input" id="illegalInterestRadio" name="interestRadioGroup" />
 						<label class="custom-control-label" for="illegalInterestRadio">ריבית פיגורים</label>
 					</div>
 				</div>
