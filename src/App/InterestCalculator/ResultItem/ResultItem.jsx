@@ -2,6 +2,7 @@ import './ResultItem.css';
 
 import PropTypes from 'prop-types';
 import React from 'react'; 
+import ReactLoading from 'react-loading';
 
 const $ = window.jQuery;
 
@@ -11,7 +12,8 @@ class ResultItem extends React.Component {
 		let date = new Date();
 		this.state = {
 			calculationDate:  date.getDate() +'/'+date.getMonth()+'/'+date.getFullYear(),
-			result: 0
+			result: 0,
+			isLoading: false
 		}
 		this.changeCalculationDate.bind(this);
 	}
@@ -32,11 +34,15 @@ class ResultItem extends React.Component {
 	}
 	
 	async onClickCalculate(){
+		this.setState({
+			isLoading: true,
+		});
 		const date = $('#datepicker').val();
 		const isLegalInterest = document.getElementById('legalInterestRadio').checked;
 		const finalDebt = await this.props.calculateDept(date, isLegalInterest);
 		this.setState({
 			result: finalDebt.toFixed(2),
+			isLoading: false
 		});
 	}
 
@@ -57,7 +63,8 @@ class ResultItem extends React.Component {
 					<input  id='datepicker' className='datepicker' value={this.state.calculationDate} />
 					<button type='button' onClick={() => this.onClickCalculate()} className='btn-result btn btn-primary'>חשב</button><br />
 				</div>
-				<h1 id='resultElement'>{this.state.result}</h1>
+				{this.state.isLoading ? <ReactLoading className="loader" color={'#2196F3'} height={'5%'} width={'5%'} /> : 
+				<h1 id='resultElement'>{this.state.result}</h1>}
 			</div>
 		);
 	}

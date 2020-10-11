@@ -14,6 +14,10 @@
 	text-align: center;
 }
 
+.loader{
+	margin: 0 auto;
+}
+
 @media only screen and (max-width: 600px) {
 	.result-block .datepicker{
 		width: 179px;
