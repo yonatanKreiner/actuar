@@ -1,0 +1,19 @@
+.unemploy-container .form-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.unemploy-container .radio-block{
+	width: 200px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.unemploy-container .salary-input{
+    width: 300px;
+    margin: 3px auto;
+}
+
+.unemploy-container .btn-result{
+    margin: 5px;
+}

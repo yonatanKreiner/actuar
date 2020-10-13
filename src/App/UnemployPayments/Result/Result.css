@@ -1,0 +1,10 @@
+
+.unemploy-container .btn-result{
+    margin: 5px;
+}
+
+.unemploy-container .result-container{
+    display: flex;
+    margin: 15px auto;
+    justify-content: space-evenly;
+}
