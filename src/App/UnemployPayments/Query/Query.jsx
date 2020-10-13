@@ -27,11 +27,11 @@ const Query = ({onChangeIsParentOrAbove28, setAllSalaries}) => {
                 <div>
                     <div className='radio-block'>
                         <div className="custom-control custom-radio">
-                            <input type="radio" className="custom-control-input" id="above28" onChange={onChangeRadioButtons} name="isAbove28" checked />
+                            <input type="radio" className="custom-control-input" id="above28" onClick={onChangeRadioButtons} name="isAbove28" checked />
                             <label className="custom-control-label" for="above28">מעל גיל 28</label>
                         </div>
                         <div className="custom-control custom-radio">
-                            <input type="radio" className="custom-control-input" id="under28" onChange={onChangeRadioButtons} name="isAbove28"  />
+                            <input type="radio" className="custom-control-input" id="under28" onClick={onChangeRadioButtons} name="isAbove28"  />
                             <label className="custom-control-label" for="under28">מתחת גיל 28</label>
                         </div>
                     </div>
@@ -41,11 +41,11 @@ const Query = ({onChangeIsParentOrAbove28, setAllSalaries}) => {
 
                     <div className='radio-block'>
                         <div className="custom-control custom-radio">
-                            <input type="radio" className="custom-control-input" id="parent" onChange={onChangeRadioButtons} name="isParent"  />
+                            <input type="radio" className="custom-control-input" id="parent" onClick={onChangeRadioButtons} name="isParent"  />
                             <label className="custom-control-label" for="parent">הורה עם ילדים</label>
                         </div>
                         <div className="custom-control custom-radio">
-                            <input type="radio" className="custom-control-input" id="notParent" onChange={onChangeRadioButtons} name="isParent" checked />
+                            <input type="radio" className="custom-control-input" id="notParent" onClick={onChangeRadioButtons} name="isParent" checked />
                             <label className="custom-control-label" for="notParent">ללא ילדים</label>
                         </div>
                     </div>
