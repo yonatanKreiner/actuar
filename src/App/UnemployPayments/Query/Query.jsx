@@ -17,8 +17,9 @@ const Query = ({onChangeIsParentOrAbove28, setAllSalaries}) => {
         const s3 = parseInt(document.getElementById('Salary3').value);
         const s4 = parseInt(document.getElementById('Salary4').value);
         const s5 = parseInt(document.getElementById('Salary5').value);
+        const s6 = parseInt(document.getElementById('Salary6').value);
 
-        setAllSalaries([s1,s2,s3,s4,s5]);
+        setAllSalaries([s1,s2,s3,s4,s5,s6]);
     }
 
     return (
@@ -52,12 +53,13 @@ const Query = ({onChangeIsParentOrAbove28, setAllSalaries}) => {
                 </div>
 
                 <div>
-                    5 משכורות אחרונות:
+                    6 משכורות אחרונות:
                     <input type="number" className="salary-input form-control" onChange={onChangeSalaries} id="Salary1" />
                     <input type="number" className="salary-input form-control" onChange={onChangeSalaries} id="Salary2" />
                     <input type="number" className="salary-input form-control" onChange={onChangeSalaries} id="Salary3" />
                     <input type="number" className="salary-input form-control" onChange={onChangeSalaries} id="Salary4" />
                     <input type="number" className="salary-input form-control" onChange={onChangeSalaries} id="Salary5" />
+                    <input type="number" className="salary-input form-control" onChange={onChangeSalaries} id="Salary6" />
                 </div>
             </form>
         </div>
