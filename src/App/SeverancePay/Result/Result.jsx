@@ -14,7 +14,7 @@ const Result = ({calcSeverance, monthlySalary,cutdownPrecent, monthsAmount}) => 
             <div className="result-container">
             <button type='button' onClick={onClickCalc} className='btn-result btn btn-primary'>חשב</button>
 
-            {monthsAmount != 0 && monthlySeverance ? <p>סך הפיצויים שלך הם {monthlySeverance.toFixed(2)} ש"ח לחודש.<br/>
+            {monthsAmount !== 0 && monthlySeverance ? <p>סך הפיצויים שלך הם {monthlySeverance.toFixed(2)} ש"ח לחודש.<br/>
                 עבור {monthsAmount} חודשי עבודה <br />
                כלומר סה"כ הפיצויים הם <b>כ-{(monthlySeverance * monthsAmount).toFixed(2)} ש"ח </b>
             </p>
