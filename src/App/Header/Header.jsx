@@ -15,9 +15,10 @@ class Header extends Component {
 					<div className="dropdown">
 							<NavLink activeClassName="activeLink" to="/calc*" disabled> מחשבונים </NavLink>
 							<div className="dropdown-content">
-								<NavLink activeClassName="activeLink" exact to="/calcInterest">מחשבון ריבית</NavLink>
-								<NavLink activeClassName="activeLink" exact to="/unemployPayments">מחשבון אבטלה</NavLink>
-								<NavLink activeClassName="activeLink" exact to="/calc3"> מחשבון 3 </NavLink>
+								<NavLink activeClassName="activeLink" exact to="/calcInterest">שיערוך חובות</NavLink>
+								<NavLink activeClassName="activeLink" exact to="/unemployPayments">דמי אבטלה</NavLink>
+								<NavLink activeClassName="activeLink" exact to="/SeverancePay">פיצויי פיטורים</NavLink>
+								<NavLink activeClassName="activeLink" exact to="/calc4">דמי מזונות</NavLink>
 							</div>
               </div>
           </div>

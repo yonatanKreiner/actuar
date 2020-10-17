@@ -8,7 +8,9 @@ import AboutUs from './AboutUs';
 import Contact from './Contact';
 import InterestCalculator from './InterestCalculator';
 import ComingSoon from './ComingSoon';
-import UnemployPayments from './UnemployPayments/UnemployPayments';
+import UnemployPayments from './UnemployPayments';
+import SeverancePay from './SeverancePay';
+
 
 class App extends React.Component {
 
@@ -28,7 +30,8 @@ class App extends React.Component {
 						<Route path="/contact" component={Contact} />
 						<Route path="/calcInterest"  component={InterestCalculator}/>
 						<Route path="/unemployPayments" component={UnemployPayments}/>
-						<Route path="/calc3" component={ComingSoon} />
+						<Route path="/SeverancePay" component={SeverancePay} />
+						<Route path="/calc4" component={ComingSoon} />
 						<Route path="*" />
 					</Switch>
 				</Container>

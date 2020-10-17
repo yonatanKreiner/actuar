@@ -1,3 +1,3 @@
-import UnempolyPayments from './UnempolyPayments.jsx';
+import UnemployPayments from './UnemployPayments.jsx';
 
-export default UnempolyPayments;
+export default UnemployPayments;

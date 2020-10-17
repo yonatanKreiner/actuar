@@ -5,7 +5,7 @@ import React from 'react';
 const Header = () => (
 	<div className="panel panel-info">
 		<div className="panel-heading">
-			<h1>מחשבון ריבית</h1>
+			<h1>מחשבון ריבית ומדד</h1>
 		</div>
 		<div className="panel-body">
 			<p>
