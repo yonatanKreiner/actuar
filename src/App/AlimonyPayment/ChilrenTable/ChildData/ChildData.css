@@ -1,0 +1,26 @@
+.child-data-container-row{
+	position: relative;
+	width: 50%;
+	padding: 10px;
+}
+
+.child-data-container-row .amoutpicker{
+	margin: 0 10px;
+}
+
+.child-data-container-row .datepicker{
+	width: 170px;
+}
+
+@media only screen and (max-width: 600px) {
+	.child-data-container-row{
+		position: static;
+		width: 70%;
+		left: 0;
+		margin: 2px auto;
+	}
+
+	.child-data-container-row .amoutpicker{
+		margin: 4px 0px;
+	}
+}

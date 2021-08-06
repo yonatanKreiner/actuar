@@ -1,0 +1,18 @@
+.chilren-container {
+	max-height: 245px;
+    overflow: auto;
+}
+
+.chilren-container .btn{
+	width: 120px;
+	color: white;
+	margin: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+	.chilren-container .btn{
+		width: 82px;
+		margin: 3px;
+	}
+}
