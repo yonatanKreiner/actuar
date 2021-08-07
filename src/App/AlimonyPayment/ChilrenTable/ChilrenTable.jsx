@@ -8,9 +8,9 @@ import ChildData from './ChildData';
 const ChilrenTable = (props) => {
 	const rows = [];
 
-	props.debts.forEach((debt, index) => {
+	props.children.forEach((child, index) => {
 		rows.push(
-			<ChildData key={index} index={index} handleDateChange={props.changeDebtDate} handleSumChange={props.changeDebtSum} date={debt.date} sum={debt.sum}/>
+			<ChildData key={index} index={index} handleDateChange={props.changeDebtDate} handleSumChange={props.changeDebtSum} child={child} />
 		);
 	});
 
@@ -27,7 +27,7 @@ const ChilrenTable = (props) => {
 }
 
 ChilrenTable.propTypes = {
-	debts: PropTypes.array.isRequired,
+	children: PropTypes.array.isRequired,
 	changeDebtDate: PropTypes.func,
 	changeDebtSum: PropTypes.func.isRequired,
 	addDebt: PropTypes.func.isRequired,

@@ -5,9 +5,8 @@ import ChilrenTable from './ChilrenTable';
 
 const AlimonyPayment = () => {
 
-	const debts = [
-		{date: '25/2/1990', sum: 100},
-		{date: '25/2/1994', sum: 200}
+	const children = [
+		{date: '25/2/1999', sum: 1000, adultPrecent: 0.3, gender: 'male'},
 	];
 
 	const handleChangeDebtDate = (index, date) => {
@@ -36,7 +35,7 @@ const AlimonyPayment = () => {
 				changeDebtSum={handleChangeDebtSum} 
 				addDebt={handleAddDebt} 
 				removeDebt={handleRemoveDebt} 
-				debts={debts} />
+				children={children} />
 			<hr/>
 
         </div>
