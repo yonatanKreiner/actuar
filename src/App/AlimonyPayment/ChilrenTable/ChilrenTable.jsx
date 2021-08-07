@@ -10,7 +10,7 @@ const ChilrenTable = (props) => {
 
 	props.children.forEach((child, index) => {
 		rows.push(
-			<ChildData key={index} index={index} handleDateChange={props.changeDebtDate} handleSumChange={props.changeDebtSum} child={child} />
+			<ChildData key={index} index={index} changeChild={props.changeChild} child={child} />
 		);
 	});
 
@@ -18,20 +18,18 @@ const ChilrenTable = (props) => {
 		<div className='chilren-container'>
 			{rows}
 			<input type='button' className='btn btn-info' onClick={() => {
-					let date = new Date();
-					props.addDebt({date: date.getDate() +'/'+date.getMonth()+'/'+date.getFullYear(), sum: 0})
+					props.addChild();
 				}} value='הוסף'/>
-			<input type='button' className='btn btn-warning' onClick={() => {props.removeDebt()}} value='הסר'/>
+			<input type='button' className='btn btn-warning' onClick={() => {props.removeChild()}} value='הסר'/>
 		</div>
 	);
 }
 
 ChilrenTable.propTypes = {
 	children: PropTypes.array.isRequired,
-	changeDebtDate: PropTypes.func,
-	changeDebtSum: PropTypes.func.isRequired,
-	addDebt: PropTypes.func.isRequired,
-	removeDebt: PropTypes.func.isRequired
+	changeChild: PropTypes.func.isRequired,
+	addChild: PropTypes.func.isRequired,
+	removeChild: PropTypes.func.isRequired
 }
 
 export default ChilrenTable;

@@ -4,25 +4,20 @@ import React, {useEffect, useState} from 'react';
 import ChilrenTable from './ChilrenTable';
 
 const AlimonyPayment = () => {
-
-	const children = [
+	const [children, setChildren] = useState([
 		{date: '25/2/1999', sum: 1000, adultPrecent: 0.3, gender: 'male'},
-	];
+	]);
 
-	const handleChangeDebtDate = (index, date) => {
-
+	const handleChange = (index, child) => {
+		setChildren([...children.slice(0,index), child, ...children.slice(index+1)]);
 	}
 
-	const handleChangeDebtSum = (index, sum) => {
-
+	const handleAddChild = () => {
+		setChildren([...children, {date: '01/01/2000', sum: 1000, adultPrecent: 0.3, gender: 'male'}]);
 	}
 
-	const handleAddDebt = (debt) => {
-
-	}
-
-	const handleRemoveDebt = () => {
-
+	const handleRemoveChild = () => {
+		setChildren(children.slice(0,-1));
 	}
 
     return (
@@ -31,10 +26,9 @@ const AlimonyPayment = () => {
 
             <hr/>
 			<ChilrenTable  
-				changeDebtDate={handleChangeDebtDate}
-				changeDebtSum={handleChangeDebtSum} 
-				addDebt={handleAddDebt} 
-				removeDebt={handleRemoveDebt} 
+				changeChild={handleChange}
+				addChild={handleAddChild} 
+				removeChild={handleRemoveChild} 
 				children={children} />
 			<hr/>
 
