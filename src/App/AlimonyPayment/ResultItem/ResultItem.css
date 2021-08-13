@@ -4,11 +4,7 @@
 	margin: 0 30px;
 }
 
-.result-block .datepicker{
-	width: 200px;
-}
-
-.radio-block{
+.alimony-payment-result-block{
 	width: 200px;
 	margin: 0 auto;
 	text-align: center;
@@ -19,10 +15,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-	.result-block .datepicker{
-		width: 179px;
-	}
-	.btn-result{
+	.alimony-payment-result-block{
 		height: 35px;
 		margin: 3px auto;
 	}

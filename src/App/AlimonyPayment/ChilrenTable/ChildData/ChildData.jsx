@@ -11,11 +11,12 @@ const ChildData = (props) => {
 		$('#' + datePickerId).datepicker({
 			format: 'dd/mm/yyyy'
 		});
+		$('#' + datePickerId).change(onChangeBirthDate);
 	}, []);
 
 	const onChangeBirthDate = (e) => {
 		props.changeChild(props.index, {
-			date: e.target.value,
+			birthDate: e.target.value,
 			sum: props.child.sum,
 			adultPrecent: props.child.adultPrecent,
 			gender:props.child.gender
@@ -24,7 +25,7 @@ const ChildData = (props) => {
 
 	const onChangeGender = (e) => {
 		props.changeChild(props.index, {
-			date: props.child.birthDate,
+			birthDate: props.child.birthDate,
 			sum: props.child.sum,
 			adultPrecent: props.child.adultPrecent,
 			gender: e.target.value
@@ -33,7 +34,7 @@ const ChildData = (props) => {
 	
 	const onChangeAdultPrecent = (e) => {
 		props.changeChild(props.index, {
-			date: props.child.birthDate,
+			birthDate: props.child.birthDate,
 			sum: props.child.sum,
 			adultPrecent: e.target.value,
 			gender: props.child.gender
@@ -42,7 +43,7 @@ const ChildData = (props) => {
 
 	const onChangeSum = (e) => {
 		props.changeChild(props.index, {
-			date: props.child.birthDate,
+			birthDate: props.child.birthDate,
 			sum:  e.target.value,
 			adultPrecent: props.child.adultPrecent,
 			gender: props.child.gender

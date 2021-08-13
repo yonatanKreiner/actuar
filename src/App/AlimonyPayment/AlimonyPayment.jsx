@@ -24,8 +24,18 @@ const AlimonyPayment = () => {
 		setChildren(children.slice(0,-1));
 	}
 
-	const handleCalculatePayment = () => {
+	const handleCalculatePayment = async () => {
+		const apiUrl = process.env.NODE_ENV === 'production' ? '/interest': 'http://localhost:7000/interest/alimonyPayment';
 
+		const response = await fetch(apiUrl,{
+			method: 'post',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify({children,madadIndexateInterval,startPaymentDate})
+		});
+
+		const data = await response.json();
+		
+		return data;
 	}
 
     return (
