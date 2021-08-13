@@ -6,7 +6,7 @@ import { ResultItem } from './ResultItem/ResultItem';
 
 const AlimonyPayment = () => {
 	const [children, setChildren] = useState([
-		{birthDate: '25/2/1999', sum: 1000, adultPrecent: 0.3, gender: 'male'},
+		{birthDate: '01/01/2005', sum: 1000, adultPrecent: 0.3, gender: 'male'},
 	]);
 	const [madadIndexateInterval,setMadadIndexateInterval] = useState(3);
 	const [startPaymentDate,setStartPaymentDate] = useState(Date.now);
@@ -43,13 +43,15 @@ const AlimonyPayment = () => {
             חישוב דמי מזונות
 
             <hr/>
-			<ChilrenTable  
-				changeChild={handleChange}
-				addChild={handleAddChild} 
-				removeChild={handleRemoveChild} 
-				children={children} />
-			<hr/>
-			<ResultItem calculateAlimonyPayment={handleCalculatePayment}></ResultItem>
+			<div className='data-container'>
+				<ChilrenTable  
+					changeChild={handleChange}
+					addChild={handleAddChild} 
+					removeChild={handleRemoveChild} 
+					children={children} />
+				<hr/>
+				<ResultItem calculateAlimonyPayment={handleCalculatePayment}></ResultItem>
+			</div>
         </div>
     );
 }

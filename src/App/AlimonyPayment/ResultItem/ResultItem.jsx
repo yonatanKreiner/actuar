@@ -4,14 +4,17 @@ import PropTypes from 'prop-types';
 import React, {useState} from 'react'; 
 import ReactLoading from 'react-loading';
 
+import ResultsTable from './ResultsTable';
+
 export const ResultItem = (props) => {
 
 	const [isLoading, setIsLoading] = useState(false);
-	const [result, setResult] = useState(0);
+	const [result, setResult] = useState(undefined);
 
 	const onClickCalculate = async() => {
-		const result = props.calculateAlimonyPayment();
-		console.log(result);
+		const payments = (await props.calculateAlimonyPayment()).payments;
+		console.log(payments);
+		setResult(payments);
 	};
 
 	return (
@@ -19,8 +22,8 @@ export const ResultItem = (props) => {
 			<div className='row'>
 				<button type='button' onClick={onClickCalculate} className='btn-result btn btn-primary'>חשב</button><br />
 			</div>
-			{isLoading ? <ReactLoading className="loader" color={'#2196F3'} height={'5%'} width={'5%'} /> : 
-			<h1 id='resultElement'>{result}</h1>}
+			{isLoading ? <ReactLoading className="loader" color={'#2196F3'} height={'5%'} width={'5%'} />
+						: result ? <ResultsTable payments={result}></ResultsTable> : <></>}
 		</div>
 	);
 }
