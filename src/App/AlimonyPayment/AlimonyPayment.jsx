@@ -49,7 +49,6 @@ const AlimonyPayment = () => {
 					addChild={handleAddChild} 
 					removeChild={handleRemoveChild} 
 					children={children} />
-				<hr/>
 				<ResultItem calculateAlimonyPayment={handleCalculatePayment}></ResultItem>
 			</div>
         </div>

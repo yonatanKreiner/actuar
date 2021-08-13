@@ -1,13 +1,15 @@
-.btn-result{
+.alimony-payment-result-block .btn-result{
 	height: 35px;
 	width: 80px;
-	margin: 0 30px;
+	margin: 10px 10px;
 }
 
 .alimony-payment-result-block{
 	width: 200px;
 	margin: 0 auto;
 	text-align: center;
+	display: flex;
+    flex-direction: column;
 }
 
 .loader{
