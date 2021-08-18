@@ -25,7 +25,7 @@ const AlimonyPayment = () => {
 	}
 
 	const handleCalculatePayment = async () => {
-		const apiUrl = process.env.NODE_ENV === 'production' ? '/interest': 'http://localhost:7000/interest/alimonyPayment';
+		const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/alimonyPayment': 'http://localhost:7000/interest/alimonyPayment';
 
 		const response = await fetch(apiUrl,{
 			method: 'post',
