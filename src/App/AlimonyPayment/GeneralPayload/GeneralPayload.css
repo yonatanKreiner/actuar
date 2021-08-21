@@ -1,0 +1,9 @@
+.alimony-payments-general .general-payload{
+    margin: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.alimony-payments-general .general-payload .madad-interval-picker {
+	width: 180px;
+}

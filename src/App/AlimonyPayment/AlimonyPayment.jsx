@@ -1,18 +1,23 @@
 import './AlimonyPayment.css';
 
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import ChilrenTable from './ChilrenTable';
-import { ResultItem } from './ResultItem/ResultItem';
+import ResultItem from './ResultItem';
+import GeneralPayload from './GeneralPayload';
 
 const AlimonyPayment = () => {
 	const [children, setChildren] = useState([
 		{birthDate: '01/01/2005', sum: 1000, adultPrecent: 0.3, gender: 'male'},
 	]);
 	const [madadIndexateInterval,setMadadIndexateInterval] = useState(3);
-	const [startPaymentDate,setStartPaymentDate] = useState(Date.now);
+	const [startPaymentDate,setStartPaymentDate] = useState('01/01/2020');
 
+	const handleChangeGereral = (madadUpdateInterval, paymentStartDate) => {
+		setMadadIndexateInterval(madadUpdateInterval);
+		setStartPaymentDate(paymentStartDate);
+	}
 
-	const handleChange = (index, child) => {
+	const handleChangeChildren = (index, child) => {
 		setChildren([...children.slice(0,index), child, ...children.slice(index+1)]);
 	}
 
@@ -44,11 +49,19 @@ const AlimonyPayment = () => {
 
             <hr/>
 			<div className='data-container'>
-				<ChilrenTable  
-					changeChild={handleChange}
-					addChild={handleAddChild} 
-					removeChild={handleRemoveChild} 
-					children={children} />
+				<div className='alimonay-payload-container'>
+					<GeneralPayload 
+						onChange={handleChangeGereral}
+						startDate={startPaymentDate}
+						madadIndexateInterval={madadIndexateInterval}
+					/>
+					<hr/>
+					<ChilrenTable  
+						changeChild={handleChangeChildren}
+						addChild={handleAddChild} 
+						removeChild={handleRemoveChild} 
+						children={children} />
+				</div>
 				<ResultItem calculateAlimonyPayment={handleCalculatePayment}></ResultItem>
 			</div>
         </div>

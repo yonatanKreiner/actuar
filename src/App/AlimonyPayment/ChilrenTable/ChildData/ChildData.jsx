@@ -51,18 +51,18 @@ const ChildData = (props) => {
 	}
 
 	return (
-		<div className='container child-data-container-row'>
+		<div className='child-data-container-row'>
 			<span className="data-row">
 				תאריך לידה: 
 				<input id={'datepicker'+props.index} className='datepicker' onChange={onChangeBirthDate} value={props.child.birthDate} />
 			</span>
 			<span className="data-row">
 				סכום מזונות: 
-				<input type='number' className="form-text amoutpicker" onChange={onChangeSum} min='0' value={props.child.sum} />
+				<input type='number' className="form-text" onChange={onChangeSum} min='0' value={props.child.sum} />
 			</span>
 			<span className="data-row">
 				אחוז שארית (מגיל 18):
-				<input type="number" step="0.01" className="form-text amoutpicker" onChange={onChangeAdultPrecent} value={props.child.adultPrecent} />
+				<input type="number" step="0.01" className="form-text" onChange={onChangeAdultPrecent} value={props.child.adultPrecent} />
 			</span>
 			<span className="data-row data-row-space-even">
 				<span className="custom-control custom-radio">

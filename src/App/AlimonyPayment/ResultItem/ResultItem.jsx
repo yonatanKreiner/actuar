@@ -6,7 +6,7 @@ import ReactLoading from 'react-loading';
 
 import ResultsTable from './ResultsTable';
 
-export const ResultItem = (props) => {
+const ResultItem = (props) => {
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [result, setResult] = useState(undefined);
@@ -30,3 +30,6 @@ export const ResultItem = (props) => {
 ResultItem.propTypes = {
 	calculateAlimonyPayment: PropTypes.func.isRequired
 }
+
+
+export default ResultItem;

@@ -11,8 +11,8 @@ class InterestCalculator extends React.Component {
 		super(props);
 		this.state = {
 			debts: [
-				{date: '25/2/1990', sum: 100},
-				{date: '25/2/1994', sum: 200}
+				{date: '01/01/2010', sum: 100},
+				{date: '01/01/2020', sum: 100}
 			]
 		};
 

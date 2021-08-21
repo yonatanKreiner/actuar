@@ -1,11 +1,7 @@
 .child-data-container-row{
 	position: relative;
-	width: 50%;
+	/* width: 50%; */
 	/* padding: 10px; */
-}
-
-.child-data-container-row .amoutpicker{
-	margin: 0 10px;
 }
 
 .child-data-container-row .datepicker{
