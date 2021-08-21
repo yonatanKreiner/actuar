@@ -12,9 +12,13 @@ const ResultItem = (props) => {
 	const [result, setResult] = useState(undefined);
 
 	const onClickCalculate = async() => {
+		setIsLoading(true);
+
 		const payments = (await props.calculateAlimonyPayment()).payments;
 		console.log(payments);
 		setResult(payments);
+		
+		setIsLoading(false);
 	};
 
 	return (
