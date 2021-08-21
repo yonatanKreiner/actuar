@@ -12,9 +12,9 @@ const AlimonyPayment = () => {
 	const [madadIndexateInterval,setMadadIndexateInterval] = useState(3);
 	const [startPaymentDate,setStartPaymentDate] = useState('01/01/2020');
 
-	const handleChangeGereral = (madadUpdateInterval, paymentStartDate) => {
-		setMadadIndexateInterval(madadUpdateInterval);
+	const handleChangeGereral = (paymentStartDate, madadUpdateInterval) => {
 		setStartPaymentDate(paymentStartDate);
+		setMadadIndexateInterval(madadUpdateInterval);
 	}
 
 	const handleChangeChildren = (index, child) => {
