@@ -17,7 +17,7 @@ const ResultItem = (props) => {
 		const payments = (await props.calculateAlimonyPayment()).payments;
 		console.log(payments);
 		setResult(payments);
-		
+
 		setIsLoading(false);
 	};
 
@@ -25,7 +25,7 @@ const ResultItem = (props) => {
 		<div className='alimony-payment-result-block'>
 			<button type='button' onClick={onClickCalculate} className='btn-result btn btn-primary'>חשב</button><br />
 			
-			{isLoading ? <ReactLoading className="loader" color={'#2196F3'} height={'5%'} width={'5%'} />
+			{isLoading ? <ReactLoading className="loader" color={'#2196F3'} />
 						: result ? <ResultsTable payments={result}></ResultsTable> : <></>}
 		</div>
 	);

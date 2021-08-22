@@ -13,7 +13,8 @@
 }
 
 .loader{
-	margin: 0 auto;
+	width: 30%;
+    margin: 10px 20px;
 }
 
 @media only screen and (max-width: 600px) {
