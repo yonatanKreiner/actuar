@@ -20,7 +20,7 @@ const GeneralPayload = (props) => {
     }
 
 	const onChangeMadadInterval = (e) => {
-        props.onChange(props.startDate, e.target.value);
+        props.onChange(props.startDate, parseInt(e.target.value));
 	}
 
     return (

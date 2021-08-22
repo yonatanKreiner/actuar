@@ -36,7 +36,7 @@ const ChildData = (props) => {
 		props.changeChild(props.index, {
 			birthDate: props.child.birthDate,
 			sum: props.child.sum,
-			adultPrecent: e.target.value,
+			adultPrecent: parseFloat(e.target.value),
 			gender: props.child.gender
 		})
 	}
@@ -44,7 +44,7 @@ const ChildData = (props) => {
 	const onChangeSum = (e) => {
 		props.changeChild(props.index, {
 			birthDate: props.child.birthDate,
-			sum:  e.target.value,
+			sum:  parseInt(e.target.value),
 			adultPrecent: props.child.adultPrecent,
 			gender: props.child.gender
 		})
