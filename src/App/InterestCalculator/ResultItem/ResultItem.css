@@ -14,7 +14,9 @@
 	text-align: center;
 }
 
-.loader{
+.result-block .loader {
+	height: 5%;
+	width: 5%;
 	margin: 0 auto;
 }
 
