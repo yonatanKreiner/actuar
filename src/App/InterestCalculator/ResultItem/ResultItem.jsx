@@ -3,6 +3,7 @@ import './ResultItem.css';
 import PropTypes from 'prop-types';
 import React from 'react'; 
 import ReactLoading from 'react-loading';
+import ResultsTable from './ResultsTable';
 
 const $ = window.jQuery;
 
@@ -12,7 +13,7 @@ class ResultItem extends React.Component {
 		let date = new Date();
 		this.state = {
 			calculationDate:  date.getDate() +'/'+date.getMonth()+'/'+date.getFullYear(),
-			result: 0,
+			result: null,
 			isLoading: false
 		}
 		this.changeCalculationDate.bind(this);
@@ -41,7 +42,7 @@ class ResultItem extends React.Component {
 		const isLegalInterest = document.getElementById('legalInterestRadio').checked;
 		const finalDebt = await this.props.calculateDept(date, isLegalInterest);
 		this.setState({
-			result: finalDebt.toFixed(2),
+			result: finalDebt,
 			isLoading: false
 		});
 	}
@@ -64,7 +65,12 @@ class ResultItem extends React.Component {
 					<button type='button' onClick={() => this.onClickCalculate()} className='btn-result btn btn-primary'>חשב</button><br />
 				</div>
 				{this.state.isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : 
-				<h1 id='resultElement'>{this.state.result}</h1>}
+						this.state.result ? 
+								<div className="result-data-container">
+									<h1 id='resultElement'>{this.state.result.total}</h1>
+									<ResultsTable allDepts={this.state.result.allDepts}></ResultsTable>
+								</div> : <></>
+				}
 			</div>
 		);
 	}

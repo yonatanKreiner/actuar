@@ -20,6 +20,12 @@
 	margin: 0 auto;
 }
 
+.result-block .result-data-container {
+	display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+}
+
 @media only screen and (max-width: 600px) {
 	.result-block .datepicker{
 		width: 179px;
