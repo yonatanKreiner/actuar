@@ -18,12 +18,14 @@ const DebtsTable = (props) => {
 	return (
 		<div className='buttons-control'>
 			{rows}
-			<input type='button' className='btn btn-info' onClick={() => {
-					let date = new Date();
-					props.addDebt({date: date.getDate() +'/'+date.getMonth()+'/'+date.getFullYear(), sum: 0})
-				}} value='הוסף'/>
-			<input type='button' className='btn btn-warning' onClick={() => {props.removeDebt()}} value='הסר'/>
-			<CsvReader importDebts={props.importDebts}/>
+			<div>
+				<input type='button' className='btn btn-info' onClick={() => {
+						let date = new Date();
+						props.addDebt({date: date.getDate() +'/'+date.getMonth()+'/'+date.getFullYear(), sum: 0})
+					}} value='הוסף'/>
+				<input type='button' className='btn btn-warning' onClick={() => {props.removeDebt()}} value='הסר'/>
+				<CsvReader importDebts={props.importDebts}/>
+			</div>
 		</div>
 	);
 }
