@@ -16,11 +16,16 @@ class InterestCalculator extends React.Component {
 			]
 		};
 
+		this.handleImportDebts = this.handleImportDebts.bind(this);
 		this.handleChangeDebtDate = this.handleChangeDebtDate.bind(this);
 		this.handleChangeDebtSum = this.handleChangeDebtSum.bind(this);
 		this.handleAddDebt = this.handleAddDebt.bind(this);
 		this.handleRemoveDebt = this.handleRemoveDebt.bind(this);
 		this.handleCalculate = this.handleCalculate.bind(this);
+	}
+
+	handleImportDebts(debtsArr) {
+		this.setState({debts: debtsArr});
 	}
 
 	handleChangeDebtDate(index, date) {
@@ -75,7 +80,9 @@ class InterestCalculator extends React.Component {
 			<div className='containter centered'>
 				<Header/>
 				<hr/>
-				<DebtsTable changeDebtDate={this.handleChangeDebtDate}
+				<DebtsTable 
+					importDebts={this.handleImportDebts}
+					changeDebtDate={this.handleChangeDebtDate}
 					changeDebtSum={this.handleChangeDebtSum} 
 					addDebt={this.handleAddDebt} 
 					removeDebt={this.handleRemoveDebt} 

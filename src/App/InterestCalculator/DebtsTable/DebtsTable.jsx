@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import DebtRow from './DebtRow';
+import CsvReader from './CSVReader';
 
 const DebtsTable = (props) => {
 	const rows = [];
@@ -22,6 +23,7 @@ const DebtsTable = (props) => {
 					props.addDebt({date: date.getDate() +'/'+date.getMonth()+'/'+date.getFullYear(), sum: 0})
 				}} value='הוסף'/>
 			<input type='button' className='btn btn-warning' onClick={() => {props.removeDebt()}} value='הסר'/>
+			<CsvReader importDebts={props.importDebts}/>
 		</div>
 	);
 }
@@ -31,7 +33,8 @@ DebtsTable.propTypes = {
 	changeDebtDate: PropTypes.func,
 	changeDebtSum: PropTypes.func.isRequired,
 	addDebt: PropTypes.func.isRequired,
-	removeDebt: PropTypes.func.isRequired
+	removeDebt: PropTypes.func.isRequired,
+	importDebts: PropTypes.func.isRequired
 }
 
 export default DebtsTable;
