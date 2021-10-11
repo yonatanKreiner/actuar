@@ -9,23 +9,31 @@ export const ResultsTable = (props) => {
     const columns = useMemo(
         () => [
           {
-            Header: 'תאריך',
-            accessor: 'deptDate',
-          },   
-          {
-            Header: 'קרן',
+            Header: 'סכום',
             accessor: 'debtSum',
           },
           {
-            Header: 'הצדמה',
+            Header: 'סוג ריבית',
+            accessor: 'interestType',
+          },
+          {
+            Header: 'מתאריך',
+            accessor: 'deptDate',
+          },  
+          {
+            Header: 'עד תאריך',
+            accessor: 'endDate',
+          },    
+          {
+            Header: 'שווי הצדמה',
             accessor: 'indexateSum',
           },
           {
-            Header: 'ריבית',
+            Header: 'סה"כ שווי ריבית',
             accessor: 'totalInterest',
           },
           {
-            Header: 'סה"כ',
+            Header: 'סה"כ שווי חוב',
             accessor: 'totalDebt',
           },
         ], []
@@ -44,7 +52,7 @@ export const ResultsTable = (props) => {
 
 	return (
 		<div className='results-table'>
-		    <table {...getTableProps()}>
+		    <table {...getTableProps()} style={{direction:"rtl"}} className="table">
                 <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>

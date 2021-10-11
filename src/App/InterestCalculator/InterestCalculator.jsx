@@ -72,7 +72,16 @@ class InterestCalculator extends React.Component {
 		});
 
 		const data = await response.json();
-		return data.finalDebt;
+		const results = data.finalDebt;
+		results.allDepts = results.allDepts.map(deptResult => { 
+			return {
+				...deptResult,
+				interestType: isLegalInterest ? "ריבית צמודה" : "ריבית פיגורים",
+				endDate: resultDate
+			}
+		});
+
+		return results;
 	}
 
 	render() {

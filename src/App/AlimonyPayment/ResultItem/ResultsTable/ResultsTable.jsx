@@ -32,7 +32,7 @@ export const ResultsTable = (props) => {
 
 	return (
 		<div className='results-table'>
-		    <table {...getTableProps()}>
+		    <table {...getTableProps()} className="table">
                 <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>

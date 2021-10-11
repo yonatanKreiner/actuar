@@ -40,7 +40,8 @@ class ResultItem extends React.Component {
 		});
 		const date = $('#datepicker').val();
 		const isLegalInterest = document.getElementById('legalInterestRadio').checked;
-		const finalDebt = await this.props.calculateDept(date, isLegalInterest);
+		const finalDebt = await this.props.calculateDept(date, isLegalInterest);	
+
 		this.setState({
 			result: finalDebt,
 			isLoading: false
