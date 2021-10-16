@@ -63,7 +63,7 @@ class InterestCalculator extends React.Component {
 	async handleCalculate(resultDate, isLegalInterest){
 		const results = [];
 		const debts = this.state.debts;
-		const CHUNK = 5;
+		const CHUNK = 4;
 		for(let i=0; i < debts.length; i += CHUNK){
 			const debtsChunk = debts.slice(i, i + CHUNK);
 
