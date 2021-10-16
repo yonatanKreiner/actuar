@@ -18,7 +18,9 @@ class DeptRow extends React.Component{
 	render() {
 		return (
 			<div className='container row'>
-				<input id={'datepicker'+this.props.index} className='datepicker' value={this.props.date} />
+				<input id={'datepicker'+this.props.index} className='datepicker' 
+					onChange={(e) => this.props.handleDateChange(this.props.index,e.target.value)}
+					value={this.props.date} />
 				<input type='number' className="form-text amoutpicker" onChange={(e) => {this.props.handleSumChange(this.props.index, e.target.value)}} min='0' value={this.props.sum} />
 			</div>
 		);

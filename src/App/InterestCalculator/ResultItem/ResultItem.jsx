@@ -62,7 +62,7 @@ class ResultItem extends React.Component {
 					</div>
 				</div>
 				<div className='row'>
-					<input  id='datepicker' className='datepicker' value={this.state.calculationDate} />
+					<input  id='datepicker' className='datepicker' onChange={(e)=>this.changeCalculationDate(e.target.value)} value={this.state.calculationDate} />
 					<button type='button' onClick={() => this.onClickCalculate()} className='btn-result btn btn-primary'>חשב</button><br />
 				</div>
 				{this.state.isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : 
