@@ -61,8 +61,23 @@ class InterestCalculator extends React.Component {
 	}
 
 	async handleCalculate(resultDate, isLegalInterest){
-		const requestData = {calculationDate: resultDate, debts: this.state.debts, isLegalInterest};
+		const results = [];
+		const debts = this.state.debts;
+		const CHUNK = 5;
+		for(let i=0; i < debts.length; i += CHUNK){
+			const debtsChunk = debts.slice(i, i + CHUNK);
 
+			const requestData = {calculationDate: resultDate, debts: debtsChunk, isLegalInterest};	
+			const chunkResult = await this.calcDepts(requestData);
+			results.push(...chunkResult);
+		}
+
+		const totalDebt = results.reduce((total, debtResult) => total + parseFloat(debtResult.totalDebt.replace(',','')), 0);
+
+		return {allDepts: results, total: totalDebt.toLocaleString(undefined,{ minimumFractionDigits: 2 })};
+	}
+
+	async calcDepts(requestData) {
 		const apiUrl = process.env.NODE_ENV === 'production' ? '/interest': 'http://localhost:7000/interest';
 
 		const response = await fetch(apiUrl,{
@@ -76,12 +91,12 @@ class InterestCalculator extends React.Component {
 		results.allDepts = results.allDepts.map(deptResult => { 
 			return {
 				...deptResult,
-				interestType: isLegalInterest ? "ריבית צמודה" : "ריבית פיגורים",
-				endDate: resultDate
+				interestType: requestData.isLegalInterest ? "ריבית צמודה" : "ריבית פיגורים",
+				endDate: requestData.calculationDate
 			}
 		});
 
-		return results;
+		return results.allDepts;
 	}
 
 	render() {
