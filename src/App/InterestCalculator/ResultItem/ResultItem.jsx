@@ -68,7 +68,10 @@ class ResultItem extends React.Component {
 				{this.state.isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : 
 						this.state.result ? 
 								<div className="result-data-container">
-									<h1 id='resultElement'>{this.state.result.total}</h1>
+									<div>
+										<h1 id='resultElement'>סה"כ חוב</h1>
+										<h1 id='resultElement'>{this.state.result.total}</h1>
+									</div>
 									<ResultsTable allDepts={this.state.result.allDepts}></ResultsTable>
 								</div> : <></>
 				}
