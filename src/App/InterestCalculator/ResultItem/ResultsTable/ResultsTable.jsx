@@ -25,7 +25,7 @@ export const ResultsTable = (props) => {
             accessor: 'endDate',
           },    
           {
-            Header: 'שווי הצדמה',
+            Header: 'שווי הצמדה',
             accessor: 'indexateSum',
           },
           {
@@ -52,8 +52,8 @@ export const ResultsTable = (props) => {
 
 	return (
 		<div className='results-table'>
-		    <table {...getTableProps()} style={{direction:"rtl"}} className="table">
-                <thead>
+		    <table {...getTableProps()} style={{direction:"rtl"}} className="table table-bordered">
+                <thead className="thead-light">
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map(column => (
