@@ -29,7 +29,7 @@ const DeptRow = (props) => {
 	const onChangeDebtSum = (e) => {
 		props.handleChangeDebt(props.index, {
 			startDate: props.debt.startDate,
-			sum: e.target.value,
+			sum: parseFloat(e.target.value),
 			isLegalInterest: props.debt.isLegalInterest,
 			endDate: props.debt.endDate
 		});
