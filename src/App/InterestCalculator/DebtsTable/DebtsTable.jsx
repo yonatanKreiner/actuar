@@ -11,7 +11,10 @@ const DebtsTable = (props) => {
 
 	props.debts.forEach((debt, index) => {
 		rows.push(
-			<DebtRow key={index} index={index} handleDateChange={props.changeDebtDate} handleSumChange={props.changeDebtSum} date={debt.date} sum={debt.sum}/>
+			<div>
+				<DebtRow key={index} index={index} handleChangeDebt={props.handleChangeDebt} debt={debt} />
+				<hr style={{width:'70%'}} />
+			</div>
 		);
 	});
 
@@ -32,8 +35,7 @@ const DebtsTable = (props) => {
 
 DebtsTable.propTypes = {
 	debts: PropTypes.array.isRequired,
-	changeDebtDate: PropTypes.func,
-	changeDebtSum: PropTypes.func.isRequired,
+	handleChangeDebt: PropTypes.func.isRequired,
 	addDebt: PropTypes.func.isRequired,
 	removeDebt: PropTypes.func.isRequired,
 	importDebts: PropTypes.func.isRequired
