@@ -40,7 +40,7 @@ class ResultItem extends React.Component {
 										<h1 id='resultElement'>סה"כ חוב</h1>
 										<h1 id='resultElement'>{this.state.result.total}</h1>
 									</div>
-									<ResultsTable allDepts={this.state.result.allDepts}></ResultsTable>
+									{/* <ResultsTable allDepts={this.state.result.allDepts}></ResultsTable> */}
 								</div> : <></>
 				}
 			</div>

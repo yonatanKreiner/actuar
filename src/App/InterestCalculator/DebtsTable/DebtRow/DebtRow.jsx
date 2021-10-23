@@ -27,6 +27,7 @@ const DeptRow = (props) => {
 	}
 	
 	const onChangeDebtSum = (e) => {
+		debugger;
 		props.handleChangeDebt(props.index, {
 			startDate: props.debt.startDate,
 			sum: parseFloat(e.target.value),
@@ -55,38 +56,84 @@ const DeptRow = (props) => {
 	} 
 
 	return (
-		<div id="debt-row" className='container'>
-			<input id={'startDate' + props.index} className='datepicker' 
-				onChange={onChangeDebtStartDate}
-				value={props.debt.startDate} />
+		<tr>
+			<td>
+				<input type='number' className="form-text amoutpicker" onChange={onChangeDebtSum} min='0' value={props.debt.sum} />
+			</td>
+			<td>
+				<input id={'startDate' + props.index} className='datepicker' 
+					onChange={onChangeDebtStartDate}
+					value={props.debt.startDate} />
+			</td>
+			<td>
+				<div className='radio-block'>
+					<div className="custom-control custom-radio">
+						<input type="radio" className="custom-control-input" 
+							name={"interest-type"+props.index} 
+							id={`legal${props.index}`}
+							value={true}
+							onClick={onChangeDebtInterestType}
+							checked={props.debt.isLegalInterest == true}
+						/>
+						<label for={`legal${props.index}`} className="custom-control-label">ריבית חוקית</label>
+					</div>
+					<div className="custom-control custom-radio">
+						<input type="radio" className="custom-control-input" 
+							name={"interest-type"+props.index}
+							id={`illegal${props.index}`}
+							value={false}
+							onClick={onChangeDebtInterestType}
+							checked={props.debt.isLegalInterest != true}
+						/>
+						<label for={`illegal${props.index}`} className="custom-control-label">ריבית פיגורים</label>
+					</div>
+				</div>
+			</td>
+			<td>
+				<input  id={'endDate'+props.index} className='datepicker' onChange={onChangeDebtEndDate} value={props.debt.endDate} />
+			</td>
+			<td>
+				{props.debt.indexateSum}
+			</td>
+			<td>
+				{props.debt.totalInterest}
+			</td>
+			<td>
+				{props.debt.totalDebt}
+			</td>
+		</tr>
+		// <div id="debt-row" className='container'>
+		// 	<input id={'startDate' + props.index} className='datepicker' 
+		// 		onChange={onChangeDebtStartDate}
+		// 		value={props.debt.startDate} />
 
-			<input type='number' className="form-text amoutpicker" onChange={onChangeDebtSum} min='0' value={props.debt.sum} />
+		// 	<input type='number' className="form-text amoutpicker" onChange={onChangeDebtSum} min='0' value={props.debt.sum} />
 		
-			<div className='radio-block'>
-				<div className="custom-control custom-radio">
-					<input type="radio" className="custom-control-input" 
-						 name={"interest-type"+props.index} 
-						 id={`legal${props.index}`}
-						 value={true}
-						 onClick={onChangeDebtInterestType}
-						checked={props.debt.isLegalInterest == true}
-					/>
-					<label for={`legal${props.index}`} className="custom-control-label">ריבית חוקית</label>
-				</div>
-				<div className="custom-control custom-radio">
-					<input type="radio" className="custom-control-input" 
-						name={"interest-type"+props.index}
-						id={`illegal${props.index}`}
-						value={false}
-						onClick={onChangeDebtInterestType}
-						checked={props.debt.isLegalInterest != true}
-					/>
-					<label for={`illegal${props.index}`} className="custom-control-label">ריבית פיגורים</label>
-				</div>
-			</div>
+		// 	<div className='radio-block'>
+		// 		<div className="custom-control custom-radio">
+		// 			<input type="radio" className="custom-control-input" 
+		// 				 name={"interest-type"+props.index} 
+		// 				 id={`legal${props.index}`}
+		// 				 value={true}
+		// 				 onClick={onChangeDebtInterestType}
+		// 				checked={props.debt.isLegalInterest == true}
+		// 			/>
+		// 			<label for={`legal${props.index}`} className="custom-control-label">ריבית חוקית</label>
+		// 		</div>
+		// 		<div className="custom-control custom-radio">
+		// 			<input type="radio" className="custom-control-input" 
+		// 				name={"interest-type"+props.index}
+		// 				id={`illegal${props.index}`}
+		// 				value={false}
+		// 				onClick={onChangeDebtInterestType}
+		// 				checked={props.debt.isLegalInterest != true}
+		// 			/>
+		// 			<label for={`illegal${props.index}`} className="custom-control-label">ריבית פיגורים</label>
+		// 		</div>
+		// 	</div>
 
-			<input  id={'endDate'+props.index} className='datepicker' onChange={onChangeDebtEndDate} value={props.debt.endDate} />
-		</div>
+		// 	<input  id={'endDate'+props.index} className='datepicker' onChange={onChangeDebtEndDate} value={props.debt.endDate} />
+		// </div>
 	);
 }
 

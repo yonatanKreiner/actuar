@@ -11,16 +11,32 @@ const DebtsTable = (props) => {
 
 	props.debts.forEach((debt, index) => {
 		rows.push(
-			<div>
+			// <div>
 				<DebtRow key={index} index={index} handleChangeDebt={props.handleChangeDebt} debt={debt} />
-				<hr style={{width:'70%'}} />
-			</div>
+				// <hr style={{width:'70%'}} />
+			// </div>
 		);
 	});
 
 	return (
 		<div className='buttons-control'>
-			{rows}
+			{/* {rows} */}
+			<table style={{direction:"rtl"}} className="table table-bordered">
+				<thead className="thead-light"> 
+					<tr>
+						<th>חוב</th>
+						<th>מתאריך</th>
+						<th>סוג ריבית</th>
+						<th>עד תאריך</th>
+						<th>שווי הצדמה</th>
+						<th>שווי ריבית</th>
+						<th>סה"כ</th>
+					</tr>
+				</thead>
+				<tbody>
+					{rows}
+				</tbody>
+			</table>
 			<div>
 				<input type='button' className='btn btn-info' onClick={() => {
 						let date = new Date();

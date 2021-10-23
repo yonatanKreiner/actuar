@@ -10,7 +10,7 @@ export const ResultsTable = (props) => {
         () => [
           {
             Header: 'סכום',
-            accessor: 'debtSum',
+            accessor: 'sum',
           },
           {
             Header: 'סוג ריבית',
@@ -18,7 +18,7 @@ export const ResultsTable = (props) => {
           },
           {
             Header: 'מתאריך',
-            accessor: 'deptDate',
+            accessor: 'startDate',
           },  
           {
             Header: 'עד תאריך',

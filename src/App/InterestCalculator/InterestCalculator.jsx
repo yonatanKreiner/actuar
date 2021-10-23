@@ -63,6 +63,10 @@ class InterestCalculator extends React.Component {
 
 		const totalDebt = results.reduce((total, debtResult) => total + parseFloat(debtResult.totalDebt.replace(',','')), 0);
 
+		this.setState(prevState => ({
+			debts: [...results]
+		}));
+		debugger;
 		return {allDepts: results, total: totalDebt.toLocaleString(undefined,{ minimumFractionDigits: 2 })};
 	}
 
