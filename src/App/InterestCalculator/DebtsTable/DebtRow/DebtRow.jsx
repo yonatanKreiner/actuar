@@ -21,8 +21,12 @@ const DeptRow = (props) => {
 	},[]);
 
 	const onChangeDebtStartDate = (e) => {
+		debugger;
 		props.handleChangeDebt(props.index, {
-			startDate: e.target.value
+			startDate: e.target.value,
+			sum: props.debt.sum,
+			isLegalInterest: props.debt.isLegalInterest,
+			endDate: props.debt.endDate
 		});
 	}
 	
