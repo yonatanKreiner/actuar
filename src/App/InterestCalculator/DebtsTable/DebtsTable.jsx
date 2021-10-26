@@ -7,16 +7,19 @@ import DebtRow from './DebtRow';
 import CsvReader from './CSVReader';
 
 const DebtsTable = (props) => {
-	const rows = [];
+	
+	const rows = props.debts.map((debt, index) => 
+		<DebtRow key={index} index={index} handleChangeDebt={props.handleChangeDebt} debt={debt} />
+	);
 
-	props.debts.forEach((debt, index) => {
-		rows.push(
-			// <div>
-				<DebtRow key={index} index={index} handleChangeDebt={props.handleChangeDebt} debt={debt} />
-				// <hr style={{width:'70%'}} />
-			// </div>
-		);
-	});
+	// props.debts.forEach((debt, index) => {
+	// 	rows.push(
+	// 		// <div>
+	// 			<DebtRow key={index} index={index} handleChangeDebt={props.handleChangeDebt} handleChangeStartDate={props.handleChangeStartDate} debt={debt} />
+	// 			// <hr style={{width:'70%'}} />
+	// 		// </div>
+	// 	);
+	// });
 
 	return (
 		<div className='buttons-control'>
@@ -40,7 +43,12 @@ const DebtsTable = (props) => {
 			<div>
 				<input type='button' className='btn btn-info' onClick={() => {
 						let date = new Date();
-						props.addDebt({date: date.getDate() +'/'+date.getMonth()+'/'+date.getFullYear(), sum: 0})
+						props.addDebt({
+							startDate: date.getDate() +'/'+date.getMonth()+'/'+date.getFullYear(),
+							sum: 0, 
+							isLegalInterest: true, 
+							endDate: date.getDate() +'/'+date.getMonth()+'/'+date.getFullYear(),
+						})
 					}} value='הוסף'/>
 				<input type='button' className='btn btn-warning' onClick={() => {props.removeDebt()}} value='הסר'/>
 				<CsvReader importDebts={props.importDebts}/>

@@ -11,19 +11,16 @@ const DeptRow = (props) => {
 		$('#' + startDatePickerId).datepicker({
 			format: 'dd/mm/yyyy'
 		});
-		$('#' + startDatePickerId).change(onChangeDebtStartDate);
 
 		let endDatePickerId = 'endDate' + props.index;
 		$('#' + endDatePickerId).datepicker({
 			format: 'dd/mm/yyyy'
 		});
-		$('#' + endDatePickerId).change(onChangeDebtEndDate);
-	},[]);
+	}, []);
 
 	const onChangeDebtStartDate = (e) => {
-		debugger;
 		props.handleChangeDebt(props.index, {
-			startDate: e.target.value,
+			startDate:  e.target.value,
 			sum: props.debt.sum,
 			isLegalInterest: props.debt.isLegalInterest,
 			endDate: props.debt.endDate
@@ -31,17 +28,15 @@ const DeptRow = (props) => {
 	}
 	
 	const onChangeDebtSum = (e) => {
-		debugger;
 		props.handleChangeDebt(props.index, {
 			startDate: props.debt.startDate,
 			sum: parseFloat(e.target.value),
 			isLegalInterest: props.debt.isLegalInterest,
-			endDate: props.debt.endDate
+			endDate: props.debt.endDate	
 		});
 	}
 
 	const onChangeDebtInterestType = (e) => {
-		debugger;
 		props.handleChangeDebt(props.index, {
 			startDate: props.debt.startDate,
 			sum: props.debt.sum,
@@ -54,7 +49,7 @@ const DeptRow = (props) => {
 		props.handleChangeDebt(props.index, {
 			startDate: props.debt.startDate,
 			sum: props.debt.sum,
-			isLegalInterest:  props.debt.isLegalInterest,
+			isLegalInterest: props.debt.isLegalInterest,
 			endDate: e.target.value
 		});
 	} 
@@ -62,12 +57,12 @@ const DeptRow = (props) => {
 	return (
 		<tr>
 			<td>
-				<input type='number' className="form-text amoutpicker" onChange={onChangeDebtSum} min='0' value={props.debt.sum} />
+				<input type='number' className="form-text amoutpicker" onChange={onChangeDebtSum} min='0' defaultValue={props.debt.sum} />
 			</td>
 			<td>
 				<input id={'startDate' + props.index} className='datepicker' 
-					onChange={onChangeDebtStartDate}
-					value={props.debt.startDate} />
+					onChange={(e) => onChangeDebtStartDate(e)}
+					defaultValue={props.debt.startDate} />
 			</td>
 			<td>
 				<div className='radio-block'>
@@ -94,7 +89,7 @@ const DeptRow = (props) => {
 				</div>
 			</td>
 			<td>
-				<input  id={'endDate'+props.index} className='datepicker' onChange={onChangeDebtEndDate} value={props.debt.endDate} />
+				<input  id={'endDate'+props.index} className='datepicker' onChange={onChangeDebtEndDate} defaultValue={props.debt.endDate} />
 			</td>
 			<td>
 				{props.debt.indexateSum}
