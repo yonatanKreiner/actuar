@@ -55,7 +55,7 @@ const DeptRow = (props) => {
 	} 
 
 	return (
-		<tr>
+		<tr id="debt-row">
 			<td>
 				<input type='number' className="form-text amoutpicker" onChange={onChangeDebtSum} min='0' defaultValue={props.debt.sum} />
 			</td>

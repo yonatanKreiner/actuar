@@ -1,34 +1,44 @@
-#debt-row {
+/* #debt-row {
 	display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 0 auto;
     padding: 10px;
-}
+} */
 
 #debt-row .amoutpicker{
+	margin: auto;
 	height: 25px;
+	max-width: 120px;
+	min-width: 100px;
 }
 
 #debt-row .datepicker{
-	width: 170px;
+	margin: auto;
+	max-width: 200px;
+	min-width: 115px;
 }
 
 #debt-row .radio-block{
-	width: 150px;
+	min-width: 100px;
+	max-width: 150px;
 	text-align: center;
 }
 
-@media only screen and (max-width: 600px) {
-	#debt-row {
-		position: static;
-		width: 70%;
-		left: 0;
-		margin: 2px auto;
-	}
 
+@media only screen and (max-width: 1200px) {
+	#debt-row {
+		font-size: 10px;
+	}
 	#debt-row .amoutpicker{
-		margin: 4px 0px;
+		height: 25px;
+		max-width: 90px;
+		min-width: 80px;
+	}
+	#debt-row .radio-block{
+		min-width: 85px;
+		max-width: 150px;
+		text-align: center;
 	}
 }
