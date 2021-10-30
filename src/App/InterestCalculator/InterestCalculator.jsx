@@ -78,7 +78,6 @@ const InterestCalculator = () => {
 	}
 
 	const generatePDF = async () => {
-		debugger;
 		const input = document.getElementById('results-table');
 		const resultTableCanvas = await html2canvas(input);
 		const headerCanvas = await html2canvas(document.getElementById('interest-header'));
