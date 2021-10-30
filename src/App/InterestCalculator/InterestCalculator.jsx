@@ -1,6 +1,9 @@
 import './InterestCalculator.css';
 
 import React, {useState} from 'react';
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
+
 
 import Header from './Header';
 import DebtsTable from './DebtsTable';
@@ -74,6 +77,20 @@ const InterestCalculator = () => {
 		return results.allDepts;
 	}
 
+	const generatePDF = async () => {
+		debugger;
+		const input = document.getElementById('results-table');
+		const resultTableCanvas = await html2canvas(input);
+		const headerCanvas = await html2canvas(document.getElementById('interest-header'));
+		const resultsImgData = resultTableCanvas.toDataURL('image/png');
+		const headerImgData = headerCanvas.toDataURL('image/png');
+
+		const pdf = new jsPDF();
+		pdf.addImage(headerImgData, 'JPEG', 0, 5);
+		pdf.addImage(resultsImgData, 'JPEG', 0, 30);
+		pdf.save("חישוב פסיקת ריבית.pdf");
+	}
+
 	return (
 		<div className='containter centered'>
 			<Header/>
@@ -85,7 +102,7 @@ const InterestCalculator = () => {
 				removeDebt={handleRemoveDebt} 
 				debts={debts} />
 			<hr/>
-			<ResultItem calculateDept={handleCalculate} />
+			<ResultItem calculateDept={handleCalculate} generatePDF={generatePDF} />
 		</div>
 	);
 }

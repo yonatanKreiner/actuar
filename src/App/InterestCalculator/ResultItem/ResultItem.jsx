@@ -40,6 +40,7 @@ class ResultItem extends React.Component {
 										<h1 id='resultElement'>סה"כ חוב</h1>
 										<h1 id='resultElement'>{this.state.result.total}</h1>
 									</div>
+									<button type='button' onClick={() => this.props.generatePDF()} className='btn btn-outline-info generate-pdf-btn'>הוצא מסמך</button>
 									{/* <ResultsTable allDepts={this.state.result.allDepts}></ResultsTable> */}
 								</div> : <></>
 				}
@@ -49,7 +50,8 @@ class ResultItem extends React.Component {
 }
 
 ResultItem.propTypes = {
-	calculateDept: PropTypes.func.isRequired
+	calculateDept: PropTypes.func.isRequired,
+	generatePDF: PropTypes.func.isRequired
 }
 
 export default ResultItem;

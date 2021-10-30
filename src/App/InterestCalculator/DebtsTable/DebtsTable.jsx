@@ -24,7 +24,7 @@ const DebtsTable = (props) => {
 	return (
 		<div className='buttons-control'>
 			{/* {rows} */}
-			<table style={{direction:"rtl"}} className="table table-bordered">
+			<table id="results-table" style={{direction:"rtl"}} className="table table-bordered">
 				<thead className="thead-light"> 
 					<tr>
 						<th>חוב</th>
