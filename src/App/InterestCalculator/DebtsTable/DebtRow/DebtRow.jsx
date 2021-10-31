@@ -60,11 +60,6 @@ const DeptRow = (props) => {
 				<input type='number' className="form-text amoutpicker" onChange={onChangeDebtSum} min='0' defaultValue={props.debt.sum} />
 			</td>
 			<td>
-				<input id={'startDate' + props.index} className='datepicker' 
-					onChange={(e) => onChangeDebtStartDate(e)}
-					defaultValue={props.debt.startDate} />
-			</td>
-			<td>
 				<div className='radio-block'>
 					<div className="custom-control custom-radio">
 						<input type="radio" className="custom-control-input" 
@@ -87,6 +82,11 @@ const DeptRow = (props) => {
 						<label for={`illegal${props.index}`} className="custom-control-label">ריבית פיגורים</label>
 					</div>
 				</div>
+			</td>
+			<td>
+				<input id={'startDate' + props.index} className='datepicker' 
+					onChange={(e) => onChangeDebtStartDate(e)}
+					defaultValue={props.debt.startDate} />
 			</td>
 			<td>
 				<input  id={'endDate'+props.index} className='datepicker' onChange={onChangeDebtEndDate} defaultValue={props.debt.endDate} />

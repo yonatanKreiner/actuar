@@ -28,8 +28,8 @@ const DebtsTable = (props) => {
 				<thead className="thead-light"> 
 					<tr>
 						<th>חוב</th>
-						<th>מתאריך</th>
 						<th>סוג ריבית</th>
+						<th>מתאריך</th>
 						<th>עד תאריך</th>
 						<th>שווי הצמדה</th>
 						<th>שווי ריבית</th>
