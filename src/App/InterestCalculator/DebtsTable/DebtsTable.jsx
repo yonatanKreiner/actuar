@@ -31,7 +31,7 @@ const DebtsTable = (props) => {
 						<th>מתאריך</th>
 						<th>סוג ריבית</th>
 						<th>עד תאריך</th>
-						<th>שווי הצדמה</th>
+						<th>שווי הצמדה</th>
 						<th>שווי ריבית</th>
 						<th>סה"כ</th>
 					</tr>

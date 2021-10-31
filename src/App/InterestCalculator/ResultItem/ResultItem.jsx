@@ -52,7 +52,7 @@ class ResultItem extends React.Component {
 										<h1 id='resultElement'>סה"כ חוב</h1>
 										<h1 id='resultElement'>{this.state.result.total}</h1>
 									</div>
-									<button type='button' onClick={() => this.onClickGeneratePDF()} className='btn btn-outline-info generate-pdf-btn'>אפק דו"ח</button>
+									<button type='button' onClick={() => this.onClickGeneratePDF()} className='btn btn-outline-info generate-pdf-btn'>הפק דו"ח</button>
 									{/* <ResultsTable allDepts={this.state.result.allDepts}></ResultsTable> */}
 								</div> : <></>
 				}
