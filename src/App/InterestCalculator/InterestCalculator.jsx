@@ -13,8 +13,8 @@ const InterestCalculator = () => {
 	const date = new Date();
 
 	const [debts, setDebts] = useState([
-		{startDate: '01/01/2010', sum: 100, isLegalInterest: true, endDate: date.getDate() +'/'+date.getMonth()+'/'+date.getFullYear()},
-		{startDate: '01/01/2020', sum: 100, isLegalInterest: true, endDate: date.getDate() +'/'+date.getMonth()+'/'+date.getFullYear()}
+		{startDate: '01/01/2010', sum: 100, isLegalInterest: true, endDate: date.getDate() +'/'+(date.getMonth()+1)+'/'+date.getFullYear()},
+		{startDate: '01/01/2020', sum: 100, isLegalInterest: true, endDate: date.getDate() +'/'+(date.getMonth()+1)+'/'+date.getFullYear()}
 	]);
 
 	const handleImportDebts = (debtsArr) => {
