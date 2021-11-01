@@ -84,9 +84,15 @@ const InterestCalculator = () => {
 		const resultsImgData = resultTableCanvas.toDataURL('image/png');
 		const headerImgData = headerCanvas.toDataURL('image/png');
 
-		const pdf = new jsPDF();
+		const pdf = new jsPDF("p", "mm", "a4");
+
+		const imgProps= pdf.getImageProperties(resultsImgData);
+		const width = pdf.internal.pageSize.getWidth();
+		const height = (imgProps.height * width) / imgProps.width;
+		
 		pdf.addImage(headerImgData, 'JPEG', 0, 5);
-		pdf.addImage(resultsImgData, 'JPEG', 0, 30);
+		pdf.addImage(resultsImgData, 'JPEG', 2, 30, width - 4, height);
+		
 		pdf.save("חישוב פסיקת ריבית.pdf");
 	}
 
