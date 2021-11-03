@@ -5,8 +5,6 @@ import React from 'react';
 import ReactLoading from 'react-loading';
 import ResultsTable from './ResultsTable';
 
-const $ = window.jQuery;
-
 class ResultItem extends React.Component {
 	constructor(props) {
 		super(props);

@@ -2,25 +2,17 @@ import './DebtRow.css';
 
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-const $ = window.jQuery;
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const DeptRow = (props) => {
 	useEffect(() => {
-		let startDatePickerId = 'startDate' + props.index;
-		$('#' + startDatePickerId).datepicker({
-			format: 'dd/mm/yyyy'
-		});
-
-		let endDatePickerId = 'endDate' + props.index;
-		$('#' + endDatePickerId).datepicker({
-			format: 'dd/mm/yyyy'
-		});
+	 
 	}, []);
 
-	const onChangeDebtStartDate = (e) => {
+	const onChangeDebtStartDate = (value) => {
 		props.handleChangeDebt(props.index, {
-			startDate:  e.target.value,
+			startDate: value,
 			sum: props.debt.sum,
 			isLegalInterest: props.debt.isLegalInterest,
 			endDate: props.debt.endDate
@@ -45,12 +37,12 @@ const DeptRow = (props) => {
 		});
 	}
 
-	const onChangeDebtEndDate = (e) => {
+	const onChangeDebtEndDate = (value) => {
 		props.handleChangeDebt(props.index, {
 			startDate: props.debt.startDate,
 			sum: props.debt.sum,
 			isLegalInterest: props.debt.isLegalInterest,
-			endDate: e.target.value
+			endDate: value
 		});
 	} 
 
@@ -84,12 +76,10 @@ const DeptRow = (props) => {
 				</div>
 			</td>
 			<td>
-				<input id={'startDate' + props.index} className='datepicker' 
-					onChange={(e) => onChangeDebtStartDate(e)}
-					defaultValue={props.debt.startDate} />
+				<DatePicker selected={new Date(props.debt.startDate)} onChange={onChangeDebtStartDate} dateFormat={"dd/MM/yyyy"} />
 			</td>
 			<td>
-				<input  id={'endDate'+props.index} className='datepicker' onChange={onChangeDebtEndDate} defaultValue={props.debt.endDate} />
+				<DatePicker selected={new Date(props.debt.endDate)} onChange={onChangeDebtEndDate} dateFormat={"dd/MM/yyyy"} />
 			</td>
 			<td>
 				{props.debt.indexateSum}
