@@ -10,11 +10,10 @@ import DebtsTable from './DebtsTable';
 import ResultItem from './ResultItem';
 
 const InterestCalculator = () => {
-	const date = new Date();
 
 	const [debts, setDebts] = useState([
-		{startDate: new Date(), sum: 100, isLegalInterest: true, endDate: date.getDate() +'/'+(date.getMonth()+1)+'/'+date.getFullYear()},
-		{startDate: new Date(), sum: 100, isLegalInterest: true, endDate: date.getDate() +'/'+(date.getMonth()+1)+'/'+date.getFullYear()}
+		{startDate: new Date(), sum: 100, isLegalInterest: true, endDate: new Date()},
+		{startDate: new Date(), sum: 100, isLegalInterest: true, endDate: new Date()}
 	]);
 
 	const handleImportDebts = (debtsArr) => {
