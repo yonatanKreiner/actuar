@@ -2,21 +2,17 @@ import './ChildData.css';
 
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-
-const $ = window.jQuery;
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const ChildData = (props) => {
 	useEffect(() => {
-		let datePickerId = 'datepicker'+ props.index;
-		$('#' + datePickerId).datepicker({
-			format: 'dd/mm/yyyy'
-		});
-		$('#' + datePickerId).change(onChangeBirthDate);
+	
 	}, []);
 
-	const onChangeBirthDate = (e) => {
+	const onChangeBirthDate = (value) => {
 		props.changeChild(props.index, {
-			birthDate: e.target.value,
+			birthDate: value,
 			sum: props.child.sum,
 			adultPrecent: props.child.adultPrecent,
 			gender:props.child.gender
@@ -54,7 +50,7 @@ const ChildData = (props) => {
 		<div className='child-data-container-row'>
 			<span className="data-row">
 				תאריך לידה: 
-				<input id={'datepicker'+props.index} className='datepicker' onChange={onChangeBirthDate} value={props.child.birthDate} />
+				<DatePicker selected={new Date(props.child.birthDate)} onChange={onChangeBirthDate} dateFormat={"dd/MM/yyyy"} />
 			</span>
 			<span className="data-row">
 				סכום מזונות: 

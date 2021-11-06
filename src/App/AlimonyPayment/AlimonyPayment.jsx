@@ -1,16 +1,22 @@
 import './AlimonyPayment.css';
 
 import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
+import moment from 'moment';
+
+
 import ChilrenTable from './ChilrenTable';
 import ResultItem from './ResultItem';
 import GeneralPayload from './GeneralPayload';
 
 const AlimonyPayment = () => {
+	const history = useHistory();
+
 	const [children, setChildren] = useState([
-		{birthDate: '01/01/2005', sum: 1000, adultPrecent: 0.3, gender: 'male'},
+		{birthDate: new Date(), sum: 1000, adultPrecent: 0.3, gender: 'male'},
 	]);
 	const [madadIndexateInterval,setMadadIndexateInterval] = useState(3);
-	const [startPaymentDate,setStartPaymentDate] = useState('01/01/2020');
+	const [startPaymentDate,setStartPaymentDate] = useState(new Date());
 
 	const handleChangeGereral = (paymentStartDate, madadUpdateInterval) => {
 		setStartPaymentDate(paymentStartDate);
@@ -22,7 +28,7 @@ const AlimonyPayment = () => {
 	}
 
 	const handleAddChild = () => {
-		setChildren([...children, {birthDate: '01/01/2000', sum: 1000, adultPrecent: 0.3, gender: 'male'}]);
+		setChildren([...children, {birthDate: new Date(), sum: 1000, adultPrecent: 0.3, gender: 'male'}]);
 	}
 
 	const handleRemoveChild = () => {
@@ -41,6 +47,19 @@ const AlimonyPayment = () => {
 		const data = await response.json();
 		
 		return data;
+	}
+	
+	const openInterestCalculationwithExitData = (resultTable) => {
+		const interestPayload = resultTable.map((result) => ({
+			startDate: moment(result.date, 'MM/YYYY').toDate(),
+			sum: result.payment,
+			endDate: new Date(),
+			isLegalInterest: true
+		}));
+		
+		window.sessionStorage.setItem('interestCalculationImportPayload', JSON.stringify(interestPayload));
+
+		history.push('calcInterest?combackCalc=alimonyPayment')
 	}
 
     return (
@@ -62,7 +81,9 @@ const AlimonyPayment = () => {
 						removeChild={handleRemoveChild} 
 						children={children} />
 				</div>
-				<ResultItem calculateAlimonyPayment={handleCalculatePayment}></ResultItem>
+				<ResultItem 
+					calculateAlimonyPayment={handleCalculatePayment}
+					openInterestCalculationwithExitData={openInterestCalculationwithExitData}></ResultItem>
 			</div>
         </div>
     );

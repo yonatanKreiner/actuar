@@ -2,21 +2,17 @@ import './GeneralPayload.css';
 
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-
-const $ = window.jQuery;
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const GeneralPayload = (props) => {
 
     useEffect(() => {
-		let datePickerId = 'datepicker-startpayment';
-		$('#' + datePickerId).datepicker({
-			format: 'dd/mm/yyyy'
-		});
-        $('#' + datePickerId).change(onChangeStartDate);
+
 	}, []);
 
-    const onChangeStartDate = (e) => {
-        props.onChange(e.target.value, props.madadIndexateInterval);
+    const onChangeStartDate = (value) => {
+        props.onChange(value, props.madadIndexateInterval);
     }
 
 	const onChangeMadadInterval = (e) => {
@@ -27,7 +23,7 @@ const GeneralPayload = (props) => {
         <div className='alimony-payments-general'>
             <span className='general-payload'>
                 תאריך התחלת תשלום: 
-                <input id={'datepicker-startpayment'} onChange={onChangeStartDate} value={props.startDate} />
+                <DatePicker selected={new Date(props.startDate)} onChange={onChangeStartDate} dateFormat={"dd/MM/yyyy"} />
             </span>
             <span className='general-payload'>
                 הצמדה למדד(כל מספר חודשים): 

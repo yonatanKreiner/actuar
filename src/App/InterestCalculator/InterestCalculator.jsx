@@ -1,6 +1,6 @@
 import './InterestCalculator.css';
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 
@@ -15,6 +15,14 @@ const InterestCalculator = () => {
 		{startDate: new Date(), sum: 100, isLegalInterest: true, endDate: new Date()},
 		{startDate: new Date(), sum: 100, isLegalInterest: true, endDate: new Date()}
 	]);
+
+	useEffect(()=> {
+		if(window.location.search.substr(1).includes("combackCalc")){
+			const payload = window.sessionStorage.getItem("interestCalculationImportPayload");
+			const payloadData = JSON.parse(payload); 
+			setDebts(payloadData);
+		}
+	}, [])
 
 	const handleImportDebts = (debtsArr) => {
 		setDebts(debtsArr);
