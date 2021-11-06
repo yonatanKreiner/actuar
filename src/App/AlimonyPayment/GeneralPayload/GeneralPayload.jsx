@@ -12,18 +12,26 @@ const GeneralPayload = (props) => {
 	}, []);
 
     const onChangeStartDate = (value) => {
-        props.onChange(value, props.madadIndexateInterval);
+        props.onChange(value, props.calcDate, props.madadIndexateInterval);
+    }
+
+    const onChangeCalcDate = (value) => {
+        props.onChange(props.startDate, value, props.madadIndexateInterval);
     }
 
 	const onChangeMadadInterval = (e) => {
-        props.onChange(props.startDate, parseInt(e.target.value));
+        props.onChange(props.startDate, props.calcDate, parseInt(e.target.value));
 	}
 
     return (
         <div className='alimony-payments-general'>
             <span className='general-payload'>
-                תאריך התחלת תשלום: 
-                <DatePicker selected={new Date(props.startDate)} onChange={onChangeStartDate} dateFormat={"dd/MM/yyyy"} />
+                תאריך התחלת הסכם: 
+                <DatePicker selected={new Date(props.startDate)}  onChange={onChangeStartDate} dateFormat={"dd/MM/yyyy"} />
+            </span>
+            <span className='general-payload'>
+                תאריך תשלום: 
+                <DatePicker selected={new Date(props.calcDate)} onChange={onChangeCalcDate} dateFormat={"dd/MM/yyyy"} />
             </span>
             <span className='general-payload'>
                 הצמדה למדד(כל מספר חודשים): 
@@ -35,6 +43,7 @@ const GeneralPayload = (props) => {
 
 GeneralPayload.propTypes = {
     startDate: PropTypes.object.isRequired,
+    calcDate: PropTypes.object.isRequired,
     madadIndexateInterval: PropTypes.number.isRequired,
 	onChange: PropTypes.func.isRequired
 };

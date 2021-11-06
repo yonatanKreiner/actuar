@@ -17,9 +17,11 @@ const AlimonyPayment = () => {
 	]);
 	const [madadIndexateInterval,setMadadIndexateInterval] = useState(3);
 	const [startPaymentDate,setStartPaymentDate] = useState(new Date());
+	const [calcDate,setCalcDate] = useState(new Date());
 
-	const handleChangeGereral = (paymentStartDate, madadUpdateInterval) => {
+	const handleChangeGereral = (paymentStartDate, paymentEndDate, madadUpdateInterval) => {
 		setStartPaymentDate(paymentStartDate);
+		setCalcDate(paymentEndDate);
 		setMadadIndexateInterval(madadUpdateInterval);
 	}
 
@@ -41,7 +43,7 @@ const AlimonyPayment = () => {
 		const response = await fetch(apiUrl,{
 			method: 'post',
 			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify({children,madadIndexateInterval,startPaymentDate})
+			body: JSON.stringify({children,madadIndexateInterval,startPaymentDate,calcDate})
 		});
 
 		const data = await response.json();
@@ -53,7 +55,7 @@ const AlimonyPayment = () => {
 		const interestPayload = resultTable.map((result) => ({
 			startDate: moment(result.date, 'MM/YYYY').toDate(),
 			sum: result.payment,
-			endDate: new Date(),
+			endDate: calcDate,
 			isLegalInterest: true
 		}));
 		
@@ -73,6 +75,7 @@ const AlimonyPayment = () => {
 						onChange={handleChangeGereral}
 						startDate={startPaymentDate}
 						madadIndexateInterval={madadIndexateInterval}
+						calcDate={calcDate}
 					/>
 					<hr/>
 					<ChilrenTable  
