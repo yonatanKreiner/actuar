@@ -50,7 +50,9 @@ const ChildData = (props) => {
 		<div className='child-data-container-row'>
 			<span className="data-row">
 				תאריך לידה: 
-				<DatePicker selected={new Date(props.child.birthDate)} onChange={onChangeBirthDate} dateFormat={"dd/MM/yyyy"} />
+				<div className="datepicker">
+					<DatePicker selected={new Date(props.child.birthDate)} onChange={onChangeBirthDate} dateFormat={"dd/MM/yyyy"} />
+				</div>
 			</span>
 			<span className="data-row">
 				סכום מזונות: 

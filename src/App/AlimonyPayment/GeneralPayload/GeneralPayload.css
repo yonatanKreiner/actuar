@@ -5,5 +5,9 @@
 }
 
 .alimony-payments-general .general-payload .madad-interval-picker {
-	width: 180px;
+	width: 166px;
+}
+
+.alimony-payments-general .general-payload .datepicker{
+	width: fit-content;
 }

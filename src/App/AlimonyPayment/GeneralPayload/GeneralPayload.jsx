@@ -27,11 +27,15 @@ const GeneralPayload = (props) => {
         <div className='alimony-payments-general'>
             <span className='general-payload'>
                 תאריך התחלת הסכם: 
-                <DatePicker selected={new Date(props.startDate)}  onChange={onChangeStartDate} dateFormat={"dd/MM/yyyy"} />
+                <div className="datepicker">
+                    <DatePicker  selected={new Date(props.startDate)}  onChange={onChangeStartDate} dateFormat={"dd/MM/yyyy"} />
+                </div>
             </span>
             <span className='general-payload'>
                 תאריך תשלום: 
+            <div className="datepicker">
                 <DatePicker selected={new Date(props.calcDate)} onChange={onChangeCalcDate} dateFormat={"dd/MM/yyyy"} />
+            </div>
             </span>
             <span className='general-payload'>
                 הצמדה למדד(כל מספר חודשים): 
