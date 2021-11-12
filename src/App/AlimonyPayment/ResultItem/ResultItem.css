@@ -8,6 +8,9 @@
 	color: #17a2b8;
 	width: auto;
 }
+.alimony-payment-result-block .btn-open-interest:hover {
+	color: white;
+}
 
 .alimony-payment-result-block{
 	width: 200px;
