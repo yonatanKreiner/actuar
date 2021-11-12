@@ -3,7 +3,7 @@ import './InterestCalculator.css';
 import React, {useState, useEffect} from 'react';
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
-
+import { useSnackbar } from 'react-simple-snackbar'
 
 import Header from './Header';
 import DebtsTable from './DebtsTable';
@@ -15,6 +15,8 @@ const InterestCalculator = () => {
 		{startDate: new Date(), sum: 100, isLegalInterest: true, endDate: new Date()},
 		{startDate: new Date(), sum: 100, isLegalInterest: true, endDate: new Date()}
 	]);
+
+	const [openSnackbar] = useSnackbar()
 
 	useEffect(()=> {
 		if(window.location.search.substr(1).includes("combackCalc")){
@@ -46,21 +48,25 @@ const InterestCalculator = () => {
 	}
 
 	const handleCalculate = async () => {
-		const results = [];
-		const CHUNK = 2;
-		for(let i=0; i < debts.length; i += CHUNK) {
-			const debtsChunk = debts.slice(i, i + CHUNK);
+		try{
+			const results = [];
+			const CHUNK = 2;
+			for(let i=0; i < debts.length; i += CHUNK) {
+				const debtsChunk = debts.slice(i, i + CHUNK);
 
-			const requestData = { debts: debtsChunk };	
-			const chunkResult = await calcDepts(requestData);
-			results.push(...chunkResult);
+				const requestData = { debts: debtsChunk };	
+				const chunkResult = await calcDepts(requestData);
+				results.push(...chunkResult);
+			}
+
+			const totalDebt = results.reduce((total, debtResult) => total + parseFloat(debtResult.totalDebt.replace(',','')), 0);
+
+			setDebts([...results]);
+
+			return {allDepts: results, total: totalDebt.toLocaleString(undefined,{ minimumFractionDigits: 2 })};
+		} catch {
+			openSnackbar('החישוב נכשל, אנא נסה שנית או פנה לגורם טכני')
 		}
-
-		const totalDebt = results.reduce((total, debtResult) => total + parseFloat(debtResult.totalDebt.replace(',','')), 0);
-
-		setDebts([...results]);
-
-		return {allDepts: results, total: totalDebt.toLocaleString(undefined,{ minimumFractionDigits: 2 })};
 	}
 
 	const calcDepts = async (requestData) => {
