@@ -10,8 +10,19 @@ const ChildData = (props) => {
 	
 	}, []);
 
+	const onChangeName = (e) => {
+		props.changeChild(props.index, {
+			name: e.target.value,
+			birthDate: props.child.birthDate,
+			sum: props.child.sum,
+			adultPrecent: props.child.adultPrecent,
+			gender:props.child.gender
+		})
+	}
+
 	const onChangeBirthDate = (value) => {
 		props.changeChild(props.index, {
+			name: props.child.name,
 			birthDate: value,
 			sum: props.child.sum,
 			adultPrecent: props.child.adultPrecent,
@@ -21,6 +32,7 @@ const ChildData = (props) => {
 
 	const onChangeGender = (e) => {
 		props.changeChild(props.index, {
+			name: props.child.name,
 			birthDate: props.child.birthDate,
 			sum: props.child.sum,
 			adultPrecent: props.child.adultPrecent,
@@ -30,6 +42,7 @@ const ChildData = (props) => {
 	
 	const onChangeAdultPrecent = (e) => {
 		props.changeChild(props.index, {
+			name: props.child.name,
 			birthDate: props.child.birthDate,
 			sum: props.child.sum,
 			adultPrecent: parseFloat(e.target.value),
@@ -39,6 +52,7 @@ const ChildData = (props) => {
 
 	const onChangeSum = (e) => {
 		props.changeChild(props.index, {
+			name: props.child.name,
 			birthDate: props.child.birthDate,
 			sum:  parseInt(e.target.value),
 			adultPrecent: props.child.adultPrecent,
@@ -46,52 +60,62 @@ const ChildData = (props) => {
 		})
 	}
 
+	const calcAge = () => {
+		const ageDifMS = props.startPaymentDate - props.child.birthDate;
+		const ageDate = new Date(ageDifMS);
+		return Math.abs(ageDate.getUTCFullYear() - 1970) + parseFloat((ageDate.getUTCMonth()/12).toFixed(1));
+	}
+
 	return (
-		<div className='child-data-container-row'>
-			<span className="data-row">
-				תאריך לידה: 
-				<div className="datepicker">
-					<DatePicker selected={new Date(props.child.birthDate)} onChange={onChangeBirthDate} dateFormat={"dd/MM/yyyy"} />
+		<tr className="child-data-container-row">
+			<td>
+				<input type='text' className="form-text" onChange={onChangeSum} value={props.child.name} />
+			</td>
+			<td>
+				<DatePicker selected={new Date(props.child.birthDate)} onChange={onChangeBirthDate} dateFormat={"dd/MM/yyyy"} />
+			</td>
+			<td>
+				<div className='radio-block'>
+					<div className="custom-control custom-radio">
+						<input type="radio" className="custom-control-input" 
+							name={"child-gender"+props.index} 
+							id={`male${props.index}`}
+							value="male"
+							onClick={onChangeGender}
+							checked={props.child.gender === "male"}
+						/>
+						<label for={`male${props.index}`} className="custom-control-label">זכר</label>
+					</div>
+					<div className="custom-control custom-radio">
+						<input type="radio" className="custom-control-input" 
+							name={"child-gender"+props.index}
+							id={`female${props.index}`}
+							value="female"
+							onClick={onChangeGender}
+							checked={props.child.gender === "female"}
+						/>
+						<label for={`female${props.index}`} className="custom-control-label">נקבה</label>
+					</div>
 				</div>
-			</span>
-			<span className="data-row">
-				סכום מזונות: 
+			</td>
+			<td>
+				{calcAge()}
+			</td>
+			<td>
 				<input type='number' className="form-text" onChange={onChangeSum} min='0' value={props.child.sum} />
-			</span>
-			<span className="data-row">
-				אחוז שארית (מגיל 18):
+			</td>
+			<td>
 				<input type="number" step="0.01" className="form-text" onChange={onChangeAdultPrecent} value={props.child.adultPrecent} />
-			</span>
-			<span className="data-row data-row-space-even">
-				<span className="custom-control custom-radio">
-					<input type="radio" className="custom-control-input" 
-						 name={"child-gender"+props.index} 
-						 id={`male${props.index}`}
-						 value="male"
-						 onClick={onChangeGender}
-						checked={props.child.gender === "male"}
-					/>
-					<label for={`male${props.index}`} className="custom-control-label">זכר</label>
-				</span>
-				<span className="custom-control custom-radio">
-					<input type="radio" className="custom-control-input" 
-						name={"child-gender"+props.index}
-						id={`female${props.index}`}
-						value="female"
-						onClick={onChangeGender}
-						checked={props.child.gender === "female"}
-					/>
-					<label for={`female${props.index}`} className="custom-control-label">נקבה</label>
-				</span>
-			</span>
-		</div>
+			</td>
+		</tr>
 	);
 }
 
 ChildData.propTypes = {
 	index: PropTypes.number.isRequired,
 	child: PropTypes.object.isRequired,
-	changeChild: PropTypes.func.isRequired
+	changeChild: PropTypes.func.isRequired,
+	startPaymentDate: PropTypes.object 
 };
 
 export default ChildData;
