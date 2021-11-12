@@ -31,14 +31,15 @@ const ResultItem = (props) => {
 				{result ? <button type='button' onClick={openInterestCalculator} className='btn-open-interest btn btn-outline-info'>חשב הצמדה וריבית חוקית</button> : <></>}
 			</span>
 			{isLoading ? <ReactLoading className="loader" color={'#2196F3'} />
-						: result ? <ResultsTable payments={result}></ResultsTable> : <></>}
+						: result ? <ResultsTable payments={result} children={props.children}></ResultsTable> : <></>}
 		</div>
 	);
 }
 
 ResultItem.propTypes = {
 	calculateAlimonyPayment: PropTypes.func.isRequired,
-	openInterestCalculationwithExitData: PropTypes.func
+	openInterestCalculationwithExitData: PropTypes.func,
+	children: PropTypes.array
 }
 
 

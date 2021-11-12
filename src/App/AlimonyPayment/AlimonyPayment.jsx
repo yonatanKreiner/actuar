@@ -90,7 +90,8 @@ const AlimonyPayment = () => {
 				</div>
 				<ResultItem 
 					calculateAlimonyPayment={handleCalculatePayment}
-					openInterestCalculationwithExitData={openInterestCalculationwithExitData}></ResultItem>
+					openInterestCalculationwithExitData={openInterestCalculationwithExitData}
+					children={children}></ResultItem>
 			</div>
         </div>
     );

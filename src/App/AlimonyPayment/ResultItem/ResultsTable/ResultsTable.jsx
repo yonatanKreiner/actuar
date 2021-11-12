@@ -1,77 +1,37 @@
 import PropTypes from 'prop-types';
-import React, {useMemo} from 'react'; 
-import { useTable, useFilters, useSortBy } from 'react-table'
+import React from 'react'; 
 
 export const ResultsTable = (props) => {
     
-    const data = useMemo(() => props.payments, [props.payments]);
-
-    const columns = useMemo(
-        () => [
-          {
-            Header: 'תאריך',
-            accessor: 'date', // accessor is the "key" in the data
-          },
-          {
-            Header: 'תשלום',
-            accessor: 'payment',
-          },
-        ], []
-    );
-
-    const tableInstance = useTable({ columns, data },useFilters,useSortBy);
-
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow,
-      } = tableInstance
-      
+      const getRowsData = () => {
+          return props.payments.map(payment => (
+            <tr>
+                <td>{payment.date}</td>
+                {payment.childrenPayments.map(childPayment => <td>{childPayment}</td>)}
+                <td>{payment.totalPayment}</td>
+            </tr>
+          ));
+      }
 
 	return (
 		<div className='results-table'>
-		    <table {...getTableProps()} className="table">
-                <thead>
-                {headerGroups.map(headerGroup => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map(column => (
-                        <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                            {column.render('Header')}
-                            <span>{
-                                column.isSorted
-                                    ? column.isSortedDesc
-                                        ? '🔽'
-                                        : '🔼'
-                                    : ""}
-                            </span>
-                        </th>
-                    ))}
-                    </tr>
-                ))}
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                    {rows.map(row => {
-                        prepareRow(row)
-                        return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map(cell => {
-                                    return (
-                                        <td {...cell.getCellProps()}>
-                                        {cell.render('Cell')}
-                                        </td>
-                                    )
-                                })}
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+		   <table style={{direction:"rtl"}} className="table table-bordered">
+				<thead className="thead-light"> 
+					<tr>
+						<th>חודש תשלום</th>
+						{props.children.map(child => <th>{child.name}</th>)}
+						<th>סה"כ</th>
+					</tr>
+				</thead>
+				<tbody>
+					{getRowsData()}
+				</tbody>
+			</table>
 		</div>
 	);
 }
 
 ResultsTable.propTypes = {
-    payments: PropTypes.array.isRequired
+    payments: PropTypes.array.isRequired,
+    children: PropTypes.array
 }
