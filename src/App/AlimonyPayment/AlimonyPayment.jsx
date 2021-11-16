@@ -16,11 +16,13 @@ const AlimonyPayment = () => {
 		{name: "ילד 1" , birthDate: new Date(), sum: 1000, adultPrecent: 0.3, gender: 'male'},
 	]);
 	const [madadIndexateInterval,setMadadIndexateInterval] = useState(3);
+	const [aggrimentDate,setAggrimentDate] = useState(new Date());
 	const [startPaymentDate,setStartPaymentDate] = useState(new Date());
 	const [calcDate,setCalcDate] = useState(new Date());
 	const [baseIndexateDate,setBaseIndexateDate] = useState(new Date());
 
-	const handleChangeGereral = (paymentStartDate, paymentEndDate, indexateDate, madadUpdateInterval) => {
+	const handleChangeGereral = (aggrimentSignDate, paymentStartDate, paymentEndDate, indexateDate, madadUpdateInterval) => {
+		setAggrimentDate(aggrimentSignDate);
 		setStartPaymentDate(paymentStartDate);
 		setCalcDate(paymentEndDate);
 		setBaseIndexateDate(indexateDate);
@@ -79,6 +81,7 @@ const AlimonyPayment = () => {
 						madadIndexateInterval={madadIndexateInterval}
 						calcDate={calcDate}
 						baseIndexateDate={baseIndexateDate}
+						aggrimentDate={aggrimentDate}
 					/>
 					<hr/>
 					<ChilrenTable  
