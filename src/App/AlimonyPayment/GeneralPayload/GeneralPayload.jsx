@@ -16,7 +16,10 @@ const GeneralPayload = (props) => {
     }
 
     const onChangeStartDate = (value) => {
-        props.onChange(props.aggrimentDate, value, props.calcDate, props.baseIndexateDate, props.madadIndexateInterval);
+        let indexateDate = new Date(value);
+        indexateDate = indexateDate.setMonth(indexateDate.getMonth() - 2);
+
+        props.onChange(props.aggrimentDate, value, props.calcDate, indexateDate, props.madadIndexateInterval);
     }
 
     const onChangeCalcDate = (value) => {
