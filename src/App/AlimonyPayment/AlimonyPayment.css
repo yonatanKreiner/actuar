@@ -1,9 +1,6 @@
 .alimony-payment-container .data-container{
     display: flex;
-}
-
-.alimony-payment-container .data-container .alimonay-payload-container {
-    width: 60%; 
+    flex-direction: column;
 }
 
 .alimony-payment-container .data-container .alimonay-payload-container .general-payload{
