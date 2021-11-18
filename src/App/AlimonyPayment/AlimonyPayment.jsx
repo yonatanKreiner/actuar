@@ -17,9 +17,9 @@ const AlimonyPayment = () => {
 	]);
 	const [madadIndexateInterval,setMadadIndexateInterval] = useState(3);
 	const [aggrimentDate,setAggrimentDate] = useState(new Date());
-	const [startPaymentDate,setStartPaymentDate] = useState(new Date());
-	const [calcDate,setCalcDate] = useState(new Date());
-	const [baseIndexateDate,setBaseIndexateDate] = useState(new Date());
+	const [startPaymentDate,setStartPaymentDate] = useState(new Date().setDate(1));
+	const [calcDate,setCalcDate] = useState(new Date().setDate(1));
+	const [baseIndexateDate,setBaseIndexateDate] = useState(new Date().setDate(1));
 
 	const handleChangeGereral = (aggrimentSignDate, paymentStartDate, paymentEndDate, indexateDate, madadUpdateInterval) => {
 		setAggrimentDate(aggrimentSignDate);
