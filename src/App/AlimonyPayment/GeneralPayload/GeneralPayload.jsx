@@ -44,19 +44,19 @@ const GeneralPayload = (props) => {
                 </div>
             </span>
             <span className='general-payload'>
-                תאריך תשלום ראשון:
+                חודש תשלום ראשון:
             <div className="datepicker">
                 <DatePicker selected={new Date(props.startDate)} onChange={onChangeStartDate} dateFormat={"MM/yyyy"} tabIndex={2} />
             </div>
             </span>
             <span className='general-payload'>
-                תאריך לחישוב:
+                חודש לחישוב:
             <div className="datepicker">
                 <DatePicker selected={new Date(props.calcDate)} onChange={onChangeCalcDate} dateFormat={"MM/yyyy"} tabIndex={3} />
             </div>
             </span>
             <span className='general-payload'>
-                תאריך ממד בסיס:
+                חודש ממד בסיס:
             <div className="datepicker">
                 <DatePicker selected={new Date(props.baseIndexateDate)} onChange={onChangeBaseIndexateDate} dateFormat={"MM/yyyy"} tabIndex={4} />
             </div>
