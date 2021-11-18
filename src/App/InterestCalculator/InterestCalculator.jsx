@@ -91,6 +91,7 @@ const InterestCalculator = () => {
 	}
 
 	const generatePDF = async () => {
+		debugger;
 		const input = document.getElementById('results-table');
 		const resultTableCanvas = await html2canvas(input);
 		const headerCanvas = await html2canvas(document.getElementById('interest-header'));
@@ -103,9 +104,21 @@ const InterestCalculator = () => {
 		const width = pdf.internal.pageSize.getWidth();
 		const height = (imgProps.height * width) / imgProps.width;
 		
+		const pageHeight =  295;  
+		let heightLeft = height;
+		let position = 30;
+
 		pdf.addImage(headerImgData, 'JPEG', 0, 5);
 		pdf.addImage(resultsImgData, 'JPEG', 2, 30, width - 4, height);
-		
+		heightLeft -= pageHeight;
+
+		while (heightLeft >= 0) {
+			position += heightLeft - height; // top padding for other pages
+			pdf.addPage();
+			pdf.addImage(resultsImgData, 'PNG', 0, position, width - 4, height);
+			heightLeft -= pageHeight;
+		}
+
 		pdf.save("חישוב פסיקת ריבית.pdf");
 	}
 
