@@ -36,6 +36,7 @@ const GeneralPayload = (props) => {
 
     return (
         <div className='alimony-payments-general'>
+            <h5 style={{textAlign:"right"}}>פרטי ההסכם</h5>
             <span className='general-payload'>
                 תאריך חתימת הסכם:
                 <div className="datepicker">

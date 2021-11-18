@@ -16,6 +16,7 @@ const ChilrenTable = (props) => {
 
 	return (
 		<div className='chilren-container'>
+			<h5 style={{textAlign:"right"}}>פרטי ילדים</h5>
 			<table style={{direction:"rtl"}} className="table table-bordered">
 				<thead className="thead-light"> 
 					<tr>
