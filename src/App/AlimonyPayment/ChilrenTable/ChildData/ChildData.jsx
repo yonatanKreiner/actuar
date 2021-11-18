@@ -69,7 +69,7 @@ const ChildData = (props) => {
 	return (
 		<tr className="child-data-container-row">
 			<td>
-				<input type='text' className="form-text" onChange={onChangeSum} value={props.child.name} />
+				<input type='text' className="form-text" onChange={onChangeName} value={props.child.name} />
 			</td>
 			<td>
 				<DatePicker selected={new Date(props.child.birthDate)} onChange={onChangeBirthDate} dateFormat={"dd/MM/yyyy"} />
