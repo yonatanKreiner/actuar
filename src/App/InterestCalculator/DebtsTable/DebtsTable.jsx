@@ -42,12 +42,11 @@ const DebtsTable = (props) => {
 			</table>
 			<div>
 				<input type='button' className='btn btn-info' onClick={() => {
-						let date = new Date();
 						props.addDebt({
-							startDate: date.getDate() +'/'+(date.getMonth()+1)+'/'+date.getFullYear(),
+							startDate: new Date(),
 							sum: 0, 
 							isLegalInterest: true, 
-							endDate: date.getDate() +'/'+(date.getMonth()+1)+'/'+date.getFullYear(),
+							endDate: new Date(),
 						})
 					}} value='הוסף'/>
 				<input type='button' className='btn btn-warning' onClick={() => {props.removeDebt()}} value='הסר'/>
