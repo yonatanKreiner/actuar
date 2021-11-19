@@ -12,7 +12,6 @@ import ResultItem from './ResultItem';
 const InterestCalculator = () => {
 
 	const [debts, setDebts] = useState([
-		{startDate: new Date(), sum: 100, isLegalInterest: true, endDate: new Date()},
 		{startDate: new Date(), sum: 100, isLegalInterest: true, endDate: new Date()}
 	]);
 
@@ -23,6 +22,8 @@ const InterestCalculator = () => {
 			const payload = window.sessionStorage.getItem("interestCalculationImportPayload");
 			const payloadData = JSON.parse(payload); 
 			setDebts(payloadData);
+		}else {
+			loadPayloadFromSessionStorage();
 		}
 	}, [])
 
@@ -60,8 +61,8 @@ const InterestCalculator = () => {
 			}
 
 			const totalDebt = results.reduce((total, debtResult) => total + parseFloat(debtResult.totalDebt.replace(',','')), 0);
-
 			setDebts([...results]);
+			savePayloadToSessionStorage([...results]);
 
 			return {allDepts: results, total: totalDebt.toLocaleString(undefined,{ minimumFractionDigits: 2 })};
 		} catch {
@@ -122,8 +123,20 @@ const InterestCalculator = () => {
 		pdf.save("חישוב פסיקת ריבית.pdf");
 	}
 
-	const exportToExcel = async () => {
-		return debts;
+	const savePayloadToSessionStorage =  (debtsPayload) => {
+		const interestsPayload = {
+			debts: debtsPayload
+		};
+		
+		window.sessionStorage.setItem('interestPamentPayload', JSON.stringify(interestsPayload));
+	}
+
+	const loadPayloadFromSessionStorage = () => {
+		const payload = window.sessionStorage.getItem("interestPamentPayload");
+		if(payload){
+			const payloadData = JSON.parse(payload); 
+			setDebts(payloadData.debts);
+		}
 	}
 
 	return (
@@ -137,7 +150,7 @@ const InterestCalculator = () => {
 				removeDebt={handleRemoveDebt} 
 				debts={debts} />
 			<hr/>
-			<ResultItem calculateDept={handleCalculate} generatePDF={generatePDF} exportToExcel={exportToExcel} />
+			<ResultItem calculateDept={handleCalculate} generatePDF={generatePDF} />
 		</div>
 	);
 }

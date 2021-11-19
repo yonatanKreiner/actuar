@@ -1,6 +1,6 @@
 import './AlimonyPayment.css';
 
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
@@ -20,6 +20,10 @@ const AlimonyPayment = () => {
 	const [startPaymentDate,setStartPaymentDate] = useState(new Date().setDate(1));
 	const [calcDate,setCalcDate] = useState(new Date().setDate(1));
 	const [baseIndexateDate,setBaseIndexateDate] = useState(new Date().setDate(1));
+
+	useEffect(() => {
+		loadPayloadFromSessionStorage();
+	}, []);
 
 	const handleChangeGereral = (aggrimentSignDate, paymentStartDate, paymentEndDate, indexateDate, madadUpdateInterval) => {
 		setAggrimentDate(aggrimentSignDate);
@@ -51,6 +55,8 @@ const AlimonyPayment = () => {
 		});
 
 		const data = await response.json();
+
+		savePayloadToSessionStorage();
 		
 		return data;
 	}
@@ -66,6 +72,32 @@ const AlimonyPayment = () => {
 		window.sessionStorage.setItem('interestCalculationImportPayload', JSON.stringify(interestPayload));
 
 		history.push('calcInterest?combackCalc=alimonyPayment')
+	}
+
+	const savePayloadToSessionStorage =  () => {
+		const alimonyPayload = {
+			children: children,
+			madadIndexateInterval: madadIndexateInterval,
+			startPaymentDate: startPaymentDate,
+			calcDate: calcDate,
+			baseIndexateDate: baseIndexateDate,
+			aggrimentDate: aggrimentDate
+		};
+		
+		window.sessionStorage.setItem('alimonyPamentPayload', JSON.stringify(alimonyPayload));
+	}
+
+	const loadPayloadFromSessionStorage = () => {
+		const payload = window.sessionStorage.getItem("alimonyPamentPayload");
+		if(payload){
+			const payloadData = JSON.parse(payload); 
+			setChildren(payloadData.children);
+			setMadadIndexateInterval(payloadData.madadIndexateInterval);
+			setStartPaymentDate(new Date(payloadData.startPaymentDate));
+			setCalcDate(new Date(payloadData.calcDate));
+			setBaseIndexateDate(new Date(payloadData.baseIndexateDate))
+			setAggrimentDate(new Date(payloadData.aggrimentDate));
+		}
 	}
 
     return (

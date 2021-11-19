@@ -80,7 +80,6 @@ class ResultItem extends React.Component {
 ResultItem.propTypes = {
 	calculateDept: PropTypes.func.isRequired,
 	generatePDF: PropTypes.func.isRequired,
-	exportToExcel: PropTypes.func.isRequired
 }
 
 export default ResultItem;
