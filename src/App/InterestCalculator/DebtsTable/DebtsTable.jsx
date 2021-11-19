@@ -12,18 +12,8 @@ const DebtsTable = (props) => {
 		<DebtRow key={index} index={index} handleChangeDebt={props.handleChangeDebt} debt={debt} />
 	);
 
-	// props.debts.forEach((debt, index) => {
-	// 	rows.push(
-	// 		// <div>
-	// 			<DebtRow key={index} index={index} handleChangeDebt={props.handleChangeDebt} handleChangeStartDate={props.handleChangeStartDate} debt={debt} />
-	// 			// <hr style={{width:'70%'}} />
-	// 		// </div>
-	// 	);
-	// });
-
 	return (
 		<div className='buttons-control'>
-			{/* {rows} */}
 			<table id="results-table" style={{direction:"rtl"}} className="table table-bordered">
 				<thead className="thead-light"> 
 					<tr>

@@ -49,7 +49,7 @@ const DeptRow = (props) => {
 	return (
 		<tr id="debt-row">
 			<td>
-				<input type='number' className="form-text amoutpicker" onChange={onChangeDebtSum} min='0' defaultValue={props.debt.sum} />
+				<input type='number' className="form-text amoutpicker" onChange={onChangeDebtSum} min='0' value={props.debt.sum} />
 			</td>
 			<td>
 				<div className='radio-block'>
