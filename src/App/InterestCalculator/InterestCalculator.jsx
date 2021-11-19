@@ -122,6 +122,10 @@ const InterestCalculator = () => {
 		pdf.save("חישוב פסיקת ריבית.pdf");
 	}
 
+	const exportToExcel = async () => {
+		return debts;
+	}
+
 	return (
 		<div className='containter centered'>
 			<Header/>
@@ -133,7 +137,7 @@ const InterestCalculator = () => {
 				removeDebt={handleRemoveDebt} 
 				debts={debts} />
 			<hr/>
-			<ResultItem calculateDept={handleCalculate} generatePDF={generatePDF} />
+			<ResultItem calculateDept={handleCalculate} generatePDF={generatePDF} exportToExcel={exportToExcel} />
 		</div>
 	);
 }

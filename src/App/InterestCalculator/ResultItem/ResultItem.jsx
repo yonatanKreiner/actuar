@@ -3,6 +3,7 @@ import './ResultItem.css';
 import PropTypes from 'prop-types';
 import React from 'react'; 
 import ReactLoading from 'react-loading';
+import { CSVLink } from "react-csv";
 import ResultsTable from './ResultsTable';
 
 class ResultItem extends React.Component {
@@ -51,6 +52,23 @@ class ResultItem extends React.Component {
 										<h1 id='resultElement'>{this.state.result.total}</h1>
 									</div>
 									<button type='button' onClick={() => this.onClickGeneratePDF()} className='btn btn-outline-info generate-pdf-btn'>הפק דו"ח</button>
+									<CSVLink
+										data={this.state.result.allDepts}
+										headers={[
+											{label: "חוב", key: "sum"},
+											{label: "ריבית צמודה", key: "isLegalInterest"},
+											{label: "מתאריך", key: "startDate"},
+											{label: "עד תאריך", key: "endDate"},
+											{label: "שווי הצמדה", key: "indexateSum"},
+											{label: "שווי ריבית", key: "totalInterest"},
+											{label: "סך הכל", key: "totalDebt"}
+										]}
+										filename={"פסיקת ריבית.csv"}
+										className="btn btn-outline-info generate-pdf-btn"
+										target="_blank"
+									>
+										ייצא לאקסל
+									</CSVLink>
 									{/* <ResultsTable allDepts={this.state.result.allDepts}></ResultsTable> */}
 								</div> : <></>
 				}
@@ -61,7 +79,8 @@ class ResultItem extends React.Component {
 
 ResultItem.propTypes = {
 	calculateDept: PropTypes.func.isRequired,
-	generatePDF: PropTypes.func.isRequired
+	generatePDF: PropTypes.func.isRequired,
+	exportToExcel: PropTypes.func.isRequired
 }
 
 export default ResultItem;
