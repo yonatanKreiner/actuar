@@ -1,4 +1,5 @@
-https://www.actuarit.co.il/
+http://actuarit.co.il/
+http://www.actuarit.co.il/
 https://actuar.herokuapp.com/
 https://actuar.herokuapp.com/calcInterest
 https://actuar.herokuapp.com/AlimonyPayment
