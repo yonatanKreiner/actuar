@@ -1,0 +1,6 @@
+https://www.actuarit.co.il/
+https://actuar.herokuapp.com/
+https://actuar.herokuapp.com/calcInterest
+https://actuar.herokuapp.com/AlimonyPayment
+https://actuar.herokuapp.com/about
+https://actuar.herokuapp.com/contact

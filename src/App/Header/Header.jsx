@@ -7,7 +7,7 @@ class Header extends Component {
     return (
 		<nav className="navbar">
 			<div className="container">
-				<h1 className="logo"><NavLink exact to="/"><img src="/images/logo.png" className="rounded-circle" alt="Cinque Terre"/> אקטואר </NavLink></h1>
+				<h1 className="logo"><NavLink exact to="/"><img src="/images/logo.png" className="rounded-circle" alt="Cinque Terre"/> אקטוארית </NavLink></h1>
 				<div className="nav nav-right">
 					<NavLink activeClassName="activeLink" exact to="/"> ראשי </NavLink>
 					<NavLink activeClassName="activeLink" exact to="/about"> אודות </NavLink>
