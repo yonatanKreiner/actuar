@@ -10,5 +10,14 @@
     },
     "basic_auth": false,
     "https_only": true,
-    "clean_urls": true
+    "clean_urls": true,
+    "headers": {
+        "/**": {
+            "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
+            "Referrer-Policy": "no-referrer, strict-origin-when-cross-origin",
+            "X-Content-Type-Options": "nosniff",
+            "X-Frame-Options": "DENY",
+            "X-XSS-Protection": "1; mode=block"
+        }
+    }
 }
