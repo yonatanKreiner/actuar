@@ -53,18 +53,22 @@ class ResultItem extends React.Component {
 									</div>
 									<button type='button' onClick={() => this.onClickGeneratePDF()} className='btn btn-outline-info generate-pdf-btn'>הפק דו"ח</button>
 									<CSVLink
-										data={this.state.result.allDepts.map(debt => ({
-											sum: debt.sum,
-											isLegalInterest: debt.isLegalInterest ? "ריבית צמודה" : "ריבית פיגורים",
-											startDate: `${debt.startDate.getDate()}/${debt.startDate.getMonth()+1}/${debt.startDate.getFullYear()}`,
-											endDate: `${debt.endDate.getDate()}/${debt.endDate.getMonth()+1}/${debt.endDate.getFullYear()}`,
-											indexateSum: debt.indexateSum,
-											totalInterest: debt.totalInterest,
-											totalDebt: debt.totalDebt,
-										}))}
+										data={this.state.result.allDepts.map(debt => {
+											const startDate = new Date(debt.startDate);
+											const endDate = new Date(debt.endDate);
+											return ({
+												sum: debt.sum,
+												isLegalInterest: debt.isLegalInterest ? "ריבית צמודה" : "ריבית פיגורים",
+												startDate: `${startDate.getDate()}/${startDate.getMonth()+1}/${startDate.getFullYear()}`,
+												endDate: `${endDate.getDate()}/${endDate.getMonth()+1}/${endDate.getFullYear()}`,
+												indexateSum: debt.indexateSum,
+												totalInterest: debt.totalInterest,
+												totalDebt: debt.totalDebt,
+											})
+										})}
 										headers={[
 											{label: "חוב", key: "sum"},
-											{label: "ריבית צמודה", key: "isLegalInterest"},
+											{label: "סוג ריבית", key: "isLegalInterest"},
 											{label: "מתאריך", key: "startDate"},
 											{label: "עד תאריך", key: "endDate"},
 											{label: "שווי הצמדה", key: "indexateSum"},

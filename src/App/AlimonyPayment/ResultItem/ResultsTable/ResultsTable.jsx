@@ -7,8 +7,8 @@ export const ResultsTable = (props) => {
           return props.payments.map(payment => (
             <tr>
                 <td>{payment.date}</td>
-                {payment.childrenPayments.map(childPayment => <td>{childPayment}</td>)}
-                <td>{payment.totalPayment}</td>
+                {payment.childrenPayments.map(childPayment => <td>{childPayment.toLocaleString(undefined,{ minimumFractionDigits: 2 })}</td>)}
+                <td>{payment.totalPayment.toLocaleString(undefined,{ minimumFractionDigits: 2 })}</td>
             </tr>
           ));
       }
