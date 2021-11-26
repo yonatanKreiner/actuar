@@ -76,10 +76,10 @@ const DeptRow = (props) => {
 				</div>
 			</td>
 			<td>
-				<DatePicker selected={new Date(props.debt.startDate)} onChange={onChangeDebtStartDate} dateFormat={"dd/MM/yyyy"} />
+				<DatePicker selected={new Date(props.debt.startDate)} onChange={onChangeDebtStartDate} dateFormat={"dd/MM/yyyy"} minDate={new Date(1990,1,1)} />
 			</td>
 			<td>
-				<DatePicker selected={new Date(props.debt.endDate)} onChange={onChangeDebtEndDate} dateFormat={"dd/MM/yyyy"} />
+				<DatePicker selected={new Date(props.debt.endDate)} onChange={onChangeDebtEndDate} dateFormat={"dd/MM/yyyy"} minDate={new Date(1990,1,1)} />
 			</td>
 			<td>
 				{props.debt.indexateSum}
