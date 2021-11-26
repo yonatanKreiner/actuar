@@ -8,6 +8,7 @@
             "origin": "https://actuar-calculator-interest.herokuapp.com/"
         }
     },
+    "basic_auth": false,
     "https_only": true,
     "clean_urls": true,
     "headers": {
