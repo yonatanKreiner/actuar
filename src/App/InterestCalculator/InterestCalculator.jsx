@@ -76,6 +76,7 @@ const InterestCalculator = () => {
 		const response = await fetch(apiUrl,{
 			method: 'post',
 			headers: {"Content-Type": "application/json"},
+			credentials: "include",
 			body: JSON.stringify(requestData)
 		});
 

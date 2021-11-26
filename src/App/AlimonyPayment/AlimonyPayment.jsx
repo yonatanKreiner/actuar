@@ -51,6 +51,7 @@ const AlimonyPayment = () => {
 		const response = await fetch(apiUrl,{
 			method: 'post',
 			headers: {"Content-Type": "application/json"},
+			credentials: "include",
 			body: JSON.stringify({children,madadIndexateInterval,startPaymentDate,calcDate, baseIndexateDate})
 		});
 
