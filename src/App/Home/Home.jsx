@@ -6,10 +6,20 @@ class Home extends Component {
   render() {
     return (
 			<div>
-				<h1 className="home-title">שלום!</h1>
+				<h1 className="home-title">אקטוארית</h1>
 				<img src="/images/calculate.jpg" className="img-thumbnail home-img" alt="Cinque Terre" />
-				<p className="home-content">תנו לנו לבצע את החישובים המסובכים בשבילכם.</p>
-				<p className="home-subcontent">אנחנו נעזור לכם לחסוך זמן וכסף בקלות, תוך בשימוש במחשבונים שלנו.</p>
+				<div>
+					<p className="home-content">
+						הינה מערכת מחשבונים מובילה בתחום הכלכלה,<br/>
+						והמשפט בתחום הכלכלי משפחתי.<br/>
+						אקטוארית נועדה לחשב חובות ו/או זכויות מהעבר<br/>
+						בהתאם להנחות כלכליות ובהתאמה למערכת המשפטית.<br/>
+						מטרת המחשבונים הינה לצורך בדיקה מקדימה של חישובי חובות/זכויות<br/>
+						ואין לבצע בה שימוש משפטי.<br/>
+					</p>
+					<p className="home-subcontent">אקטוארית נבנתה ע"י צוות אקטואר אבי יחזקאל, שניתן להתרשם באתר &nbsp;
+					<a href="https://actuar.co.il" target="_blank">Actuar.co.il</a></p>
+				</div>
 			</div>
     );
   }

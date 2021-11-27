@@ -11,6 +11,8 @@
 .home-content{
 	margin: 50px;
 	font-size: 20px;
+	text-align: right;
+	float: left;
 }
 
 .home-subcontent{
