@@ -103,7 +103,7 @@ const AlimonyPayment = () => {
 
     return (
         <div className='alimony-payment-container'>
-            <b>חישוב דמי מזונות</b>
+            <b>מחשבון שיערוך חוב מזונות</b>
 			<br/>
 			<p>
 			מחשבון דמי מזונות זה - הינו לצורך חישוב הסגם דמי מזונות בין בני זוג. <br/>
