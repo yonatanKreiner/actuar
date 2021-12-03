@@ -19,7 +19,6 @@ class Home extends Component {
 					</p>
 					<p className="home-subcontent">אקטוארית נבנתה ע"י צוות אקטואר אבי יחזקאל, שניתן להתרשם באתר &nbsp;
 					<a href="https://actuar.co.il" target="_blank">Actuar.co.il</a></p><br/>
-					<p>&copy;<a href="http://actuarit.co.il" target="_blank">actuarit.co.il</a></p>
 				</div>
 			</div>
     );
