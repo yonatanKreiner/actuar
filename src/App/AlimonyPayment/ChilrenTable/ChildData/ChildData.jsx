@@ -61,9 +61,12 @@ const ChildData = (props) => {
 	}
 
 	const calcAge = () => {
-		debugger;
 		const ageDifMS = new Date(props.startPaymentDate) - new Date(props.child.birthDate);
 		const ageDate = new Date(ageDifMS);
+		if(ageDate - 1970 < 0) {
+			return 0;
+		}
+
 		return Math.abs(ageDate.getUTCFullYear() - 1970) + parseFloat((ageDate.getUTCMonth()/12).toFixed(1));
 	}
 

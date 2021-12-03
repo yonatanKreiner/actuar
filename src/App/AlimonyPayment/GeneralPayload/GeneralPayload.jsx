@@ -40,25 +40,25 @@ const GeneralPayload = (props) => {
             <span className='general-payload'>
                 תאריך חתימת הסכם:
                 <div className="datepicker">
-                    <DatePicker selected={new Date(props.aggrimentDate)} onChange={onChangeAggrimentSignDate} dateFormat={"dd/MM/yyyy"} minDate={new Date(1990,1,1)} tabIndex={1} />
+                    <DatePicker selected={new Date(props.aggrimentDate)} onChange={onChangeAggrimentSignDate} dateFormat={"dd/MM/yyyy"} minDate={new Date(1989,11,31)} tabIndex={1} />
                 </div>
             </span>
             <span className='general-payload'>
                 חודש תשלום ראשון:
             <div className="datepicker">
-                <DatePicker selected={new Date(props.startDate)} onChange={onChangeStartDate} dateFormat={"MM/yyyy"} minDate={new Date(1990,1,1)} tabIndex={2} />
+                <DatePicker selected={new Date(props.startDate)} onChange={onChangeStartDate} dateFormat={"MM/yyyy"} minDate={new Date(1989,11,31)} tabIndex={2} />
             </div>
             </span>
             <span className='general-payload'>
                 חודש לחישוב:
             <div className="datepicker">
-                <DatePicker selected={new Date(props.calcDate)} onChange={onChangeCalcDate} dateFormat={"MM/yyyy"} minDate={new Date(1990,1,1)} tabIndex={3} />
+                <DatePicker selected={new Date(props.calcDate)} onChange={onChangeCalcDate} dateFormat={"MM/yyyy"} minDate={new Date(1989,11,31)} tabIndex={3} />
             </div>
             </span>
             <span className='general-payload'>
                 חודש ממד בסיס:
             <div className="datepicker">
-                <DatePicker selected={new Date(props.baseIndexateDate)} onChange={onChangeBaseIndexateDate} dateFormat={"MM/yyyy"} minDate={new Date(1990,1,1)} tabIndex={4} />
+                <DatePicker selected={new Date(props.baseIndexateDate)} onChange={onChangeBaseIndexateDate} dateFormat={"MM/yyyy"} minDate={new Date(1989,11,31)} tabIndex={4} />
             </div>
             </span>
             <span className='general-payload'>

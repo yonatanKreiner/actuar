@@ -33,10 +33,14 @@ const ResultItem = (props) => {
 					(<span style={{display: "inline-flex"}}>
 						<button type='button' onClick={openInterestCalculator} className='btn-open-interest btn btn-outline-info'>חשב הצמדה וריבית חוקית</button>
 						<CSVLink
-							data={result}
+							data={result.map(row => ({
+								date: row.date,
+								...row.childrenPayments.map((childPayment) => (childPayment)),
+								totalPayment: row.totalPayment
+							}))}
 							headers={[
 								{label:"חודש לתשלום", key: "date"},
-								{label: "תשלומי ילדים", key: "childrenPayments"},
+								...result[0].childrenPayments.map((childPayment,index) => ({label: `ילד ${index+1}`, key: `${index}`})),
 								{label: "סך הכל", key: "totalPayment"}
 							]}
 							filename={"דמי מזונות.csv"}
