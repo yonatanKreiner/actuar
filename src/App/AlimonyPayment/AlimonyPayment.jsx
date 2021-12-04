@@ -13,7 +13,7 @@ const AlimonyPayment = () => {
 	const history = useHistory();
 
 	const [children, setChildren] = useState([
-		{name: "ילד 1" , birthDate: new Date(), sum: 1000, adultPrecent: 0.3, gender: 'male'},
+		{name: "ילד 1" , birthDate: new Date(), sum: 1000, adultPrecent: 1/4, gender: 'male'},
 	]);
 	const [madadIndexateInterval,setMadadIndexateInterval] = useState(3);
 	const [aggrimentDate,setAggrimentDate] = useState(new Date());
@@ -38,7 +38,7 @@ const AlimonyPayment = () => {
 	}
 
 	const handleAddChild = () => {
-		setChildren([...children, {name: `ילד ${children.length+1}`, birthDate: new Date(), sum: 1000, adultPrecent: 0.3, gender: 'male'}]);
+		setChildren([...children, {name: `ילד ${children.length+1}`, birthDate: new Date(), sum: 1000, adultPrecent: 1/4, gender: 'male'}]);
 	}
 
 	const handleRemoveChild = () => {

@@ -1,11 +1,29 @@
 import './ChildData.css';
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Select from 'react-select'
 
 const ChildData = (props) => {
+	
+	const [isCustomOptionSelect, setIsCustomOptionSelect] = useState(false);
+
+	const options = [
+		{ value: 1/4, label: 'רבע' },
+		{ value: 1/3, label: 'שליש' },
+		{ value: 1/2, label: 'חצי' },
+		{ value: undefined, label: 'אחר' }
+	]
+	const customStyles = {
+		container: (provided, state) => ({
+		  ...provided,
+		  position: "absolute",
+		  width: "160px"
+		})
+	};
+
 	useEffect(() => {
 	
 	}, []);
@@ -40,12 +58,12 @@ const ChildData = (props) => {
 		})
 	}
 	
-	const onChangeAdultPrecent = (e) => {
+	const onChangeAdultPrecent = (value) => {
 		props.changeChild(props.index, {
 			name: props.child.name,
 			birthDate: props.child.birthDate,
 			sum: props.child.sum,
-			adultPrecent: parseFloat(e.target.value),
+			adultPrecent: value,
 			gender: props.child.gender
 		})
 	}
@@ -109,7 +127,22 @@ const ChildData = (props) => {
 				<input type='number' className="form-text" onChange={onChangeSum} min='0' value={props.child.sum} />
 			</td>
 			<td>
-				<input type="number" step="0.01" className="form-text" onChange={onChangeAdultPrecent} value={props.child.adultPrecent} />
+				<div style={{height: "70px",display: "flex",justifyContent: "space-between",flexDirection: "column"}}>
+					<div>
+						<Select options={options} defaultValue={options[0]} styles={customStyles} 
+							onChange={(newValue, actionMeta) => {
+								if(newValue.value == undefined){
+									setIsCustomOptionSelect(true);
+								}else{
+									onChangeAdultPrecent(newValue.value);
+									setIsCustomOptionSelect(false);
+								}
+							}} />
+					</div>
+					<input type="number" step="0.01" className="form-text" onChange={(e) => onChangeAdultPrecent(parseFloat(e.target.value))}
+							value={props.child.adultPrecent}
+							style={{visibility: isCustomOptionSelect ? "visible" : "hidden"}} />
+				</div>
 			</td>
 		</tr>
 	);
