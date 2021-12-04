@@ -2,17 +2,32 @@ import './DebtRow.css';
 
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useSnackbar } from 'react-simple-snackbar'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const DeptRow = (props) => {
+
+	const [openSnackbar] = useSnackbar();
+    const MIN_DATE = new Date(1990,0,1);
+
 	useEffect(() => {
 	 
 	}, []);
 
+    const getValidDate = (date) => {
+        let validDate = date;
+        if(validDate < MIN_DATE) {
+            openSnackbar('במערכת ניתן לחשב הסכמים החל מ01/01/1990');
+            validDate = MIN_DATE;
+        }
+
+        return validDate;
+    }
+
 	const onChangeDebtStartDate = (value) => {
 		props.handleChangeDebt(props.index, {
-			startDate: value,
+			startDate: getValidDate(value),
 			sum: props.debt.sum,
 			isLegalInterest: props.debt.isLegalInterest,
 			endDate: props.debt.endDate
@@ -42,7 +57,7 @@ const DeptRow = (props) => {
 			startDate: props.debt.startDate,
 			sum: props.debt.sum,
 			isLegalInterest: props.debt.isLegalInterest,
-			endDate: value
+			endDate: getValidDate(value)
 		});
 	} 
 
