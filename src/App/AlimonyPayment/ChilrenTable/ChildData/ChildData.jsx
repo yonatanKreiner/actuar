@@ -19,7 +19,7 @@ const ChildData = (props) => {
 	const customStyles = {
 		container: (provided, state) => ({
 		  ...provided,
-		  position: "absolute",
+		//   position: "absolute",
 		  width: "160px"
 		})
 	};
