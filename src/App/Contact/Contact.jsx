@@ -11,7 +11,7 @@ class Contact extends Component {
 				<div>
 					<ul className="contacts-list">
 						<li>	
-								<p className="contact-content">אבי יחזקאל - Avi@actuar.co.il</p>
+								<p className="contact-content">אבי יחזקאל - <a href="mailto:avi@actuar.co.il">Avi@actuar.co.il</a></p>
 						</li>
 					</ul>
 					<img src="../../../images/contact.jpg" className="img-thumbnail contact-img" alt="Cinque Terre" />
