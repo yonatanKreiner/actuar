@@ -2,32 +2,46 @@ import './GeneralPayload.css';
 
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
+import { useSnackbar } from 'react-simple-snackbar'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const GeneralPayload = (props) => {
 
+    const [openSnackbar] = useSnackbar();
+    const MIN_DATE = new Date(1990,0,1);
+
     useEffect(() => {
 
     }, []);
-    
+
+    const getValidDate = (date) => {
+        let validDate = date;
+        if(validDate < MIN_DATE) {
+            openSnackbar('במערכת ניתן לחשב הסכמים החל מ01/01/1990');
+            validDate = MIN_DATE;
+        }
+
+        return validDate;
+    }
+
     const onChangeAggrimentSignDate = (value) => {
-        props.onChange(value, props.startDate, props.calcDate, props.baseIndexateDate, props.madadIndexateInterval);
+        props.onChange(getValidDate(value), props.startDate, props.calcDate, props.baseIndexateDate, props.madadIndexateInterval);
     }
 
     const onChangeStartDate = (value) => {
         let indexateDate = new Date(value);
         indexateDate = indexateDate.setMonth(indexateDate.getMonth() - 2);
 
-        props.onChange(props.aggrimentDate, value.setDate(1), props.calcDate, indexateDate, props.madadIndexateInterval);
+        props.onChange(props.aggrimentDate, getValidDate(value).setDate(1), props.calcDate, indexateDate, props.madadIndexateInterval);
     }
 
     const onChangeCalcDate = (value) => {
-        props.onChange(props.aggrimentDate, props.startDate, value.setDate(1), props.baseIndexateDate, props.madadIndexateInterval);
+        props.onChange(props.aggrimentDate, props.startDate, getValidDate(value).setDate(1), props.baseIndexateDate, props.madadIndexateInterval);
     }
 
     const onChangeBaseIndexateDate = (value) => {
-        props.onChange(props.aggrimentDate, props.startDate, props.calcDate, value.setDate(1), props.madadIndexateInterval);
+        props.onChange(props.aggrimentDate, props.startDate, props.calcDate,  getValidDate(value).setDate(1), props.madadIndexateInterval);
     }
 
 	const onChangeMadadInterval = (e) => {
@@ -40,25 +54,25 @@ const GeneralPayload = (props) => {
             <span className='general-payload'>
                 תאריך חתימת הסכם:
                 <div className="datepicker">
-                    <DatePicker selected={new Date(props.aggrimentDate)} onChange={onChangeAggrimentSignDate} dateFormat={"dd/MM/yyyy"} minDate={new Date(1989,11,31)} tabIndex={1} />
+                    <DatePicker selected={new Date(props.aggrimentDate)} onChange={onChangeAggrimentSignDate} dateFormat={"dd/MM/yyyy"} tabIndex={1} />
                 </div>
             </span>
             <span className='general-payload'>
                 חודש תשלום ראשון:
             <div className="datepicker">
-                <DatePicker selected={new Date(props.startDate)} onChange={onChangeStartDate} dateFormat={"MM/yyyy"} minDate={new Date(1989,11,31)} tabIndex={2} />
+                <DatePicker selected={new Date(props.startDate)} onChange={onChangeStartDate} dateFormat={"MM/yyyy"} tabIndex={2} />
             </div>
             </span>
             <span className='general-payload'>
                 חודש לחישוב:
             <div className="datepicker">
-                <DatePicker selected={new Date(props.calcDate)} onChange={onChangeCalcDate} dateFormat={"MM/yyyy"} minDate={new Date(1989,11,31)} tabIndex={3} />
+                <DatePicker selected={new Date(props.calcDate)} onChange={onChangeCalcDate} dateFormat={"MM/yyyy"} tabIndex={3} />
             </div>
             </span>
             <span className='general-payload'>
                 חודש ממד בסיס:
             <div className="datepicker">
-                <DatePicker selected={new Date(props.baseIndexateDate)} onChange={onChangeBaseIndexateDate} dateFormat={"MM/yyyy"} minDate={new Date(1989,11,31)} tabIndex={4} />
+                <DatePicker selected={new Date(props.baseIndexateDate)} onChange={onChangeBaseIndexateDate} dateFormat={"MM/yyyy"} tabIndex={4} />
             </div>
             </span>
             <span className='general-payload'>
