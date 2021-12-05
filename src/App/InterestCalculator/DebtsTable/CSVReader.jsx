@@ -1,6 +1,8 @@
 import React from 'react'
 
 import PropTypes from 'prop-types';
+import moment from 'moment';
+
 
 export default function CsvReader(props){
     const processCSV = (str, delim=',') => {
@@ -32,7 +34,13 @@ export default function CsvReader(props){
             const csvData = processCSV(text); // plugged in here
             console.log(csvData);
 
-            props.importDebts(csvData);
+            props.importDebts(csvData.map(row => (
+                {
+                    startDate: moment(row.startDate, 'DD/MM/YYYY').toDate(),
+                    sum: parseFloat(row.sum),
+                    isLegalInterest: row.interestType == "ריבית צמודה" ? true : false,
+                    endDate: moment(row.endDate, 'DD/MM/YYYY').toDate()
+                })));
         }
 
         reader.readAsText(file);
