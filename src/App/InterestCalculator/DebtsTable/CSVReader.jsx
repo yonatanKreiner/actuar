@@ -24,7 +24,6 @@ export default function CsvReader(props){
     }
 
     const submit = (csvFile) => {
-        debugger;
         const file = csvFile;
         const reader = new FileReader();
 
@@ -38,7 +37,7 @@ export default function CsvReader(props){
                 {
                     startDate: moment(row.startDate, 'DD/MM/YYYY').toDate(),
                     sum: parseFloat(row.sum),
-                    isLegalInterest: row.interestType == "ריבית צמודה" ? true : false,
+                    isLegalInterest: row.interestType == "legal" ? true : false,
                     endDate: moment(row.endDate, 'DD/MM/YYYY').toDate()
                 })));
         }
