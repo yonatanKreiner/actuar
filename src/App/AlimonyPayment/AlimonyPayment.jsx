@@ -63,12 +63,17 @@ const AlimonyPayment = () => {
 	}
 	
 	const openInterestCalculationwithExitData = (resultTable) => {
-		const interestPayload = resultTable.map((result) => ({
-			startDate: moment(result.date, 'MM/YYYY').toDate(),
-			sum: result.totalPayment,
-			endDate: calcDate,
-			isLegalInterest: true
-		}));
+		const interestPayload = resultTable.map((result) => { 
+			const startDate = moment(result.date, 'MM/YYYY').toDate();
+			startDate.setDate(1);
+
+			return ({
+				startDate: startDate.getTime(),
+				sum: result.totalPayment,
+				endDate: calcDate,
+				isLegalInterest: true
+			});
+		});
 		
 		window.sessionStorage.setItem('interestCalculationImportPayload', JSON.stringify(interestPayload));
 
