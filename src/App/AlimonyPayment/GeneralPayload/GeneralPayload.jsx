@@ -31,17 +31,18 @@ const GeneralPayload = (props) => {
 
     const onChangeStartDate = (value) => {
         let indexateDate = new Date(value);
-        indexateDate = indexateDate.setMonth(indexateDate.getMonth() - 2);
+        indexateDate = indexateDate.getDate() < 15 ? 
+                    indexateDate.setMonth(indexateDate.getMonth() - 2) : indexateDate.setMonth(indexateDate.getMonth() - 1);
 
-        props.onChange(props.aggrimentDate, getValidDate(value).setDate(1), props.calcDate, indexateDate, props.madadIndexateInterval);
+        props.onChange(props.aggrimentDate, getValidDate(value), props.calcDate, indexateDate, props.madadIndexateInterval);
     }
 
     const onChangeCalcDate = (value) => {
-        props.onChange(props.aggrimentDate, props.startDate, getValidDate(value).setDate(1), props.baseIndexateDate, props.madadIndexateInterval);
+        props.onChange(props.aggrimentDate, props.startDate, getValidDate(value), props.baseIndexateDate, props.madadIndexateInterval);
     }
 
     const onChangeBaseIndexateDate = (value) => {
-        props.onChange(props.aggrimentDate, props.startDate, props.calcDate,  getValidDate(value).setDate(1), props.madadIndexateInterval);
+        props.onChange(props.aggrimentDate, props.startDate, props.calcDate,  getValidDate(value), props.madadIndexateInterval);
     }
 
 	const onChangeMadadInterval = (e) => {
@@ -60,19 +61,19 @@ const GeneralPayload = (props) => {
             <span className='general-payload'>
                 חודש תשלום ראשון:
             <div className="datepicker">
-                <DatePicker selected={new Date(props.startDate)} onChange={onChangeStartDate} dateFormat={"MM/yyyy"} tabIndex={2} />
+                <DatePicker selected={new Date(props.startDate)} onChange={onChangeStartDate} dateFormat={"dd/MM/yyyy"} tabIndex={2} />
             </div>
             </span>
             <span className='general-payload'>
                 חודש לחישוב:
             <div className="datepicker">
-                <DatePicker selected={new Date(props.calcDate)} onChange={onChangeCalcDate} dateFormat={"MM/yyyy"} tabIndex={3} />
+                <DatePicker selected={new Date(props.calcDate)} onChange={onChangeCalcDate} dateFormat={"dd/MM/yyyy"} tabIndex={3} />
             </div>
             </span>
             <span className='general-payload'>
                 חודש ממד בסיס:
             <div className="datepicker">
-                <DatePicker selected={new Date(props.baseIndexateDate)} onChange={onChangeBaseIndexateDate} dateFormat={"MM/yyyy"} tabIndex={4} />
+                <DatePicker selected={new Date(props.baseIndexateDate)} onChange={onChangeBaseIndexateDate} dateFormat={"dd/MM/yyyy"} tabIndex={4} />
             </div>
             </span>
             <span className='general-payload'>
