@@ -20,17 +20,19 @@ const AlimonyPayment = () => {
 	const [startPaymentDate,setStartPaymentDate] = useState(new Date().setDate(1));
 	const [calcDate,setCalcDate] = useState(new Date().setDate(1));
 	const [baseIndexateDate,setBaseIndexateDate] = useState(new Date().setDate(1));
+	const [paymentDayInMonth, setPaymentDayInMonth] = useState(10);
 
 	useEffect(() => {
 		loadPayloadFromSessionStorage();
 	}, []);
 
-	const handleChangeGereral = (aggrimentSignDate, paymentStartDate, paymentEndDate, indexateDate, madadUpdateInterval) => {
+	const handleChangeGereral = (aggrimentSignDate, paymentStartDate, paymentEndDate, indexateDate, madadUpdateInterval, monthlyPayDay) => {
 		setAggrimentDate(aggrimentSignDate);
 		setStartPaymentDate(paymentStartDate);
 		setCalcDate(paymentEndDate);
 		setBaseIndexateDate(indexateDate);
 		setMadadIndexateInterval(madadUpdateInterval);
+		setPaymentDayInMonth(monthlyPayDay);
 	}
 
 	const handleChangeChildren = (index, child) => {
@@ -129,6 +131,7 @@ const AlimonyPayment = () => {
 						calcDate={calcDate}
 						baseIndexateDate={baseIndexateDate}
 						aggrimentDate={aggrimentDate}
+						paymentDayInMonth={paymentDayInMonth}
 					/>
 					<hr/>
 					<ChilrenTable  
