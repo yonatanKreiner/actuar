@@ -99,13 +99,13 @@ const GeneralPayload = (props) => {
             </div>
             </span>
             <span className='general-payload'>
-                חודש לחישוב:
+                חודש אחרון לתשלום:
             <div className="datepicker">
                 <DatePicker selected={new Date(props.calcDate)} onChange={onChangeCalcDate} dateFormat={"dd/MM/yyyy"} tabIndex={3} />
             </div>
             </span>
             <span className='general-payload'>
-                חודש ממד בסיס:
+                חודש מדד בסיס:
                 <div className="datepicker">
                     <DatePicker selected={new Date(props.baseIndexateDate)} onChange={onChangeBaseIndexateDate} dateFormat={"dd/MM/yyyy"} tabIndex={4} />
                 </div>
