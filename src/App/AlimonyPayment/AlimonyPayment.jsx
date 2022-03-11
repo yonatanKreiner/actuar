@@ -54,7 +54,7 @@ const AlimonyPayment = () => {
 			method: 'post',
 			headers: {"Content-Type": "application/json"},
 			credentials: "include",
-			body: JSON.stringify({children,madadIndexateInterval,startPaymentDate,calcDate, baseIndexateDate})
+			body: JSON.stringify({children,madadIndexateInterval,startPaymentDate,calcDate, baseIndexateDate, paymentDayInMonth})
 		});
 
 		const data = await response.json();
@@ -89,7 +89,8 @@ const AlimonyPayment = () => {
 			startPaymentDate: startPaymentDate,
 			calcDate: calcDate,
 			baseIndexateDate: baseIndexateDate,
-			aggrimentDate: aggrimentDate
+			aggrimentDate: aggrimentDate,
+			paymentDayInMonth: paymentDayInMonth
 		};
 		
 		window.sessionStorage.setItem('alimonyPamentPayload', JSON.stringify(alimonyPayload));
@@ -105,6 +106,7 @@ const AlimonyPayment = () => {
 			setCalcDate(new Date(payloadData.calcDate));
 			setBaseIndexateDate(new Date(payloadData.baseIndexateDate))
 			setAggrimentDate(new Date(payloadData.aggrimentDate));
+			setPaymentDayInMonth(payloadData.paymentDayInMonth);
 		}
 	}
 
