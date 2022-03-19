@@ -11,6 +11,7 @@ import InterestCalculator from './InterestCalculator';
 import AlimonyPayment from './AlimonyPayment';
 import UnemployPayments from './UnemployPayments';
 import SeverancePay from './SeverancePay';
+import ComingSoon from './ComingSoon';
 
 
 class App extends React.Component {
@@ -34,6 +35,7 @@ class App extends React.Component {
 							<Route path="/AlimonyPayment" component={AlimonyPayment} />
 							<Route path="/unemployPayments" component={UnemployPayments}/>
 							<Route path="/SeverancePay" component={SeverancePay} />
+							<Route path="/InsuranceYields" component={ComingSoon} />
 							<Route path="*" />
 						</Switch>
 					</Container>
