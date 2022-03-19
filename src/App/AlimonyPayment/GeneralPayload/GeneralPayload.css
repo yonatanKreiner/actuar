@@ -2,6 +2,9 @@
     margin: 5px;
 	display: flex;
 	justify-content: space-between;
+	width: max-content;
+    min-width: 65%;
+    MARGIN: auto;
 }
 
 .alimony-payments-general .general-payload .madad-interval-picker {
