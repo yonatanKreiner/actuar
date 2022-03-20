@@ -2,9 +2,3 @@
     display: flex;
     flex-direction: column;
 }
-
-.alimony-payment-container .data-container .alimonay-payload-container .general-payload{
-    margin: 5px;
-	display: flex;
-	justify-content: space-between;
-}
