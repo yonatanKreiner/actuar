@@ -40,7 +40,7 @@ const ResultItem = (props) => {
 							}))}
 							headers={[
 								{label:"חודש לתשלום", key: "date"},
-								...result[0].childrenPayments.map((childPayment,index) => ({label: `ילד ${index+1}`, key: `${index}`})),
+								...result[0].childrenPayments.map((_,index) => ({label: props.children[index].name, key: `${index}`})),
 								{label: "סך הכל", key: "totalPayment"}
 							]}
 							filename={"דמי מזונות.csv"}
