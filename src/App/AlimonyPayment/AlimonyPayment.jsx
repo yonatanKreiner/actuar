@@ -47,8 +47,19 @@ const AlimonyPayment = () => {
 		setChildren(children.slice(0,-1));
 	}
 
+	const setSumOfChildrenBornAfterEndDate = () => {
+		children.forEach((child, index) => { 
+			if(new Date(child.birthDate) > new Date(calcDate)) {
+				child.sum = 0
+				handleChangeChildren(index, child);
+			}
+		});
+	}
+
 	const handleCalculatePayment = async () => {
 		const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/alimonyPayment': 'http://localhost:7000/interest/alimonyPayment';
+
+		setSumOfChildrenBornAfterEndDate();
 
 		const response = await fetch(apiUrl,{
 			method: 'post',
