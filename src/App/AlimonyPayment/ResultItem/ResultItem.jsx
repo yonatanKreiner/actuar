@@ -25,6 +25,12 @@ const ResultItem = (props) => {
 		props.openInterestCalculationwithExitData(result);
 	}
 
+	const generatePDFOnClick = async () => {
+		setIsLoading(true);
+		await props.generatePDF()
+		setIsLoading(false);
+	}
+
 	return (
 		<div className='alimony-payment-result-block'>
 			<span className="results-functions-container">
@@ -32,6 +38,7 @@ const ResultItem = (props) => {
 				{result ? 
 					(<span style={{display: "inline-flex"}}>
 						<button type='button' onClick={openInterestCalculator} className='btn-open-interest btn btn-outline-info'>חשב הצמדה וריבית חוקית</button>
+						<button type='button' onClick={generatePDFOnClick} className='btn btn-outline-info btn-open-interest'>הפק דו"ח</button>
 						<CSVLink
 							data={result.map(row => ({
 								date: row.date,
@@ -61,7 +68,8 @@ const ResultItem = (props) => {
 ResultItem.propTypes = {
 	calculateAlimonyPayment: PropTypes.func.isRequired,
 	openInterestCalculationwithExitData: PropTypes.func,
-	children: PropTypes.array
+	children: PropTypes.array,
+	generatePDF: PropTypes.func
 }
 
 

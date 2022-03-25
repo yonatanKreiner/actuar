@@ -14,7 +14,7 @@ export const ResultsTable = (props) => {
       }
 
 	return (
-		<div className='results-table'>
+		<div id="results-table" className='results-table'>
 		   <table style={{direction:"rtl"}} className="table table-bordered">
 				<thead className="thead-light"> 
 					<tr>

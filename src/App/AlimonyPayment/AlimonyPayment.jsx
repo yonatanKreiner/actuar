@@ -3,7 +3,8 @@ import './AlimonyPayment.css';
 import React, {useState,useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
-
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
 import ChilrenTable from './ChilrenTable';
 import ResultItem from './ResultItem';
@@ -121,9 +122,41 @@ const AlimonyPayment = () => {
 		}
 	}
 
+	const generatePDF = async () => {
+		const input = document.getElementById('results-table');
+		const resultTableCanvas = await html2canvas(input);
+		const headerCanvas = await html2canvas(document.getElementById('calc-header'));
+		const resultsImgData = resultTableCanvas.toDataURL('image/png');
+		const headerImgData = headerCanvas.toDataURL('image/png');
+
+		const pdf = new jsPDF("p", "mm", "a4");
+
+		const imgProps= pdf.getImageProperties(resultsImgData);
+		const width = pdf.internal.pageSize.getWidth();
+		const height = (imgProps.height * width) / imgProps.width;
+		
+		const pageHeight =  295;  
+		let heightLeft = height;
+		let position = 30;
+
+		pdf.addImage(headerImgData, 'JPEG',  -0.55*width , 5);
+		pdf.addImage(resultsImgData, 'JPEG', 2, 30, width - 4, height);
+		heightLeft -= pageHeight;
+
+		while (heightLeft >= 0) {
+			position += heightLeft - height; // top padding for other pages
+			pdf.addPage();
+			pdf.addImage(resultsImgData, 'PNG', 0, position, width - 4, height);
+			heightLeft -= pageHeight;
+		}
+
+		pdf.save("חישוב שיערוך חוב מזונות.pdf");
+	}
+
+
     return (
         <div className='alimony-payment-container'>
-            <h4>מחשבון שיערוך חוב מזונות</h4>
+            <h4 id="calc-header">מחשבון שיערוך חוב מזונות</h4>
 			<br/>
 			<p>
 			מחשבון חוב מזונות זה - הינו לצורך חישוב הסכם דמי מזונות בין בני זוג. <br/>
@@ -157,7 +190,8 @@ const AlimonyPayment = () => {
 				<ResultItem 
 					calculateAlimonyPayment={handleCalculatePayment}
 					openInterestCalculationwithExitData={openInterestCalculationwithExitData}
-					children={children}></ResultItem>
+					children={children}
+					generatePDF={generatePDF}></ResultItem>
 			</div>
         </div>
     );

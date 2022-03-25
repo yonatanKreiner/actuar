@@ -109,7 +109,7 @@ const InterestCalculator = () => {
 		let heightLeft = height;
 		let position = 30;
 
-		pdf.addImage(headerImgData, 'JPEG', 0, 5);
+		pdf.addImage(headerImgData, 'JPEG', -0.55*width, 5);
 		pdf.addImage(resultsImgData, 'JPEG', 2, 30, width - 4, height);
 		heightLeft -= pageHeight;
 
