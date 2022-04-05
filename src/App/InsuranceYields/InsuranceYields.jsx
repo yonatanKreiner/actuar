@@ -1,9 +1,25 @@
-import React from 'react'; 
+import React, { useState } from 'react'; 
 
 import './InsuranceYields.css';
 import Payload from './Payload';
+import ResultItem from './ResultItem';
 
  const InsuranceYields = () => {
+
+	const [fundId, setFundId] = useState(undefined);
+	const [startDate, setStartDate] = useState(new Date());
+	const [endDate, setEndDate] = useState(new Date());
+	const [sum, setSum] = useState(0);
+	const [result, setResult] = useState(undefined);
+	const [records, setRecords] = useState([]);
+
+
+	const updatePayload = (fund_id, start_date, end_date, sum_value) => {
+		setFundId(fund_id);
+		setStartDate(start_date);
+		setEndDate(end_date);
+		setSum(sum_value);
+	} 
 
     const handleCalculateYield = async () => {
 		const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/insuranceYield': 'http://localhost:7000/interest/insuranceYield';
@@ -13,16 +29,19 @@ import Payload from './Payload';
 			headers: {"Content-Type": "application/json"},
 			credentials: "include",
 			body: JSON.stringify({
-                    fundId: 69,
-                    startDate: '10/10/2020',
-                    endDate: '10/10/2020',
+                    fundId: fundId,
+                    startDate: startDate,
+                    endDate: endDate,
+					sum: sum
                 })
 		});
 
 		const data = await response.json();
+		console.log(data);		
 
-		savePayloadToSessionStorage();
-		
+		setResult(parseFloat(data.result.totalYield) * sum);
+		setRecords(data.result.records);
+
 		return data;
 	}
 	
@@ -35,7 +54,13 @@ import Payload from './Payload';
 			    מחשבון מבוסס נתוני ביטוח נט, לחישוב תשואות.
 			</p>
 
-            <Payload></Payload>
+            <Payload 
+				fundId={fundId}
+				startDate={startDate}
+				endDate={endDate}
+				sum={sum}
+				updatePayload={updatePayload}></Payload>
+			<ResultItem handleCalculateYield={handleCalculateYield} result={result} records={records}></ResultItem>
         </div>
     );
 };
