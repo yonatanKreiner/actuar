@@ -1,6 +1,8 @@
 import React from 'react'; 
 import PropTypes from 'prop-types';
 
+import './ResultTable.css';
+
  const ResultTable = (props) => {
     const getRowsData = () => {
         return props.records.map(record => (
@@ -13,7 +15,7 @@ import PropTypes from 'prop-types';
     }
 
     return (
-        <div id="results-table" className='results-table'>
+        <div className='insurance-records-container'>
             <table style={{direction:"rtl"}} className="table table-bordered">
                 <thead className="thead-light"> 
                     <tr>

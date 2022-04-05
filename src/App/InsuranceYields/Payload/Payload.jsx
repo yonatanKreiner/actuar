@@ -51,11 +51,11 @@ import "./Payload.css";
                 </span>
                 <span className='input-container'>
                     תאריך התחלה:
-                    <DatePicker dateFormat={"dd/MM/yyyy"} tabIndex={1} selected={new Date(props.startDate)} onChange={updateStartDate} />
+                    <div><DatePicker dateFormat={"dd/MM/yyyy"} tabIndex={1} selected={new Date(props.startDate)} onChange={updateStartDate} /></div>
                 </span>
                 <span className='input-container'>
                     תאריך סיום:
-                    <DatePicker dateFormat={"dd/MM/yyyy"} tabIndex={2} selected={new Date(props.endDate)} onChange={updateEndDate} />
+                    <div><DatePicker dateFormat={"dd/MM/yyyy"} tabIndex={2} selected={new Date(props.endDate)} onChange={updateEndDate} /></div>
                 </span>
                 <span className='input-container'>
                     סכום:
