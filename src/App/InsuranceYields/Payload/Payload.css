@@ -13,3 +13,11 @@
 .react-datepicker-wrapper{
     width: fit-content;
 }
+
+.payload-input-container .yield-type-radio-block{
+    display: flex;
+    justify-content: space-around;
+}
+.payload-input-container .yield-type-radio-block .radio-label{
+    padding-top: 4px;
+}

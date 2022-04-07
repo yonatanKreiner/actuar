@@ -12,17 +12,27 @@ import ResultItem from './ResultItem';
 	const [sum, setSum] = useState(0);
 	const [result, setResult] = useState(undefined);
 	const [records, setRecords] = useState([]);
+	const [yieldType, setYieldType] = useState("insurance");
 
-
-	const updatePayload = (fund_id, start_date, end_date, sum_value) => {
+	const updatePayload = (fund_id, start_date, end_date, sum_value, yield_type) => {
 		setFundId(fund_id);
 		setStartDate(start_date);
 		setEndDate(end_date);
 		setSum(sum_value);
+		setYieldType(yield_type);
 	} 
 
     const handleCalculateYield = async () => {
-		const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/insuranceYield': 'http://localhost:7000/interest/insuranceYield';
+		let path = "/interest/insuranceYield";
+		if(yieldType == "insurance"){
+			path = "/interest/insuranceYield";
+		}else if(yieldType == "provident"){
+			path = "/interest/providentFundYield";
+		}else if(yieldType == "pension"){
+			path = "/interest/pensionYield";
+		}
+
+		const apiUrl = process.env.NODE_ENV === 'production' ? path : `http://localhost:7000${path}`;
 
 		const response = await fetch(apiUrl,{
 			method: 'post',
@@ -33,7 +43,7 @@ import ResultItem from './ResultItem';
                     startDate: startDate,
                     endDate: endDate,
 					sum: sum
-                })
+			})
 		});
 
 		const data = await response.json();
@@ -59,6 +69,7 @@ import ResultItem from './ResultItem';
 				startDate={startDate}
 				endDate={endDate}
 				sum={sum}
+				yieldType={yieldType}
 				updatePayload={updatePayload}></Payload>
 			<ResultItem handleCalculateYield={handleCalculateYield} result={result} records={records}></ResultItem>
         </div>

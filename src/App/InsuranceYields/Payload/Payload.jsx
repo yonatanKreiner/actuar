@@ -11,7 +11,8 @@ import "./Payload.css";
             parseFloat(e.target.value),
             props.startDate,
             props.endDate,
-            props.sum
+            props.sum,
+            props.yieldType
         );
     }
 
@@ -20,7 +21,8 @@ import "./Payload.css";
             props.fundId,
             value,
             props.endDate,
-            props.sum
+            props.sum,
+            props.yieldType
         );
     }
 
@@ -29,7 +31,8 @@ import "./Payload.css";
             props.fundId,
             props.startDate,
             value,
-            props.sum
+            props.sum,
+            props.yieldType
         );
     }
 
@@ -38,7 +41,18 @@ import "./Payload.css";
             props.fundId,
             props.startDate,
             props.endDate,
-            parseFloat(e.target.value)
+            parseFloat(e.target.value),
+            props.yieldType
+        );
+    }
+
+    const updateYieldType = (e) => {
+        props.updatePayload(
+            props.fundId,
+            props.startDate,
+            props.endDate,
+            props.sum,
+            e.target.value
         );
     }
 
@@ -61,6 +75,38 @@ import "./Payload.css";
                     סכום:
                     <input type={'number'} value={props.sum} onChange={updateSum}/>
                 </span>
+                <div className='yield-type-radio-block'>
+					<div className="custom-control custom-radio">
+						<input type="radio" className="custom-control-input" 
+							name={"yield-type"} 
+							id={`insurance`}
+                            onClick={updateYieldType}
+							value={`insurance`}
+							checked={props.yieldType == "insurance"}
+						/>
+						<label for={`insurance`} className="custom-control-label radio-label">ביטוח נט</label>
+					</div>
+					<div className="custom-control custom-radio">
+						<input type="radio" className="custom-control-input" 
+							name={"yield-type"}
+							id={`provident`}
+                            onClick={updateYieldType}
+							value={`provident`}
+							checked={props.yieldType == "provident"}
+						/>
+						<label for={`provident`} className="custom-control-label radio-label">גמל נט</label>
+					</div>
+                    <div className="custom-control custom-radio">
+						<input type="radio" className="custom-control-input" 
+							name={"yield-type"}
+							id={`pension`}
+                            onClick={updateYieldType}
+							value={`pension`}
+							checked={props.yieldType == "pension"}
+						/>
+						<label for={`pension`} className="custom-control-label radio-label">פנסיה נט</label>
+					</div>
+				</div>
             </div>
         </div>
     );
@@ -71,6 +117,7 @@ Payload.propTypes = {
     startDate:PropTypes.object.isRequired,
     endDate:PropTypes.object.isRequired,
     sum: PropTypes.number.isRequired,
+    yieldType: PropTypes.string.isRequired,
     updatePayload: PropTypes.func.isRequired,
 }
 
