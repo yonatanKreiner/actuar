@@ -144,7 +144,7 @@ const AlimonyPayment = () => {
 		heightLeft -= pageHeight;
 
 		while (heightLeft >= 0) {
-			position += heightLeft - height; // top padding for other pages
+			position += heightLeft - height; // top padding for other pages 
 			pdf.addPage();
 			pdf.addImage(resultsImgData, 'PNG', 0, position, width - 4, height);
 			heightLeft -= pageHeight;
