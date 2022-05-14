@@ -4,89 +4,79 @@ import PropTypes from 'prop-types';
 import React from 'react'; 
 import ReactLoading from 'react-loading';
 import { CSVLink } from "react-csv";
-import ResultsTable from './ResultsTable';
+import { useState } from 'react';
+import { openConfimPopup } from '../../Utills/ConfirmPopup';
 
-class ResultItem extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			result: null,
-			isLoading: false
-		}
+const ResultItem = (props) => {
+	const [result, setResult] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
+
+	const onClickCalcOpenConfirmModal = () => {
+		openConfimPopup('שירות חישוב פסיקת ריבית', onClickCalculate);
 	}
+
+	const onClickCalculate = async () => {
+		setIsLoading(true);
+		
+		const finalDebt = await props.calculateDept();	
+		
+		setResult(finalDebt);
+		setIsLoading(false);
+	}
+
+	const onClickGeneratePDF = async () => {
+		setIsLoading(true);
 	
-	async onClickCalculate(){
-		this.setState({
-			isLoading: true,
-		});
-		const finalDebt = await this.props.calculateDept();	
+		await props.generatePDF();
 
-		this.setState({
-			result: finalDebt,
-			isLoading: false
-		});
+		setIsLoading(false);
 	}
 
-	async onClickGeneratePDF() {
-		this.setState({
-			isLoading: true,
-		});
-
-		await this.props.generatePDF();
-
-		this.setState({
-			isLoading: false
-		});
-	}
-
-	render() {
-		return (
-			<div className='result-block'>
-				<button type='button' onClick={() => this.onClickCalculate()} className='btn-result btn btn-primary'>חשב</button>
-				<br />
-				{this.state.isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : 
-						this.state.result ? 
-								<div className="result-data-container">
-									<div>
-										<h1 id='resultElement'>סה"כ חוב</h1>
-										<h1 id='resultElement'>{this.state.result.total}</h1>
-									</div>
-									<button type='button' onClick={() => this.onClickGeneratePDF()} className='btn btn-outline-info generate-pdf-btn'>הפק דו"ח</button>
-									<CSVLink
-										data={this.state.result.allDepts.map(debt => {
-											const startDate = new Date(debt.startDate);
-											const endDate = new Date(debt.endDate);
-											return ({
-												sum: debt.sum,
-												isLegalInterest: debt.isLegalInterest ? "ריבית צמודה" : "ריבית פיגורים",
-												startDate: `${startDate.getDate()}/${startDate.getMonth()+1}/${startDate.getFullYear()}`,
-												endDate: `${endDate.getDate()}/${endDate.getMonth()+1}/${endDate.getFullYear()}`,
-												indexateSum: debt.indexateSum,
-												totalInterest: debt.totalInterest,
-												totalDebt: debt.totalDebt,
-											})
-										})}
-										headers={[
-											{label: "חוב", key: "sum"},
-											{label: "סוג ריבית", key: "isLegalInterest"},
-											{label: "מתאריך", key: "startDate"},
-											{label: "עד תאריך", key: "endDate"},
-											{label: "שווי הצמדה", key: "indexateSum"},
-											{label: "שווי ריבית", key: "totalInterest"},
-											{label: "סך הכל", key: "totalDebt"}
-										]}
-										filename={"פסיקת ריבית.csv"}
-										className="btn btn-outline-info generate-pdf-btn"
-										target="_blank"
-									>
-										ייצא לאקסל
-									</CSVLink>
-									{/* <ResultsTable allDepts={this.state.result.allDepts}></ResultsTable> */}
-								</div> : <></>
-				}
-			</div>
+	return (
+		<div className='result-block'>
+			<button type='button' onClick={() => onClickCalcOpenConfirmModal()} className='btn-result btn btn-primary'>חשב</button>
+			<br />
+			{isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : 
+				result ? 
+					<div className="result-data-container">
+						<div>
+							<h1 id='resultElement'>סה"כ חוב</h1>
+							<h1 id='resultElement'>{result.total}</h1>
+						</div>
+						<button type='button' onClick={() => onClickGeneratePDF()} className='btn btn-outline-info generate-pdf-btn'>הפק דו"ח</button>
+						<CSVLink
+							data={result.allDepts.map(debt => {
+								const startDate = new Date(debt.startDate);
+								const endDate = new Date(debt.endDate);
+								return ({
+									sum: debt.sum,
+									isLegalInterest: debt.isLegalInterest ? "ריבית צמודה" : "ריבית פיגורים",
+									startDate: `${startDate.getDate()}/${startDate.getMonth()+1}/${startDate.getFullYear()}`,
+									endDate: `${endDate.getDate()}/${endDate.getMonth()+1}/${endDate.getFullYear()}`,
+									indexateSum: debt.indexateSum,
+									totalInterest: debt.totalInterest,
+									totalDebt: debt.totalDebt,
+								})
+							})}
+							headers={[
+								{label: "חוב", key: "sum"},
+								{label: "סוג ריבית", key: "isLegalInterest"},
+								{label: "מתאריך", key: "startDate"},
+								{label: "עד תאריך", key: "endDate"},
+								{label: "שווי הצמדה", key: "indexateSum"},
+								{label: "שווי ריבית", key: "totalInterest"},
+								{label: "סך הכל", key: "totalDebt"}
+							]}
+							filename={"פסיקת ריבית.csv"}
+							className="btn btn-outline-info generate-pdf-btn"
+							target="_blank"
+						>
+							ייצא לאקסל
+						</CSVLink>
+					</div> : <></>
+			}
+		</div>
 		);
-	}
 }
 
 ResultItem.propTypes = {

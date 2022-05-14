@@ -19,7 +19,8 @@
     "react-scripts": "3.0.1",
     "react-select": "^5.2.1",
     "react-simple-snackbar": "^1.1.11",
-    "react-table": "^7.7.0"
+    "react-table": "^7.7.0",
+    "sweetalert2": "^11.4.14"
   },
   "scripts": {
     "start": "react-scripts start",
