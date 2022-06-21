@@ -5,15 +5,10 @@ import React from 'react';
 import ReactLoading from 'react-loading';
 import { CSVLink } from "react-csv";
 import { useState } from 'react';
-import { openConfimPopup } from '../../Utills/ConfirmPopup';
 
 const ResultItem = (props) => {
 	const [result, setResult] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
-
-	const onClickCalcOpenConfirmModal = () => {
-		openConfimPopup('שירות חישוב פסיקת ריבית', onClickCalculate);
-	}
 
 	const onClickCalculate = async () => {
 		setIsLoading(true);
@@ -34,7 +29,7 @@ const ResultItem = (props) => {
 
 	return (
 		<div className='result-block'>
-			<button type='button' onClick={() => onClickCalcOpenConfirmModal()} className='btn-result btn btn-primary'>חשב</button>
+			<button type='button' onClick={() => onClickCalculate()} className='btn-result btn btn-primary'>חשב</button>
 			<br />
 			{isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : 
 				result ? 

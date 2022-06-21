@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
 import ResultsTable from './ResultTable';
+import { CSVLink } from "react-csv";
 
 import './ResultItem.css';
 
@@ -22,6 +23,23 @@ import './ResultItem.css';
                 (<div>
                     <h1 id='resultElement'>סה"כ בקרן</h1>
                     <h1 id='resultElement'>{props.result.toLocaleString(undefined,{ minimumFractionDigits: 2 })}</h1>
+                    <CSVLink
+							data={props.records.map(row => ({
+								fund: row.FUND_NAME,
+                                date: row.REPORT_PERIOD,
+								yield: row.MONTHLY_YIELD
+							}))}
+							headers={[
+								{label:"שם הקרן", key: "fund"},
+                                {label:"חודש", key: "date"},
+                                {label: "תשואה", key: "yield"}
+							]}
+							filename={"תשואה.csv"}
+							className="yield-calc-export-csv-btn btn-outline-info btn"
+							target="_blank"
+						>
+							ייצא לאקסל
+                    </CSVLink>
                     <ResultsTable records={props.records}></ResultsTable>
                 </div>):
                 <></>}
