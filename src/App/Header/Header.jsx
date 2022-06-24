@@ -18,6 +18,7 @@ class Header extends Component {
 							<NavLink activeClassName="activeLink" exact to="/calcInterest">מחשבון פסיקת ריבית</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/AlimonyPayment">מחשבון חוב מזונות</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/InsuranceYields">מחשבון תשואות</NavLink>
+							<NavLink activeClassName="activeLink" exact to="/CompoundInterest">מחשבון ריבית דריבית</NavLink>
 							{/* <NavLink activeClassName="activeLink" exact to="/unemployPayments">דמי אבטלה</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/SeverancePay">פיצויי פיטורים</NavLink> */}
 						</div>
