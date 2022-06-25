@@ -20,6 +20,10 @@ const MadadIndexateCalculator = () => {
         setRows([...rows.slice(0,index),row, ...rows.slice(index+1)]);
     }
     
+    const calculateIndexate = async () => {
+        console.log(1);
+    }
+
     return (
         <div>
             <h4 id="calc-header">מחשבון הצדמה למדד</h4>
@@ -31,7 +35,7 @@ const MadadIndexateCalculator = () => {
 				</div>
 			</div>
             <div>
-                <ResultContianer></ResultContianer>
+                <ResultContianer calculateIndexate={calculateIndexate}></ResultContianer>
             </div>
         </div>
     );
