@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import RowsTable from './CalculationRows';
+import ResultContianer from './ResultContainer';
 
 const MadadIndexateCalculator = () => {
     const [rows, setRows] = useState([{
@@ -29,6 +30,9 @@ const MadadIndexateCalculator = () => {
                    <RowsTable rows={rows} addRow={addRow} removeRow={removeRow} changeRow={changeRow}></RowsTable>
 				</div>
 			</div>
+            <div>
+                <ResultContianer></ResultContianer>
+            </div>
         </div>
     );
 }
