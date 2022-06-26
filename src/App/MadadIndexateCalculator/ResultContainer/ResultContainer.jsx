@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import ReactLoading from 'react-loading';
 import PropTypes from 'prop-types';
 
+import './ResultContainer.css';
+
 const ResultContianer = (props) => {
     const [isLoading, setIsLoading] = useState(false);
 
@@ -12,9 +14,10 @@ const ResultContianer = (props) => {
 	};
     
     return (
-        <div>
+        <div className='madad-indexate-calc-result'>
             <button type='button' onClick={onClickCalculate} className='btn-result btn btn-primary'>חשב</button>
-            {isLoading ? <ReactLoading style={{margin: 'auto'}} color={'#2196F3'} /> : <></>}
+            <ReactLoading className="loader" color={'#2196F3'} />
+            {isLoading ? <ReactLoading style={{margin: 'auto'}} className="loader" color={'#2196F3'} /> : <></>}
         </div>
     );
 }
