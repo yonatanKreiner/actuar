@@ -21,7 +21,17 @@ const MadadIndexateCalculator = () => {
     }
     
     const calculateIndexate = async () => {
-        console.log(1);
+        const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/madadIndexate': 'http://localhost:7000/interest/madadIndexate';
+
+		const response = await fetch(apiUrl,{
+			method: 'post',
+			headers: {"Content-Type": "application/json"},
+			credentials: "include",
+			body: JSON.stringify({indexatePayload: rows})
+		});
+
+		const data = await response.json();
+        setRows(data.result);
     }
 
     return (

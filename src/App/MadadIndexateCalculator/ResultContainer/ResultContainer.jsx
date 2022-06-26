@@ -14,7 +14,7 @@ const ResultContianer = (props) => {
     return (
         <div>
             <button type='button' onClick={onClickCalculate} className='btn-result btn btn-primary'>חשב</button>
-            {isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : <></>}
+            {isLoading ? <ReactLoading style={{margin: 'auto'}} color={'#2196F3'} /> : <></>}
         </div>
     );
 }
