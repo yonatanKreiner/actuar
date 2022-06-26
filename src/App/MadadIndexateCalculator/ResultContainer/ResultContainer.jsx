@@ -16,8 +16,7 @@ const ResultContianer = (props) => {
     return (
         <div className='madad-indexate-calc-result'>
             <button type='button' onClick={onClickCalculate} className='btn-result btn btn-primary'>חשב</button>
-            <ReactLoading className="loader" color={'#2196F3'} />
-            {isLoading ? <ReactLoading style={{margin: 'auto'}} className="loader" color={'#2196F3'} /> : <></>}
+            {isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : <></>}
         </div>
     );
 }
