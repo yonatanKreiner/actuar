@@ -76,7 +76,7 @@ const DeptRow = (props) => {
 							onClick={onChangeDebtInterestType}
 							checked={props.debt.interestType === 'legal-interest'}
 						/>
-						<label for={`legal${props.index}`} className="custom-control-label">ריבית חוקית</label>
+						<label for={`legal${props.index}`} className="custom-control-label">ריבית צמודה</label>
 					</div>
 					<div className="custom-control custom-radio">
 						<input type="radio" className="custom-control-input" 
