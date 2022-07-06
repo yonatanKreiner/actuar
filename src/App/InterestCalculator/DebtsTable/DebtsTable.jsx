@@ -35,7 +35,7 @@ const DebtsTable = (props) => {
 						props.addDebt({
 							startDate: new Date(),
 							sum: 0, 
-							isLegalInterest: true, 
+							interestType: 'legal-interest', 
 							endDate: new Date(),
 						})
 					}} value='הוסף'/>

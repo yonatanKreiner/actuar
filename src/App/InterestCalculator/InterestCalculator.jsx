@@ -12,7 +12,7 @@ import ResultItem from './ResultItem';
 const InterestCalculator = () => {
 
 	const [debts, setDebts] = useState([
-		{startDate: new Date(), sum: 100, isLegalInterest: true, endDate: new Date()}
+		{startDate: new Date(), sum: 100, interestType: 'legal-interest', endDate: new Date()}
 	]);
 
 	const [openSnackbar] = useSnackbar()
@@ -85,7 +85,9 @@ const InterestCalculator = () => {
 		results.allDepts = results.allDepts.map(deptResult => { 
 			return {
 				...deptResult,
-				interestType: deptResult.isLegalInterest ? "ריבית צמודה" : "ריבית פיגורים"
+				interestTypetext: deptResult.interestType === 'legal-interest' ? "ריבית צמודה" :
+									 deptResult.interestType === 'illegal-interest' ? "ריבית פיגורים" :
+									 deptResult.interestType === 'shekel-interest' ? "ריבית שקלית" : "הצמדה למדד"
 			}
 		});
 

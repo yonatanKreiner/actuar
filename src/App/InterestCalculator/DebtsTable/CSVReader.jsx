@@ -37,7 +37,9 @@ export default function CsvReader(props){
                 {
                     startDate: moment(row.startDate, 'DD/MM/YYYY').toDate(),
                     sum: parseFloat(row.sum),
-                    isLegalInterest: row.interestType == "legal" ? true : false,
+                    interestType: row.interestType == "legal" ? 'legal-interest' : 
+                                    row.interestType == "illegal" ? 'illegal-interest' :
+                                    row.interestType == "shekel" ? 'shekel-interest' : 'indexate-only',
                     endDate: moment(row.endDate, 'DD/MM/YYYY').toDate()
                 })));
         }

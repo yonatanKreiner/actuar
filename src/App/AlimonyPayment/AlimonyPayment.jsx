@@ -85,7 +85,7 @@ const AlimonyPayment = () => {
 				startDate: startDate.getTime(),
 				sum: result.totalPayment,
 				endDate: calcDate,
-				isLegalInterest: true
+				interestType: 'legal-interest'
 			});
 		});
 		

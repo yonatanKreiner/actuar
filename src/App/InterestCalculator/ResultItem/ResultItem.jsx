@@ -45,7 +45,9 @@ const ResultItem = (props) => {
 								const endDate = new Date(debt.endDate);
 								return ({
 									sum: debt.sum,
-									isLegalInterest: debt.isLegalInterest ? "ריבית צמודה" : "ריבית פיגורים",
+									isLegalInterest: debt.interestType === 'legal-interest' ? "ריבית צמודה" :
+														debt.interestType === 'illegal-interest' ? "ריבית פיגורים" :
+														debt.interestType === 'shekel-interest' ? "ריבית שקלית" : "הצמדה למדד",
 									startDate: `${startDate.getDate()}/${startDate.getMonth()+1}/${startDate.getFullYear()}`,
 									endDate: `${endDate.getDate()}/${endDate.getMonth()+1}/${endDate.getFullYear()}`,
 									indexateSum: debt.indexateSum,

@@ -29,7 +29,7 @@ const DeptRow = (props) => {
 		props.handleChangeDebt(props.index, {
 			startDate: getValidDate(value),
 			sum: props.debt.sum,
-			isLegalInterest: props.debt.isLegalInterest,
+			interestType: props.debt.interestType,
 			endDate: props.debt.endDate
 		});
 	}
@@ -38,7 +38,7 @@ const DeptRow = (props) => {
 		props.handleChangeDebt(props.index, {
 			startDate: props.debt.startDate,
 			sum: parseFloat(e.target.value),
-			isLegalInterest: props.debt.isLegalInterest,
+			interestType: props.debt.interestType,
 			endDate: props.debt.endDate	
 		});
 	}
@@ -47,7 +47,7 @@ const DeptRow = (props) => {
 		props.handleChangeDebt(props.index, {
 			startDate: props.debt.startDate,
 			sum: props.debt.sum,
-			isLegalInterest:  (e.target.value === 'true'),
+			interestType: e.target.value,
 			endDate: props.debt.endDate
 		});
 	}
@@ -56,7 +56,7 @@ const DeptRow = (props) => {
 		props.handleChangeDebt(props.index, {
 			startDate: props.debt.startDate,
 			sum: props.debt.sum,
-			isLegalInterest: props.debt.isLegalInterest,
+			interestType: props.debt.interestType,
 			endDate: getValidDate(value)
 		});
 	} 
@@ -72,9 +72,9 @@ const DeptRow = (props) => {
 						<input type="radio" className="custom-control-input" 
 							name={"interest-type"+props.index} 
 							id={`legal${props.index}`}
-							value={true}
+							value={'legal-interest'}
 							onClick={onChangeDebtInterestType}
-							checked={props.debt.isLegalInterest == true}
+							checked={props.debt.interestType === 'legal-interest'}
 						/>
 						<label for={`legal${props.index}`} className="custom-control-label">ריבית חוקית</label>
 					</div>
@@ -82,11 +82,31 @@ const DeptRow = (props) => {
 						<input type="radio" className="custom-control-input" 
 							name={"interest-type"+props.index}
 							id={`illegal${props.index}`}
-							value={false}
+							value={'illegal-interest'}
 							onClick={onChangeDebtInterestType}
-							checked={props.debt.isLegalInterest != true}
+							checked={props.debt.interestType === 'illegal-interest'}
 						/>
 						<label for={`illegal${props.index}`} className="custom-control-label">ריבית פיגורים</label>
+					</div>
+					<div className="custom-control custom-radio">
+						<input type="radio" className="custom-control-input" 
+							name={"interest-type"+props.index} 
+							id={`shekelInterest${props.index}`}
+							value={'shekel-interest'}
+							onClick={onChangeDebtInterestType}
+							checked={props.debt.interestType === 'shekel-interest'}
+						/>
+						<label for={`shekelInterest${props.index}`} className="custom-control-label">ריבית שקלית</label>
+					</div>
+					<div className="custom-control custom-radio">
+						<input type="radio" className="custom-control-input" 
+							name={"interest-type"+props.index} 
+							id={`indexateOnly${props.index}`}
+							value={'indexate-only'}
+							onClick={onChangeDebtInterestType}
+							checked={props.debt.interestType === 'indexate-only'}
+						/>
+						<label for={`indexateOnly${props.index}`} className="custom-control-label">הצמדה למדד</label>
 					</div>
 				</div>
 			</td>
