@@ -20,6 +20,7 @@ class Header extends Component {
 							<NavLink activeClassName="activeLink" exact to="/InsuranceYields">מחשבון תשואות</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/CompoundInterest">מחשבון ריבית דריבית</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/InterestsTable">טבלאות ריבית</NavLink>
+							<NavLink activeClassName="activeLink" exact to="/SalaryDetermine">מחשבון שכר קובע</NavLink>
 							{/* <NavLink activeClassName="activeLink" exact to="/MadadIndexate">מחשבון הצמדה למדד</NavLink> */}
 							{/* <NavLink activeClassName="activeLink" exact to="/unemployPayments">דמי אבטלה</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/SeverancePay">פיצויי פיטורים</NavLink> */}

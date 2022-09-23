@@ -1,0 +1,15 @@
+.salary-determine-general .general-payload{
+	display: flex;
+	justify-content: space-between;
+	width: max-content;
+    min-width: 65%;
+    margin: auto;
+}
+
+.salary-determine-general .general-payload .madad-interval-picker {
+	width: 166px;
+}
+
+.salary-determine-general .general-payload .datepicker{
+	width: fit-content;
+}
