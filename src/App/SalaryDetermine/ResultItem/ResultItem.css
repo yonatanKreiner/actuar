@@ -1,0 +1,35 @@
+.result-block .btn-result{
+	height: 35px;
+	width: 80px;
+	margin: 10px 30px;
+}
+
+.result-block .loader {
+	height: 5%;
+	width: 5%;
+	margin: 0 auto;
+}
+
+.result-block .result-data-container {
+	display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+}
+.result-block .result-data-container .generate-pdf-btn {
+	height: 35px;
+	width: 120px;
+	color: #17a2b8;
+}
+.result-block .result-data-container .generate-pdf-btn:hover {
+	color: white;
+}
+
+@media only screen and (max-width: 600px) {
+	.result-block .datepicker{
+		width: 179px;
+	}
+	.btn-result{
+		height: 35px;
+		margin: 3px auto;
+	}
+}

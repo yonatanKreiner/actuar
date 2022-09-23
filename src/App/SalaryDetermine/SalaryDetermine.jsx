@@ -1,6 +1,7 @@
 
 import React, {useEffect, useState} from 'react'; 
 import GeneralPayload from './GeneralPayload';
+import ResultItem from './ResultItem';
 import SalaryTable from './SalaryTable';
 
 const SalaryDetermine = (props) => {
@@ -39,6 +40,10 @@ const SalaryDetermine = (props) => {
         setSalaries([...salaries.slice(0,index),salary, ...salaries.slice(index+1)]);
     }
 
+    const calculate = () => {
+        return 100;
+    }
+
 	return (
 		<div>
             <h1>שכר קובע</h1>
@@ -46,6 +51,8 @@ const SalaryDetermine = (props) => {
                 <GeneralPayload payload={generalPayload} onChange={changeGeneralPayload}></GeneralPayload>
                 <SalaryTable salaries={salaries} changeRow={changeRow} removeRow={removeRow} addRow={addRow}></SalaryTable>
             </div>
+
+            <ResultItem calculate={calculate}></ResultItem>
 		</div>
 	);
 }
