@@ -8,6 +8,25 @@ const SalaryRow = (props) => {
         props.changeRow({
             date: props.date,
             sum: e.target.value,
+            sumEmployee: props.sumEmployee,
+            sumCompany: props.sumCompany
+        }, props.index)
+    }
+    const setSumEmployee = (e) => {
+        props.changeRow({
+            date: props.date,
+            sum: props.sum,
+            sumEmployee: e.target.value,
+            sumCompany: props.sumCompany,
+        }, props.index)
+    }
+
+    const setSumCompany = (e) => {
+        props.changeRow({
+            date: props.date,
+            sum: props.sum,
+            sumEmployee: props.sumEmployee,
+            sumCompany: e.target.value,
         }, props.index)
     }
 
@@ -24,6 +43,14 @@ const SalaryRow = (props) => {
             <td>
                 <input style={{margin: 'auto'}}
                     type='number' className="form-text" onChange={setSum} value={props.sum} />
+            </td>
+            <td>
+                <input style={{margin: 'auto'}}
+                    type='number' className="form-text" onChange={setSumEmployee} value={props.sumEmployee} />
+            </td>
+            <td>
+                <input style={{margin: 'auto'}}
+                    type='number' className="form-text" onChange={setSumCompany} value={props.sumCompany} />
             </td>
         </tr>
 	);
