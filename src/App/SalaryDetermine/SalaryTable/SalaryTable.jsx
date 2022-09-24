@@ -2,6 +2,7 @@
 import React from 'react'; 
 import PropTypes from 'prop-types';
 import SalaryRow from './SalaryRow';
+import CsvReader from './CSVReader';
 
 const SalaryTable = (props) => {
 	const rows = [];
@@ -32,6 +33,7 @@ const SalaryTable = (props) => {
 					props.addRow();
 				}} value='הוסף'/>
 			<input type='button' className='btn btn-warning' onClick={() => {props.removeRow()}} value='הסר'/>
+			<CsvReader importSalaries={props.importRows}/>
 		</div>
 	);
 }
@@ -40,7 +42,8 @@ SalaryTable.propTypes = {
 	salaries: PropTypes.array.isRequired,
     addRow: PropTypes.func,
     removeRow: PropTypes.func,
-    changeRow: PropTypes.func
+    changeRow: PropTypes.func,
+	importRows: PropTypes.func
 }
 
 export default SalaryTable;

@@ -41,6 +41,10 @@ const SalaryDetermine = (props) => {
         setSalaries([...salaries.slice(0,index),salary, ...salaries.slice(index+1)]);
     }
 
+	const handleImportSalaries = (salaries) => {
+		setSalaries(salaries);
+	}
+
     const calculate = async () => {
         const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/salaryDetermine': 'http://localhost:7000/interest/salaryDetermine';
 
@@ -62,7 +66,7 @@ const SalaryDetermine = (props) => {
             <h1>שכר קובע</h1>
             <div>
                 <GeneralPayload payload={generalPayload} onChange={changeGeneralPayload}></GeneralPayload>
-                <SalaryTable salaries={salaries} changeRow={changeRow} removeRow={removeRow} addRow={addRow}></SalaryTable>
+                <SalaryTable salaries={salaries} changeRow={changeRow} removeRow={removeRow} addRow={addRow} importRows={handleImportSalaries}></SalaryTable>
             </div>
 
             <ResultItem calculate={calculate}></ResultItem>
