@@ -11,6 +11,7 @@ const SalaryDetermine = (props) => {
         clientName: null,
         birthDate: new Date(),
         gender: 'male',
+        isIndependendWorker: false,
         marriageStatus: 'single',
         numOfChildren: 0,
         calculationDate: new Date()
@@ -40,8 +41,20 @@ const SalaryDetermine = (props) => {
         setSalaries([...salaries.slice(0,index),salary, ...salaries.slice(index+1)]);
     }
 
-    const calculate = () => {
-        return 100;
+    const calculate = async () => {
+        const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/salaryDetermine': 'http://localhost:7000/interest/salaryDetermine';
+
+		const response = await fetch(apiUrl,{
+			method: 'post',
+			headers: {"Content-Type": "application/json"},
+			credentials: "include",
+			body: JSON.stringify({salaries, generalPayload})
+		});
+
+		const data = await response.json();
+		const results = data.determineSalary;
+
+		return results;
     }
 
 	return (

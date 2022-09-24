@@ -31,6 +31,7 @@ const GeneralPayload = (props) => {
             clientName: props.payload.clientName,
             birthDate: props.payload.birthDate,
             gender: props.payload.gender,
+            isIndependendWorker: props.payload.isIndependendWorker,
             marriageStatus: props.payload.marriageStatus,
             numOfChildren: props.payload.numOfChildren,
             calculationDate: props.payload.calculationDate
@@ -43,6 +44,7 @@ const GeneralPayload = (props) => {
             clientName: e.target.value,
             birthDate: props.payload.birthDate,
             gender: props.payload.gender,
+            isIndependendWorker: props.payload.isIndependendWorker,
             marriageStatus: props.payload.marriageStatus,
             numOfChildren: props.payload.numOfChildren,
             calculationDate: props.payload.calculationDate
@@ -55,6 +57,7 @@ const GeneralPayload = (props) => {
             clientName: props.payload.clientName,
             birthDate: value,
             gender: props.payload.gender,
+            isIndependendWorker: props.payload.isIndependendWorker,
             marriageStatus: props.payload.marriageStatus,
             numOfChildren: props.payload.numOfChildren,
             calculationDate: props.payload.calculationDate
@@ -67,6 +70,7 @@ const GeneralPayload = (props) => {
             clientName: props.payload.clientName,
             birthDate: props.payload.birthDate,
             gender: props.payload.gender,
+            isIndependendWorker: props.payload.isIndependendWorker,
             marriageStatus: props.payload.marriageStatus,
             numOfChildren: e.target.value,
             calculationDate: props.payload.calculationDate
@@ -79,9 +83,23 @@ const GeneralPayload = (props) => {
             clientName: props.payload.clientName,
             birthDate: props.payload.birthDate,
             gender: props.payload.gender,
+            isIndependendWorker: props.payload.isIndependendWorker,
             marriageStatus: props.payload.marriageStatus,
             numOfChildren: props.payload.numOfChildren,
             calculationDate: value
+        });
+    }
+
+    const onChangeWorkerType = (e) => {
+        props.onChange({
+            kerenName: props.payload.kerenName,
+            clientName: props.payload.clientName,
+            birthDate: props.payload.birthDate,
+            gender: props.payload.gender,
+            isIndependendWorker: e.target.value == 'true',
+            marriageStatus: props.payload.marriageStatus,
+            numOfChildren: props.payload.numOfChildren,
+            calculationDate: props.payload.calculationDate
         });
     }
 
@@ -105,6 +123,30 @@ const GeneralPayload = (props) => {
             <span className='general-payload'>
                 מספר ילדים: 
                 <input type='number' max={10} min={0} onChange={onChangeNumOfChildren} value={props.payload.numOfChildren} className="form-text madad-interval-picker" />
+            </span>
+            <span className='general-payload'>
+                <div className='radio-block'>
+					<div className="custom-control custom-radio">
+						<input type="radio" className="custom-control-input" 
+							name={"worker-type"}
+                            id={"independendWorker"}
+							value={true}
+							onChange={onChangeWorkerType}
+							checked={props.payload.isIndependendWorker}
+						/>
+						<label for={`independendWorker`} className="custom-control-label">עצמאי</label>
+					</div>
+					<div className="custom-control custom-radio">
+						<input type="radio" className="custom-control-input" 
+							name={"worker-type"} 
+                            id={"notIndependendWorker"}
+							value={false}
+							onChange={onChangeWorkerType}
+							checked={!props.payload.isIndependendWorker}
+						/>
+						<label for={`notIndependendWorker`} className="custom-control-label">שכיר</label>
+					</div>
+				</div>
             </span>
             <span className='general-payload'>
                 חודש התחשיב:
