@@ -35,7 +35,7 @@ export default function CsvReader(props){
             debugger;
             props.importSalaries(csvData.map(row => (
                 {
-                    date: moment(row.date, 'DD/mm/YYYY').toDate(),
+                    date: moment(row.date, 'DD/MM/YYYY').toDate(),
                     sum: parseFloat(row.sum),
                     sumEmployee: parseFloat(row.sumEmployee),
                     sumCompany: parseFloat(row.sumCompany)

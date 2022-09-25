@@ -56,7 +56,7 @@ const SalaryDetermine = (props) => {
 		});
 
 		const data = await response.json();
-		const results = data.determineSalary;
+		const results = data;
 
 		return results;
     }

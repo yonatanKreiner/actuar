@@ -3,6 +3,7 @@ import './ResultItem.css';
 import PropTypes from 'prop-types';
 import React from 'react'; 
 import ReactLoading from 'react-loading';
+import { CSVLink } from "react-csv";
 import { useState } from 'react';
 
 const ResultItem = (props) => {
@@ -35,8 +36,26 @@ const ResultItem = (props) => {
 					<div className="result-data-container">
 						<div>
 							<h1 id='resultElement'>שכר קובע</h1>
-							<h1 id='resultElement'>{result}</h1>
+							<h1 id='resultElement'>{result.determineSalary}</h1>
 						</div>
+						<CSVLink
+							data={result.salariesSums}
+							headers={[
+								{label: "תאריך", key: "date"},
+								{label: "שכר לפנסיה", key: "sum"},
+								{label: "תגמולי עובד", key: "sumEmployee"},
+								{label: "תגמולי מעסיק", key: "sumCompany"},
+								{label: "סהכ דמי גמולים", key: "totalReturn"},
+								{label: "שעור הפרשה", key: "returnPrecOfSalary"},
+								{label: "שכר מובטח", key: "monthlyDetermineSalary"},
+								{label: "שכר מובטח מוצמד", key: "monthlyDetermineSalaryIndexate"}
+							]}
+							filename={"שכר קובע.csv"}
+							className="btn btn-outline-info generate-pdf-btn"
+							target="_blank"
+						>
+							ייצא לאקסל
+						</CSVLink>
 						{/* <button type='button' onClick={() => onClickGeneratePDF()} className='btn btn-outline-info generate-pdf-btn'>הפק דו"ח</button> */}
 					</div> : <></>
 			}
