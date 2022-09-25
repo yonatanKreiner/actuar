@@ -42,6 +42,7 @@ const ResultItem = (props) => {
 							data={result.salariesSums}
 							headers={[
 								{label: "תאריך", key: "date"},
+								{label: "האם עצמאי", key: "isIndependendWorker"},
 								{label: "שכר לפנסיה", key: "sum"},
 								{label: "תגמולי עובד", key: "sumEmployee"},
 								{label: "תגמולי מעסיק", key: "sumCompany"},
