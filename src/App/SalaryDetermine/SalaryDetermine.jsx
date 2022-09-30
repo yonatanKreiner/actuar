@@ -5,7 +5,7 @@ import ResultItem from './ResultItem';
 import SalaryTable from './SalaryTable';
 
 const SalaryDetermine = (props) => {
-    const [salaries, setSalaries] = useState([{date: new Date(), isIndependendWorker: false, sum: 1000, sumEmployee: 1000, sumCompany: 1000}]);
+    const [salaries, setSalaries] = useState([{date: new Date().setDate(1), isIndependendWorker: false, sum: 1000, sumEmployee: 1000, sumCompany: 1000}]);
     const [generalPayload, setGeneralPayload] = useState({
         kerenName: 'מבטחים חדשה',
         clientName: null,
@@ -26,6 +26,7 @@ const SalaryDetermine = (props) => {
 
     const addRow = () => {
         let newDate = new Date();
+        newDate.setDate(1);
         if(salaries.length > 0){
             newDate = new Date(salaries[salaries.length-1].date)
             newDate.setMonth(newDate.getMonth()+1);

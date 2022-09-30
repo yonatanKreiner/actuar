@@ -1,5 +1,5 @@
 
-import React from 'react'; 
+import React, { useEffect } from 'react'; 
 import PropTypes from 'prop-types';
 import DatePicker from "react-datepicker";
 
@@ -34,8 +34,15 @@ const SalaryRow = (props) => {
     }
 
     const setDate = (value) => {
+        const date = new Date(value);
+        date.setDate(1);
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
+        date.setMilliseconds(0);
+
         props.changeRow({
-            date: value,
+            date: date,
             isIndependendWorker: props.isIndependendWorker,
             sum: props.sum,
             sumEmployee: props.sumEmployee,
@@ -55,7 +62,7 @@ const SalaryRow = (props) => {
 
 	return (
         <tr>
-            <td><DatePicker selected={new Date(props.date)} onChange={setDate} dateFormat={"MM/yyyy"} /></td>
+            <td><DatePicker selected={new Date(props.date)} onChange={setDate} dateFormat={"dd/MM/yyyy"} /></td>
             <td>
             <div className='radio-block'>
 					<div className="custom-control custom-radio">
