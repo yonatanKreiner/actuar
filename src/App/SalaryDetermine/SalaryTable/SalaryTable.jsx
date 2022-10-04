@@ -20,6 +20,7 @@ const SalaryTable = (props) => {
 				<thead className="thead-light"> 
 					<tr>
 						<th>חודש</th>
+						<th>מעמד</th>
 						<th>שכר לפנסיה</th>
 						<th>דמי גמולים -  תגמולי עובד</th>
 						<th>דמי גמולים -  תגמולי מעסיק</th>
