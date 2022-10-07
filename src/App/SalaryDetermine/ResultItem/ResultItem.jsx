@@ -37,6 +37,10 @@ const ResultItem = (props) => {
 						<div>
 							<h1 id='resultElement'>שכר קובע</h1>
 							<h1 id='resultElement'>{result.determineSalary}</h1>
+							<br/>
+							<h4>ממוצע שלושה חודשים אחרונים: {result.calcResults.lastThreeAvg.toLocaleString(undefined,{ minimumFractionDigits: 2 })}</h4>
+							<h4>ממוצע 12 חודשים אחרונים: {result.calcResults.lastTwelthAvg.toLocaleString(undefined,{ minimumFractionDigits: 2 })}</h4>
+							<h4>ממוצע 12 חודשים קודמים לכך: {result.calcResults.lastFormerTwelthAvg.toLocaleString(undefined,{ minimumFractionDigits: 2 })}</h4>
 						</div>
 						<CSVLink
 							data={result.salariesSums}
