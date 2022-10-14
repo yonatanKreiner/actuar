@@ -40,6 +40,7 @@ const DebtsTable = (props) => {
 						})
 					}} value='הוסף'/>
 				<input type='button' className='btn btn-warning' onClick={() => {props.removeDebt()}} value='הסר'/>
+				<input type='button' className='btn btn-outline-warning' onClick={() => {props.removeAllDepts()}} value='נקה הכל'/>
 				<CsvReader importDebts={props.importDebts}/>
 			</div>
 		</div>
@@ -51,6 +52,7 @@ DebtsTable.propTypes = {
 	handleChangeDebt: PropTypes.func.isRequired,
 	addDebt: PropTypes.func.isRequired,
 	removeDebt: PropTypes.func.isRequired,
+	removeAllDepts: PropTypes.func.isRequired,
 	importDebts: PropTypes.func.isRequired
 }
 

@@ -48,6 +48,10 @@ const InterestCalculator = () => {
 		setDebts(debts.slice(0, -1));
 	}
 
+	const handleRemoveAllDebt = () => {
+		setDebts([]);
+	}
+
 	const handleCalculate = async () => {
 		try{
 			const results = [];
@@ -150,6 +154,7 @@ const InterestCalculator = () => {
 				handleChangeDebt={handleChangeDebt}
 				addDebt={handleAddDebt} 
 				removeDebt={handleRemoveDebt} 
+				removeAllDepts={handleRemoveAllDebt}
 				debts={debts} />
 			<hr/>
 			<ResultItem calculateDept={handleCalculate} generatePDF={generatePDF} />
