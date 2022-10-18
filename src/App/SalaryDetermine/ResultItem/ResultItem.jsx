@@ -43,7 +43,17 @@ const ResultItem = (props) => {
 							<h4>ממוצע 12 חודשים קודמים לכך: {result.calcResults.lastFormerTwelthAvg.toLocaleString(undefined,{ minimumFractionDigits: 2 })}</h4>
 						</div>
 						<CSVLink
-							data={result.salariesSums}
+							data={result.salariesSums.map(x => ({
+								date: new Date(x.date),
+								isIndependendWorker: x.isIndependendWorker ? "עצמאי" : "שכיר",
+								sum: x.sum,
+								sumEmployee: x.sumEmployee,
+								sumCompany: x.sumCompany,
+								totalReturn: x.totalReturn,
+								returnPrecOfSalary: x.returnPrecOfSalary,
+								monthlyDetermineSalary: x.monthlyDetermineSalary,
+								monthlyDetermineSalaryIndexate: x.monthlyDetermineSalaryIndexate 
+							}))}
 							headers={[
 								{label: "תאריך", key: "date"},
 								{label: "האם עצמאי", key: "isIndependendWorker"},
