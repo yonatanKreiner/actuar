@@ -44,7 +44,7 @@ const ResultItem = (props) => {
 						</div>
 						<CSVLink
 							data={result.salariesSums.map(x => ({
-								date: new Date(x.date),
+								date: new Date(x.date).toLocaleDateString(),
 								isIndependendWorker: x.isIndependendWorker ? "עצמאי" : "שכיר",
 								sum: x.sum,
 								sumEmployee: x.sumEmployee,

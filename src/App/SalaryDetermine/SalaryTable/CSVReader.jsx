@@ -32,7 +32,6 @@ export default function CsvReader(props){
             console.log(text);
             const csvData = processCSV(text); // plugged in here
             console.log(csvData);
-            debugger;
             props.importSalaries(csvData.map(row => (
                 {
                     date: moment(row.date, 'DD/MM/YYYY').toDate(),
