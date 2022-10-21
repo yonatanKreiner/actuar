@@ -9,8 +9,8 @@ const SalaryRow = (props) => {
             date: props.date,
             isIndependendWorker: props.isIndependendWorker,
             sum: e.target.value,
-            sumEmployee: props.sumEmployee,
-            sumCompany: props.sumCompany
+            sumEmployee: (e.target.value) * 0.06,
+            sumCompany:  (e.target.value) * 0.065
         }, props.index)
     }
     const setSumEmployee = (e) => {
@@ -62,7 +62,7 @@ const SalaryRow = (props) => {
 
 	return (
         <tr>
-            <td><DatePicker selected={new Date(props.date)} onChange={setDate} dateFormat={"dd/MM/yyyy"} /></td>
+            <td><DatePicker selected={new Date(props.date)} onChange={setDate} dateFormat={"dd/MM/yyyy"} tabIndex={1} /></td>
             <td>
             <div className='radio-block'>
 					<div className="custom-control custom-radio">
@@ -89,15 +89,15 @@ const SalaryRow = (props) => {
             </td>
             <td>
                 <input style={{margin: 'auto'}}
-                    type='number' className="form-text" onChange={setSum} value={props.sum} />
+                    type='number' className="form-text" onChange={setSum} value={props.sum} tabIndex={2} />
             </td>
             <td>
                 <input style={{margin: 'auto'}}
-                    type='number' className="form-text" onChange={setSumEmployee} value={props.sumEmployee} />
+                    type='number' className="form-text" onChange={setSumEmployee} value={props.sumEmployee} tabIndex={3} />
             </td>
             <td>
                 <input style={{margin: 'auto'}}
-                    type='number' className="form-text" onChange={setSumCompany} value={props.sumCompany} />
+                    type='number' className="form-text" onChange={setSumCompany} value={props.sumCompany} tabIndex={4} />
             </td>
         </tr>
 	);

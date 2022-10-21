@@ -99,7 +99,7 @@ const GeneralPayload = (props) => {
             <span className='general-payload'>
                 תאריך לידה:
                 <div className="datepicker">
-                    <DatePicker onChange={onChangeBirthDate} selected={props.payload.birthDate} dateFormat={"dd/MM/yyyy"} tabIndex={1} />
+                    <DatePicker onChange={onChangeBirthDate} selected={props.payload.birthDate} dateFormat={"dd/MM/yyyy"} />
                 </div>
             </span>
             <span className='general-payload'>
@@ -109,7 +109,7 @@ const GeneralPayload = (props) => {
             <span className='general-payload'>
                 חודש התחשיב:
                 <div className="datepicker">
-                    <DatePicker onChange={onChangeCalculationDate} selected={props.payload.calculationDate} dateFormat={"dd/MM/yyyy"} tabIndex={4} />
+                    <DatePicker onChange={onChangeCalculationDate} selected={props.payload.calculationDate} dateFormat={"dd/MM/yyyy"} />
                 </div>
             </span>
         </div>
