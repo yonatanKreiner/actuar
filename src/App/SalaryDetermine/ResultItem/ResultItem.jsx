@@ -19,14 +19,6 @@ const ResultItem = (props) => {
 		setIsLoading(false);
 	}
 
-	const onClickGeneratePDF = async () => {
-		setIsLoading(true);
-	
-		await props.generatePDF();
-
-		setIsLoading(false);
-	}
-
 	return (
 		<div className='result-block'>
 			<button type='button' onClick={() => onClickCalculate()} className='btn-result btn btn-primary'>חשב</button>
@@ -71,7 +63,6 @@ const ResultItem = (props) => {
 						>
 							ייצא לאקסל
 						</CSVLink>
-						{/* <button type='button' onClick={() => onClickGeneratePDF()} className='btn btn-outline-info generate-pdf-btn'>הפק דו"ח</button> */}
 					</div> : <></>
 			}
 		</div>

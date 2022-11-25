@@ -17,7 +17,7 @@ import CompoundInterest from './CompoundInterest';
 import MadadIndexateCalculator from './MadadIndexateCalculator';
 import InterestsTable from './InterestsTable';
 import SalaryDetermine from './SalaryDetermine';
-
+import AnnuitiesTable from './AnnuitiesTable';
 
 class App extends React.Component {
 
@@ -45,6 +45,7 @@ class App extends React.Component {
 							<Route path="/MadadIndexate" component={MadadIndexateCalculator} />
 							<Route path="/InterestsTable" component={InterestsTable} />
 							<Route path="/SalaryDetermine" component={SalaryDetermine} />
+							<Route path="/AnnuitiesTable" component={AnnuitiesTable} />
 							<Route path="*" />
 						</Switch>
 					</Container>
