@@ -16,6 +16,7 @@ class Header extends Component {
 						<NavLink activeClassName="activeLink" to="/calc*" disabled> מחשבונים </NavLink>
 						<div className="dropdown-content">
 							<NavLink activeClassName="activeLink" exact to="/calcInterest">מחשבון פסיקת ריבית</NavLink>
+							<NavLink activeClassName="activeLink" exact to="/CompoundInterest">מחשבון ריבית דריבית</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/AlimonyPayment">מחשבון חוב מזונות</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/InsuranceYields">מחשבון תשואות</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/SalaryDetermine">מחשבון שכר קובע</NavLink>
@@ -28,7 +29,6 @@ class Header extends Component {
 					<div className="dropdown">
 						<NavLink activeClassName="activeLink" to="/tables*" disabled> טבלאות עזר </NavLink>
 						<div className="dropdown-content">
-							<NavLink activeClassName="activeLink" exact to="/CompoundInterest">מחשבון ריבית דריבית</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/InterestsTable">טבלאות ריבית</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/AnnuitiesTable">טבלאות עזר קצבאות</NavLink>
 						</div>
