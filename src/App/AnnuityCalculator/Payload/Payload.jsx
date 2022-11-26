@@ -3,6 +3,7 @@ import { useState } from 'react';
 // import {ExcelRenderer} from 'react-excel-renderer';
 import { ExcelRenderer } from './importExcel';
 import ReactLoading from 'react-loading';
+import CsvReader from './CSVReader';
 
 const Payload = ({onImport, onCalculate}) => {
 
@@ -49,7 +50,18 @@ const Payload = ({onImport, onCalculate}) => {
 
     return (
 			<div>
-                <input type={"file"} onChange={onPickimportFile}/>
+                <div style={{display:'flex',justifyContent: 'center'}}>
+                    <span>
+                        <input type={"file"} onChange={onPickimportFile}/>
+                        <br/>
+                        ייבוא ממסלקה
+                    </span>
+                    <span>
+                        <CsvReader importRows={onImport}></CsvReader>
+                        <br/>
+                        ייבוא לפי פורמט
+                    </span>
+                </div>
                 <button type='button' onClick={() => onClickCalculate()} className='btn-result btn btn-primary'>חשב</button>
                 <br />
                 {isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : <></>}
