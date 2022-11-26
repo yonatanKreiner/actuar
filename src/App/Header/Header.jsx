@@ -18,14 +18,19 @@ class Header extends Component {
 							<NavLink activeClassName="activeLink" exact to="/calcInterest">מחשבון פסיקת ריבית</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/AlimonyPayment">מחשבון חוב מזונות</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/InsuranceYields">מחשבון תשואות</NavLink>
-							<NavLink activeClassName="activeLink" exact to="/CompoundInterest">מחשבון ריבית דריבית</NavLink>
-							<NavLink activeClassName="activeLink" exact to="/InterestsTable">טבלאות ריבית</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/SalaryDetermine">מחשבון שכר קובע</NavLink>
-							<NavLink activeClassName="activeLink" exact to="/AnnuitiesTable">טבלאות עזר קצבאות</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/AnnuityCalculator">מחשבון הפקדות לקצבה מוכרת</NavLink>
 							{/* <NavLink activeClassName="activeLink" exact to="/MadadIndexate">מחשבון הצמדה למדד</NavLink> */}
 							{/* <NavLink activeClassName="activeLink" exact to="/unemployPayments">דמי אבטלה</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/SeverancePay">פיצויי פיטורים</NavLink> */}
+						</div>
+					</div>
+					<div className="dropdown">
+						<NavLink activeClassName="activeLink" to="/tables*" disabled> טבלאות עזר </NavLink>
+						<div className="dropdown-content">
+							<NavLink activeClassName="activeLink" exact to="/CompoundInterest">מחשבון ריבית דריבית</NavLink>
+							<NavLink activeClassName="activeLink" exact to="/InterestsTable">טבלאות ריבית</NavLink>
+							<NavLink activeClassName="activeLink" exact to="/AnnuitiesTable">טבלאות עזר קצבאות</NavLink>
 						</div>
               		</div>
           		</div>
