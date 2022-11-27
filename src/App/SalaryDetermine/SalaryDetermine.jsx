@@ -1,5 +1,6 @@
 
 import React, {useEffect, useState} from 'react'; 
+import { GET_SERVER_URL } from '../config';
 import GeneralPayload from './GeneralPayload';
 import ResultItem from './ResultItem';
 import SalaryTable from './SalaryTable';
@@ -52,7 +53,7 @@ const SalaryDetermine = (props) => {
 	}
 
     const calculate = async () => {
-        const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/salaryDetermine': 'http://localhost:7000/interest/salaryDetermine';
+        const apiUrl = `${GET_SERVER_URL()}/interest/salaryDetermine`;
 
 		const response = await fetch(apiUrl,{
 			method: 'post',

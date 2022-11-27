@@ -5,6 +5,7 @@ import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import { useSnackbar } from 'react-simple-snackbar'
 
+import { GET_SERVER_URL } from '../config';
 import Header from './Header';
 import DebtsTable from './DebtsTable';
 import ResultItem from './ResultItem';
@@ -75,7 +76,7 @@ const InterestCalculator = () => {
 	}
 
 	const calcDepts = async (requestData) => {
-		const apiUrl = process.env.NODE_ENV === 'production' ? '/interest': 'http://localhost:7000/interest';
+		const apiUrl = `${GET_SERVER_URL()}/interest`;
 
 		const response = await fetch(apiUrl,{
 			method: 'post',

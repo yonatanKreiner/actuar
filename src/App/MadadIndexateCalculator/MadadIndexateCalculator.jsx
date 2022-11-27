@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { GET_SERVER_URL } from '../config';
 import RowsTable from './CalculationRows';
 import ResultContianer from './ResultContainer';
 
@@ -21,7 +22,7 @@ const MadadIndexateCalculator = () => {
     }
     
     const calculateIndexate = async () => {
-        const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/madadIndexate': 'http://localhost:7000/interest/madadIndexate';
+        const apiUrl = `${GET_SERVER_URL()}/interest/madadIndexate`;
 
 		const response = await fetch(apiUrl,{
 			method: 'post',

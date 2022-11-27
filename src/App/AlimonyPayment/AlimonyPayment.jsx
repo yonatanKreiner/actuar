@@ -9,6 +9,7 @@ import html2canvas from "html2canvas";
 import ChilrenTable from './ChilrenTable';
 import ResultItem from './ResultItem';
 import GeneralPayload from './GeneralPayload';
+import { GET_SERVER_URL } from '../config';
 
 const AlimonyPayment = () => {
 	const history = useHistory();
@@ -58,7 +59,7 @@ const AlimonyPayment = () => {
 	}
 
 	const handleCalculatePayment = async () => {
-		const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/alimonyPayment': 'http://localhost:7000/interest/alimonyPayment';
+		const apiUrl = `${GET_SERVER_URL()}/interest/alimonyPayment`;
 
 		setSumOfChildrenBornAfterEndDate();
 

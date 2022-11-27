@@ -1,5 +1,6 @@
 import React from 'react'; 
 import { useState } from 'react';
+import { GET_SERVER_URL } from '../config';
 import AnnuityDepositTable from './AnnuityDepositTable';
 import Payload from './Payload';
 
@@ -12,7 +13,7 @@ const AnnuityCalculator = () => {
     }
 
     const calculateAnnuitiesDeposits = async () => {
-        const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/annuityDepositsCalculator': 'http://localhost:7000/interest/annuityDepositsCalculator';
+        const apiUrl =`${GET_SERVER_URL()}/interest/annuityDepositsCalculator`;
 
 		const response = await fetch(apiUrl,{
 			credentials: "include",

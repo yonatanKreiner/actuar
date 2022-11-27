@@ -1,5 +1,6 @@
 
 import React, {useEffect, useState} from 'react'; 
+import { GET_SERVER_URL } from '../config';
 
 const IterestsTable = (props) => {
 
@@ -8,7 +9,7 @@ const IterestsTable = (props) => {
     const [shekelInterests, setShekelInterests] = useState([]);
 
     const getInterestsTable = async () => {
-        const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/interestsTable': 'http://localhost:7000/interest/interestsTable';
+        const apiUrl = `${GET_SERVER_URL()}/interest/interestsTable`;
 
 		const response = await fetch(apiUrl,{
 			credentials: "include"

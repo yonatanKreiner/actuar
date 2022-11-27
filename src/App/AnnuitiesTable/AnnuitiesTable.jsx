@@ -1,12 +1,13 @@
 
 import React, {useEffect, useState} from 'react'; 
+import { GET_SERVER_URL } from '../config';
 
 const AnnuitiesTable = (props) => {
 
     const [annuities, setAnnuities] = useState([]);
 
     const getInterestsTable = async () => {
-        const apiUrl = process.env.NODE_ENV === 'production' ? '/interest/annuitiesTable': 'http://localhost:7000/interest/annuitiesTable';
+        const apiUrl = `${GET_SERVER_URL()}/interest/annuitiesTable`;
 
 		const response = await fetch(apiUrl,{
 			credentials: "include"
