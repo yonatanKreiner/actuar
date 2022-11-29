@@ -53,7 +53,7 @@ const SalaryDetermine = (props) => {
 	}
 
     const calculate = async () => {
-        const apiUrl = `${GET_SERVER_URL()}/interest/salaryDetermine`;
+        const apiUrl = `${GET_SERVER_URL()}/salaryDetermine`;
 
 		const response = await fetch(apiUrl,{
 			method: 'post',

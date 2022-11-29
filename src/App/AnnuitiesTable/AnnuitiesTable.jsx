@@ -7,7 +7,7 @@ const AnnuitiesTable = (props) => {
     const [annuities, setAnnuities] = useState([]);
 
     const getInterestsTable = async () => {
-        const apiUrl = `${GET_SERVER_URL()}/interest/annuitiesTable`;
+        const apiUrl = `${GET_SERVER_URL()}/annuitiesTable`;
 
 		const response = await fetch(apiUrl,{
 			credentials: "include"

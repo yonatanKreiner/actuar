@@ -9,7 +9,7 @@ const IterestsTable = (props) => {
     const [shekelInterests, setShekelInterests] = useState([]);
 
     const getInterestsTable = async () => {
-        const apiUrl = `${GET_SERVER_URL()}/interest/interestsTable`;
+        const apiUrl = `${GET_SERVER_URL()}/interestsTable`;
 
 		const response = await fetch(apiUrl,{
 			credentials: "include"

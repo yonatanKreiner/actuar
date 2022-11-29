@@ -59,7 +59,7 @@ const AlimonyPayment = () => {
 	}
 
 	const handleCalculatePayment = async () => {
-		const apiUrl = `${GET_SERVER_URL()}/interest/alimonyPayment`;
+		const apiUrl = `${GET_SERVER_URL()}/alimonyPayment`;
 
 		setSumOfChildrenBornAfterEndDate();
 

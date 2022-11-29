@@ -13,7 +13,7 @@ const AnnuityCalculator = () => {
     }
 
     const calculateAnnuitiesDeposits = async () => {
-        const apiUrl =`${GET_SERVER_URL()}/interest/annuityDepositsCalculator`;
+        const apiUrl =`${GET_SERVER_URL()}/annuityDepositsCalculator`;
 
 		const response = await fetch(apiUrl,{
 			credentials: "include",

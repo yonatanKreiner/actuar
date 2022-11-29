@@ -76,7 +76,7 @@ const InterestCalculator = () => {
 	}
 
 	const calcDepts = async (requestData) => {
-		const apiUrl = `${GET_SERVER_URL()}/interest`;
+		const apiUrl = `${GET_SERVER_URL()}`;
 
 		const response = await fetch(apiUrl,{
 			method: 'post',

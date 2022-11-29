@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 import { GET_SERVER_URL } from '../config';
 
-const apiUrl = `${GET_SERVER_URL()}/interest/calcUseRegestration`;
+const apiUrl = `${GET_SERVER_URL()}/calcUseRegestration`;
 
 export const openConfimPopup = (title, submitCallback) => {
     const customSwal = Swal.mixin({

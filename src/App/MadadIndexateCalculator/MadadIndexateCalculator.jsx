@@ -22,7 +22,7 @@ const MadadIndexateCalculator = () => {
     }
     
     const calculateIndexate = async () => {
-        const apiUrl = `${GET_SERVER_URL()}/interest/madadIndexate`;
+        const apiUrl = `${GET_SERVER_URL()}/madadIndexate`;
 
 		const response = await fetch(apiUrl,{
 			method: 'post',
