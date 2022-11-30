@@ -33,10 +33,14 @@ const AnnuityDepositTable = ({rows}) => {
                 <td>{row.depositeEmpoloyee}</td>
                 <td>{row.depositeCompany}</td>
                 <td>{row.depositeCompensation}</td>
-                <td>{row.depositeFreeEmployee ? row.depositeFreeEmployee.toLocaleString(undefined,{ minimumFractionDigits: 2 }) : ''}</td>
-                <td>{row.depositeFreeCompany ? row.depositeFreeCompany.toLocaleString(undefined,{ minimumFractionDigits: 2 }) : ''}</td>
-                <td>{row.depositeFreeCompensation ? row.depositeFreeCompensation.toLocaleString(undefined,{ minimumFractionDigits: 2 }) : ''}</td>
-                <td>{row.total ? row.total.toLocaleString(undefined,{ minimumFractionDigits: 2 }) : ''}</td>
+                <td>{row.depositeFreeEmployee ? row.depositeFreeEmployee.toLocaleString(undefined,{ minimumFractionDigits: 2 })
+                    : row.depositeFreeEmployee  == 0 ? '-':''}</td>
+                <td>{row.depositeFreeCompany ? row.depositeFreeCompany.toLocaleString(undefined,{ minimumFractionDigits: 2 })
+                    : row.depositeFreeCompany == 0 ? '-' : ''}</td>
+                <td>{row.depositeFreeCompensation ? row.depositeFreeCompensation.toLocaleString(undefined,{ minimumFractionDigits: 2 }) 
+                    : row.depositeFreeCompensation == 0 ? '-' : ''}</td>
+                <td>{row.total ? row.total.toLocaleString(undefined,{ minimumFractionDigits: 2 }) 
+                    : row.total == 0 ? '-' : ''}</td>
             </tr>
 		));
 	});
