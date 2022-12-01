@@ -1,8 +1,8 @@
 http://actuarit.co.il/
 http://www.actuarit.co.il/
-https://actuar.herokuapp.com/
-https:///actuar.herokuapp.com/manifest.json
-https://actuar.herokuapp.com/calcInterest
-https://actuar.herokuapp.com/AlimonyPayment
-https://actuar.herokuapp.com/about
-https://actuar.herokuapp.com/contact
+https://actuarit.azurewebsites.net/
+https://actuarit.azurewebsites.net/manifest.json
+https://actuarit.azurewebsites.net/calcInterest
+https://actuarit.azurewebsites.net/AlimonyPayment
+https://actuarit.azurewebsites.net/about
+https://actuarit.azurewebsites.net/contact
