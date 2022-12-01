@@ -9,7 +9,6 @@ const AnnuityCalculator = () => {
     
     const importDepositsData = (depositsArray) => {
         setDeposits(depositsArray);
-        console.log(depositsArray)
     }
 
     const calculateAnnuitiesDeposits = async () => {
