@@ -1,4 +1,5 @@
 import React, { useState } from 'react'; 
+import { GET_SERVER_URL } from '../config';
 
 import './InsuranceYields.css';
 import Payload from './Payload';
@@ -23,16 +24,16 @@ import ResultItem from './ResultItem';
 	} 
 
     const handleCalculateYield = async () => {
-		let path = "/interest/insuranceYield";
+		let path = "/insuranceYield";
 		if(yieldType == "insurance"){
-			path = "/interest/insuranceYield";
+			path = "/insuranceYield";
 		}else if(yieldType == "provident"){
-			path = "/interest/providentFundYield";
+			path = "/providentFundYield";
 		}else if(yieldType == "pension"){
-			path = "/interest/pensionYield";
+			path = "/pensionYield";
 		}
 
-		const apiUrl = process.env.NODE_ENV === 'production' ? path : `http://localhost:7000${path}`;
+		const apiUrl = `${GET_SERVER_URL()}${path}`;
 
 		const response = await fetch(apiUrl,{
 			method: 'post',
