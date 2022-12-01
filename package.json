@@ -20,7 +20,7 @@
     "xlsx": "0.14.1"
   },
   "scripts": {
-    "start": "serve -s build",
+    "start": "npm i -g serve && serve -s build",
     "build": "react-scripts build",
     "start:dev": "react-scripts start",
     "test": "react-scripts test",
