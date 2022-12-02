@@ -1,6 +1,6 @@
 http://actuarit.co.il/
 http://www.actuarit.co.il/
-https://actuarit.azurewebsites.net/
+https://actuarit.azurewebsites.net
 https://actuarit.azurewebsites.net/manifest.json
 https://actuarit.azurewebsites.net/calcInterest
 https://actuarit.azurewebsites.net/AlimonyPayment
