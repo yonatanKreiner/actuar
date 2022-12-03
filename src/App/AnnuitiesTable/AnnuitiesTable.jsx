@@ -1,6 +1,7 @@
 
 import React, {useEffect, useState} from 'react'; 
 import { GET_SERVER_URL } from '../config';
+import CsvReader from './CSVReader';
 
 const AnnuitiesTable = (props) => {
 
@@ -15,6 +16,20 @@ const AnnuitiesTable = (props) => {
 
         const result = await response.json();
         setAnnuities(result.result);
+    }
+
+    const updateTable = async (newRows) => {
+        const apiUrl = `${GET_SERVER_URL()}/annuitiesTable`;
+		const response = await fetch(apiUrl,{
+			credentials: "include",
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({annuities: newRows})
+		});
+
+        if(response.status == '200'){
+            setAnnuities(newRows);
+        }
     }
 
     useEffect(() => {
@@ -58,6 +73,7 @@ const AnnuitiesTable = (props) => {
             <div style={{display: 'flex',flexDirection: 'row',justifyContent: 'space-evenly'}}>
                 {generateTable(annuities)}
             </div>
+            <CsvReader importRows={updateTable}></CsvReader>
 		</div>
 	);
 }
