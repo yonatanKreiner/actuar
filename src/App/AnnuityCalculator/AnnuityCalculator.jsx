@@ -8,7 +8,22 @@ const AnnuityCalculator = () => {
     const [deposits, setDeposits] = useState([]);
     
     const importDepositsData = (depositsArray) => {
-        setDeposits(depositsArray);
+        const sortedDeposites = depositsArray.sort((x, y) => x.paymentMonth - y.paymentMonth);
+        const noDupsDeposites = [sortedDeposites[0]];
+
+        for(let i = 0; i<sortedDeposites.length-1; i++){
+            if(sortedDeposites[i].paymentMonth == sortedDeposites[i+1].paymentMonth){
+                if(noDupsDeposites[noDupsDeposites.length - 1].paymentMonth == sortedDeposites[i].paymentMonth){
+                    noDupsDeposites[noDupsDeposites.length - 1].depositeEmpoloyee += sortedDeposites[i+1].depositeEmpoloyee;
+                    noDupsDeposites[noDupsDeposites.length - 1].depositeCompany += sortedDeposites[i+1].depositeCompany;
+                    noDupsDeposites[noDupsDeposites.length - 1].depositeCompensation += sortedDeposites[i+1].depositeCompensation;
+                }
+            }else{
+                noDupsDeposites.push(sortedDeposites[i+1])
+            }
+        }
+
+        setDeposits(noDupsDeposites);
     }
 
     const calculateAnnuitiesDeposits = async () => {

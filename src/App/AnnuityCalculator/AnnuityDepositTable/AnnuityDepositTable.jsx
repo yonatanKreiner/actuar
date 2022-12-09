@@ -30,9 +30,12 @@ const AnnuityDepositTable = ({rows}) => {
 		return data.map(row => (
 		    <tr>
                 <td>{row.paymentMonth}</td>
-                <td>{row.depositeEmpoloyee}</td>
-                <td>{row.depositeCompany}</td>
-                <td>{row.depositeCompensation}</td>
+                <td>{row.depositeEmpoloyee ? row.depositeEmpoloyee.toLocaleString(undefined,{ minimumFractionDigits: 2})
+                    : row.depositeEmpoloyee == 0 ? '-' : ''}</td>
+                <td>{row.depositeCompany ? row.depositeCompany.toLocaleString(undefined,{ minimumFractionDigits: 2})
+                    : row.depositeCompany == 0 ? '-' : ''}</td>
+                <td>{row.depositeCompensation ? row.depositeCompensation.toLocaleString(undefined,{ minimumFractionDigits: 2})
+                    : row.depositeCompensation == 0 ? '-' : ''}</td>
                 <td>{row.depositeFreeEmployee ? row.depositeFreeEmployee.toLocaleString(undefined,{ minimumFractionDigits: 2 })
                     : row.depositeFreeEmployee  == 0 ? '-':''}</td>
                 <td>{row.depositeFreeCompany ? row.depositeFreeCompany.toLocaleString(undefined,{ minimumFractionDigits: 2 })
