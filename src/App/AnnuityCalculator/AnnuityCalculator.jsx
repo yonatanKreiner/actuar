@@ -43,7 +43,7 @@ const AnnuityCalculator = () => {
     return (
 			<div>
 				<h1>חישוב הפקדות לקצבה מוכרת</h1>
-                <Payload onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits}></Payload>
+                <Payload onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits} results={deposits}></Payload>
                 <AnnuityDepositTable rows={deposits}></AnnuityDepositTable>
 			</div>
     );

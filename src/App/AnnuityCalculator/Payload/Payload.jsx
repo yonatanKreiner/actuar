@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { ExcelRenderer } from './importExcel';
 import ReactLoading from 'react-loading';
 import CsvReader from './CSVReader';
+import { CSVLink } from "react-csv";
 
-const Payload = ({onImport, onCalculate}) => {
+const Payload = ({onImport, onCalculate, results}) => {
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -63,8 +64,29 @@ const Payload = ({onImport, onCalculate}) => {
                     </span>
                 </div>
                 <button type='button' onClick={() => onClickCalculate()} className='btn-result btn btn-primary'>חשב</button>
+                {results && results.length > 0 &&
+                    <CSVLink
+                                data={results}
+                                headers={[
+                                    {label:"חודש שכר", key: "paymentMonth"},
+                                    {label:"הפקדת עובד", key: "depositeEmpoloyee"},
+                                    {label:"הפקדה מעסיק", key: "depositeCompany"},
+                                    {label:"הפקדה לפיצויים", key: "depositeCompensation"},
+                                    {label:"הפקדה לקצבה מוכרת - עובד", key: "depositeFreeEmployee"},
+                                    {label:"הפקדה לקצבה מוכרת - מעסיק", key: "depositeFreeCompany"},
+                                    {label: "הפקדה לקצבה מוכרת - פיצויים", key: "depositeFreeCompensation"},
+                                    {label: 'סה"כ הפקדה', key: "total"}
+                                ]}
+                                filename={"חישוב קצבאות.csv"}
+                                className="btn-open-interest btn btn-outline-info"
+                                target="_blank"
+                            >
+                                ייצא לאקסל
+                    </CSVLink>
+                }
                 <br />
                 {isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : <></>}
+                
 			</div>
     );
 }
