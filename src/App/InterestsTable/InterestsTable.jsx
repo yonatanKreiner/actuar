@@ -16,9 +16,9 @@ const IterestsTable = (props) => {
 		});
 
         const result = await response.json();
-        setLeagalInterests(result.result.legalInterest);
-        setIllegalInterests(result.result.illegalInterest);
-        setShekelInterests(result.result.shekelInterest);
+        setLeagalInterests(result.result.ligelInterests);
+        setIllegalInterests(result.result.illigelInterests);
+        setShekelInterests(result.result.shekelInterests);
     }
 
     useEffect(() => {
@@ -47,8 +47,8 @@ const IterestsTable = (props) => {
 	const generateRows = ((data) => {
 		return data.map(row => (
 		    <tr>
-                <td>{row[0]}</td>
-                <td>{row[1]}</td>
+                <td>{row.date}</td>
+                <td>{row.interest}</td>
             </tr>
 		));
 	});
