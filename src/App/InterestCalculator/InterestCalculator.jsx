@@ -55,22 +55,26 @@ const InterestCalculator = () => {
 
 	const handleCalculate = async () => {
 		try{
-			const results = [];
+			const resultsPromise = [];
 			const CHUNK = 2;
 			for(let i=0; i < debts.length; i += CHUNK) {
 				const debtsChunk = debts.slice(i, i + CHUNK);
 
 				const requestData = { debts: debtsChunk };	
-				const chunkResult = await calcDepts(requestData);
-				results.push(...chunkResult);
+				const chunkResultPromise = calcDepts(requestData);
+				resultsPromise.push(chunkResultPromise);
 			}
+
+			const results_arrays_promise = Promise.all(resultsPromise);
+			const results_arrays = await results_arrays_promise;
+			const results = results_arrays.flat()
 
 			const totalDebt = results.reduce((total, debtResult) => total + parseFloat(debtResult.totalDebt.replace(',','')), 0);
 			setDebts([...results]);
 			savePayloadToSessionStorage([...results]);
 
 			return {allDepts: results, total: totalDebt.toLocaleString(undefined,{ minimumFractionDigits: 2 })};
-		} catch {
+		} catch(err) {
 			openSnackbar('החישוב נכשל, אנא נסה שנית או פנה לגורם טכני')
 		}
 	}
