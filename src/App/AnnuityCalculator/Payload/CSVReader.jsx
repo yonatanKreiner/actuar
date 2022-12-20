@@ -35,7 +35,7 @@ export default function CsvReader(props){
 
             props.importRows(csvData.map(row => (
                 {
-                    paymentMonth: `${moment(row.date, 'dd/MM/yyyy').toDate().getFullYear()}${moment(row.date, 'dd/MM/yyyy').toDate().getMonth()+1}`,
+                    paymentMonth: `${moment(row.date, 'dd/MM/yyyy').toDate().getFullYear()}${moment(row.date, 'dd/MM/yyyy').toDate().getMonth()+1 < 10 ? '0':''}${moment(row.date, 'dd/MM/yyyy').toDate().getMonth()+1}`,
                     depositeEmpoloyee: parseFloat(row.depositeEmpoloyee),
                     depositeCompany: parseFloat(row.depositeCompany),
                     depositeCompensation: parseFloat(row.depositeCompensation)

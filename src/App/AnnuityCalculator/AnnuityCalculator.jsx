@@ -8,7 +8,7 @@ const AnnuityCalculator = () => {
     const [deposits, setDeposits] = useState([]);
     
     const importDepositsData = (depositsArray) => {
-        const sortedDeposites = depositsArray.sort((x, y) => x.paymentMonth - y.paymentMonth);
+        const sortedDeposites = depositsArray.sort((x, y) => parseInt(x.paymentMonth) - parseInt(y.paymentMonth));
         const noDupsDeposites = [sortedDeposites[0]];
 
         for(let i = 0; i<sortedDeposites.length-1; i++){
