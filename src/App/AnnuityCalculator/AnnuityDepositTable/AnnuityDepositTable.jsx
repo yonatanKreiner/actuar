@@ -4,7 +4,7 @@ import React from 'react';
 const AnnuityDepositTable = ({rows}) => {
     const generateTable = (data) => {
         return (
-            <div>
+            <div id={"annuities-data-table"}>
                 <table style={{direction:"rtl"}} className="table table-bordered">
                     <thead className="thead-light"> 
                         <tr>

@@ -6,7 +6,7 @@ import ReactLoading from 'react-loading';
 import CsvReader from './CSVReader';
 import { CSVLink } from "react-csv";
 
-const Payload = ({onImport, onCalculate, results}) => {
+const Payload = ({onImport, onCalculate, results, onClickGeneratePDF}) => {
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -26,7 +26,6 @@ const Payload = ({onImport, onCalculate, results}) => {
     }
 
     const excelArrayToObj = (rows) => {
-        debugger;
         const deposits = [];
         let index = 1;
 
@@ -49,6 +48,12 @@ const Payload = ({onImport, onCalculate, results}) => {
         setIsLoading(false);
     }
 
+    const onClickExportPDF = () => {
+        setIsLoading(true);
+        onClickGeneratePDF();
+        setIsLoading(false);
+    }
+
     return (
 			<div>
                 <div style={{display:'flex',justifyContent: 'center'}}>
@@ -65,24 +70,27 @@ const Payload = ({onImport, onCalculate, results}) => {
                 </div>
                 <button type='button' onClick={() => onClickCalculate()} className='btn-result btn btn-primary'>חשב</button>
                 {results && results.length > 0 &&
-                    <CSVLink
-                                data={results}
-                                headers={[
-                                    {label:"חודש שכר", key: "paymentMonth"},
-                                    {label:"הפקדת עובד", key: "depositeEmpoloyee"},
-                                    {label:"הפקדה מעסיק", key: "depositeCompany"},
-                                    {label:"הפקדה לפיצויים", key: "depositeCompensation"},
-                                    {label:"הפקדה לקצבה מוכרת - עובד", key: "depositeFreeEmployee"},
-                                    {label:"הפקדה לקצבה מוכרת - מעסיק", key: "depositeFreeCompany"},
-                                    {label: "הפקדה לקצבה מוכרת - פיצויים", key: "depositeFreeCompensation"},
-                                    {label: 'סה"כ הפקדה', key: "total"}
-                                ]}
-                                filename={"חישוב קצבאות.csv"}
-                                className="btn-open-interest btn btn-outline-info"
-                                target="_blank"
-                            >
-                                ייצא לאקסל
-                    </CSVLink>
+                    <>
+                        <CSVLink
+                                    data={results}
+                                    headers={[
+                                        {label:"חודש שכר", key: "paymentMonth"},
+                                        {label:"הפקדת עובד", key: "depositeEmpoloyee"},
+                                        {label:"הפקדה מעסיק", key: "depositeCompany"},
+                                        {label:"הפקדה לפיצויים", key: "depositeCompensation"},
+                                        {label:"הפקדה לקצבה מוכרת - עובד", key: "depositeFreeEmployee"},
+                                        {label:"הפקדה לקצבה מוכרת - מעסיק", key: "depositeFreeCompany"},
+                                        {label: "הפקדה לקצבה מוכרת - פיצויים", key: "depositeFreeCompensation"},
+                                        {label: 'סה"כ הפקדה', key: "total"}
+                                    ]}
+                                    filename={"חישוב קצבאות.csv"}
+                                    className="btn-open-interest btn btn-outline-info"
+                                    target="_blank"
+                                >
+                                    ייצא לאקסל
+                        </CSVLink>
+                        <button type='button' onClick={onClickExportPDF} className='btn btn-outline-info generate-pdf-btn'>הפק דו"ח</button>
+                    </>
                 }
                 <br />
                 {isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : <></>}
