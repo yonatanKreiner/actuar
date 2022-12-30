@@ -1,5 +1,8 @@
 import React from 'react'; 
 import { useState } from 'react';
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
+
 import { GET_SERVER_URL } from '../config';
 import AnnuityDepositTable from './AnnuityDepositTable';
 import Payload from './Payload';
@@ -40,10 +43,41 @@ const AnnuityCalculator = () => {
         setDeposits(result.result);
     }
 
+    const generatePDF = async () => {
+		const input = document.getElementById('annuities-data-table');
+		const resultTableCanvas = await html2canvas(input);
+		const headerCanvas = await html2canvas(document.getElementById('annuities-header'));
+		const resultsImgData = resultTableCanvas.toDataURL('image/png');
+		const headerImgData = headerCanvas.toDataURL('image/png');
+
+		const pdf = new jsPDF("p", "mm", "a4");
+
+		const imgProps= pdf.getImageProperties(resultsImgData);
+		const width = pdf.internal.pageSize.getWidth();
+		const height = (imgProps.height * width) / imgProps.width;
+		
+		const pageHeight =  295;  
+		let heightLeft = height;
+		let position = 30;
+
+		pdf.addImage(headerImgData, 'JPEG', -0.55*width, 5);
+		pdf.addImage(resultsImgData, 'JPEG', 2, 30, width - 4, height);
+		heightLeft -= pageHeight;
+
+		while (heightLeft >= 0) {
+			position += heightLeft - height; // top padding for other pages
+			pdf.addPage();
+			pdf.addImage(resultsImgData, 'PNG', 0, position, width - 4, height);
+			heightLeft -= pageHeight;
+		}
+
+		pdf.save("חישוב הפקדות לקצבה מוכרת.pdf");
+	}
+
     return (
 			<div>
-				<h1>חישוב הפקדות לקצבה מוכרת</h1>
-                <Payload onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits} results={deposits}></Payload>
+				<h1 id={"annuities-header"}>חישוב הפקדות לקצבה מוכרת</h1>
+                <Payload onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits} results={deposits} onClickGeneratePDF={generatePDF}></Payload>
                 <AnnuityDepositTable rows={deposits}></AnnuityDepositTable>
 			</div>
     );
