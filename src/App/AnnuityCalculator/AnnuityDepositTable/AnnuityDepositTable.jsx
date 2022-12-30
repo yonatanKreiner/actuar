@@ -1,5 +1,7 @@
 
 import React from 'react'; 
+import moment from 'moment';
+import 'moment/locale/he'
 
 const AnnuityDepositTable = ({rows}) => {
     const generateTable = (data) => {
@@ -27,9 +29,11 @@ const AnnuityDepositTable = ({rows}) => {
     }
 
 	const generateRows = ((data) => {
+        moment.locale("he")
+
 		return data.map(row => (
 		    <tr>
-                <td>{row.paymentMonth}</td>
+                <td>{moment(row.paymentMonthDisplay).format("MMM YYYY")}</td>
                 <td>{row.depositeEmpoloyee ? row.depositeEmpoloyee.toLocaleString(undefined,{ minimumFractionDigits: 2})
                     : row.depositeEmpoloyee == 0 ? '-' : ''}</td>
                 <td>{row.depositeCompany ? row.depositeCompany.toLocaleString(undefined,{ minimumFractionDigits: 2})

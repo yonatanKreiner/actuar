@@ -5,6 +5,7 @@ import { ExcelRenderer } from './importExcel';
 import ReactLoading from 'react-loading';
 import CsvReader from './CSVReader';
 import { CSVLink } from "react-csv";
+import moment from 'moment/moment';
 
 const Payload = ({onImport, onCalculate, results, onClickGeneratePDF}) => {
 
@@ -32,6 +33,7 @@ const Payload = ({onImport, onCalculate, results, onClickGeneratePDF}) => {
         while(rows.length > index && rows[index].length>0) {
             deposits.push({
                 paymentMonth: rows[index][2],
+                paymentMonthDisplay: moment(rows[index][2], "YYYYMM").toDate(),
                 depositeEmpoloyee: rows[index][3],
                 depositeCompany: rows[index][4],
                 depositeCompensation: rows[index][5],
