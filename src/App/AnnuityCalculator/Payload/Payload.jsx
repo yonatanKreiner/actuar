@@ -7,6 +7,8 @@ import CsvReader from './CSVReader';
 import { CSVLink } from "react-csv";
 import moment from 'moment/moment';
 
+moment.locale('he');
+
 const Payload = ({onImport, onCalculate, results, onClickGeneratePDF}) => {
 
     const [isLoading, setIsLoading] = useState(false);
@@ -74,9 +76,9 @@ const Payload = ({onImport, onCalculate, results, onClickGeneratePDF}) => {
                 {results && results.length > 0 &&
                     <>
                         <CSVLink
-                                    data={results}
+                                    data={results.map(x => ({...x, displayDate: moment(x.paymentMonthDisplay).format("MMM YYYY")}))}
                                     headers={[
-                                        {label:"חודש שכר", key: "paymentMonth"},
+                                        {label:"חודש שכר", key: "displayDate"},
                                         {label:"הפקדת עובד", key: "depositeEmpoloyee"},
                                         {label:"הפקדה מעסיק", key: "depositeCompany"},
                                         {label:"הפקדה לפיצויים", key: "depositeCompensation"},
