@@ -21,9 +21,6 @@ class Header extends Component {
 							<NavLink activeClassName="activeLink" exact to="/InsuranceYields">מחשבון תשואות</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/SalaryDetermine">מחשבון שכר קובע</NavLink>
 							<NavLink activeClassName="activeLink" exact to="/AnnuityCalculator">מחשבון הפקדות לקצבה מוכרת</NavLink>
-							{/* <NavLink activeClassName="activeLink" exact to="/MadadIndexate">מחשבון הצמדה למדד</NavLink> */}
-							{/* <NavLink activeClassName="activeLink" exact to="/unemployPayments">דמי אבטלה</NavLink>
-							<NavLink activeClassName="activeLink" exact to="/SeverancePay">פיצויי פיטורים</NavLink> */}
 						</div>
 					</div>
 					<div className="dropdown">

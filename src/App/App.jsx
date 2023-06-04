@@ -9,12 +9,8 @@ import AboutUs from './AboutUs';
 import Contact from './Contact';
 import InterestCalculator from './InterestCalculator';
 import AlimonyPayment from './AlimonyPayment';
-import UnemployPayments from './UnemployPayments';
-import SeverancePay from './SeverancePay';
-import ComingSoon from './ComingSoon';
 import InsuranceYields from './InsuranceYields';
 import CompoundInterest from './CompoundInterest';
-import MadadIndexateCalculator from './MadadIndexateCalculator';
 import InterestsTable from './InterestsTable';
 import SalaryDetermine from './SalaryDetermine';
 import AnnuitiesTable from './AnnuitiesTable';
@@ -39,11 +35,8 @@ class App extends React.Component {
 							<Route path="/contact" component={Contact} />
 							<Route path="/calcInterest"  component={InterestCalculator}/>
 							<Route path="/AlimonyPayment" component={AlimonyPayment} />
-							<Route path="/unemployPayments" component={UnemployPayments}/>
-							<Route path="/SeverancePay" component={SeverancePay} />
 							<Route path="/InsuranceYields" component={InsuranceYields} />
 							<Route path="/CompoundInterest" component={CompoundInterest} />
-							<Route path="/MadadIndexate" component={MadadIndexateCalculator} />
 							<Route path="/InterestsTable" component={InterestsTable} />
 							<Route path="/SalaryDetermine" component={SalaryDetermine} />
 							<Route path="/AnnuitiesTable" component={AnnuitiesTable} />
