@@ -102,7 +102,7 @@ const AnnuityCalculator = () => {
         <div>
             <h1 id={"annuities-header"}>חישוב הפקדות לקצבה מוכרת</h1>
             <Payload onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits} results={deposits} onClickGeneratePDF={generatePDF} onClickMoveToYearly={convertMonthlyToYearly}></Payload>
-            <AnnuityDepositTable rows={useYearly ? depositsYearly : deposits}></AnnuityDepositTable>
+            <AnnuityDepositTable isYearly={useYearly} rows={useYearly ? depositsYearly : deposits}></AnnuityDepositTable>
         </div>
     );
 }
