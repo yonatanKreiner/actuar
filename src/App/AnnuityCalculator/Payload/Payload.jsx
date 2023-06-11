@@ -9,7 +9,7 @@ import moment from 'moment/moment';
 
 moment.locale('he');
 
-const Payload = ({onImport, onCalculate, results, onClickGeneratePDF}) => {
+const Payload = ({onImport, onCalculate, results, onClickGeneratePDF, onClickMoveToYearly}) => {
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -94,6 +94,7 @@ const Payload = ({onImport, onCalculate, results, onClickGeneratePDF}) => {
                                     ייצא לאקסל
                         </CSVLink>
                         <button type='button' onClick={onClickExportPDF} className='btn btn-outline-info generate-pdf-btn'>הפק דו"ח</button>
+                        <button type='button' onClick={onClickMoveToYearly} className='btn btn-outline-info' style={{width: 'fit-content'}}>עבור לדו"ח שנתי</button>
                     </>
                 }
                 <br />

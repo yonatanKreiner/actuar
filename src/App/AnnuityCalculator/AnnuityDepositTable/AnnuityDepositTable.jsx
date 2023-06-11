@@ -3,7 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import 'moment/locale/he'
 
-const AnnuityDepositTable = ({rows}) => {
+const AnnuityDepositTable = ({rows, isYearly}) => {
     const generateTable = (data) => {
         return (
             <div id={"annuities-data-table"}>
@@ -33,7 +33,7 @@ const AnnuityDepositTable = ({rows}) => {
 
 		return data.map(row => (
 		    <tr>
-                <td>{moment(row.paymentMonthDisplay).format("MMM YYYY")}</td>
+                <td>{isYearly ? row.year : moment(row.paymentMonthDisplay).format("MMM YYYY")}</td>
                 <td>{row.depositeEmpoloyee ? row.depositeEmpoloyee.toLocaleString(undefined,{ minimumFractionDigits: 2})
                     : row.depositeEmpoloyee == 0 ? '-' : ''}</td>
                 <td>{row.depositeCompany ? row.depositeCompany.toLocaleString(undefined,{ minimumFractionDigits: 2})
