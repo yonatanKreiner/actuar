@@ -1,3 +1,3 @@
-import Payload from "./Payload";
+import Payload from "./Payload_new";
 
 export default Payload;

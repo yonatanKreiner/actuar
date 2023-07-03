@@ -7,6 +7,7 @@ import { GET_SERVER_URL } from '../config';
 import AnnuityDepositTable from './AnnuityDepositTable';
 import Payload from './Payload';
 import RecognizedDeposits from './RecognizedDeposits';
+import DepositsTable from './DepositsTable';
 
 const AnnuityCalculator = () => {
     const [deposits, setDeposits] = useState([]);
@@ -103,8 +104,11 @@ const AnnuityCalculator = () => {
         <div>
             <h1 id={"annuities-header"}>חישוב הפקדות לקצבה מוכרת</h1>
             <Payload onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits} results={deposits} onClickGeneratePDF={generatePDF} onClickMoveToYearly={convertMonthlyToYearly}></Payload>
+           
+            <DepositsTable></DepositsTable>
+            
             <AnnuityDepositTable isYearly={useYearly} rows={useYearly ? depositsYearly : deposits}></AnnuityDepositTable>
-            {useYearly ? <RecognizedDeposits></RecognizedDeposits> : <></>}
+            {/* {useYearly ? <RecognizedDeposits></RecognizedDeposits> : <></>} */}
         </div>
     );
 }
