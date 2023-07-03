@@ -107,7 +107,7 @@ const AnnuityCalculator = () => {
            
             <DepositsTable></DepositsTable>
             
-            <AnnuityDepositTable isYearly={useYearly} rows={useYearly ? depositsYearly : deposits}></AnnuityDepositTable>
+            {/* <AnnuityDepositTable isYearly={useYearly} rows={useYearly ? depositsYearly : deposits}></AnnuityDepositTable> */}
             {/* {useYearly ? <RecognizedDeposits></RecognizedDeposits> : <></>} */}
         </div>
     );
