@@ -15,9 +15,9 @@ const DepositsTable = (props) => {
             [...deposits, 
                 {
                     year: new Date().getFullYear(),
-                    employee: 0,
-                    company: 0,
-                    compensation: 0
+                    depositeEmpoloyee: deposits.length > 0 ? deposits[deposits.length-1].depositeEmpoloyee : 0,
+                    depositeCompany: deposits.length > 0 ? deposits[deposits.length-1].depositeCompany : 0,
+                    depositeCompensation: deposits.length > 0 ? deposits[deposits.length-1].depositeCompensation : 0
                 }
             ]
             setDeposits(newDeposits);
