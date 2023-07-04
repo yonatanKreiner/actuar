@@ -8,9 +8,10 @@ import AnnuityDepositTable from './AnnuityDepositTable';
 import Payload from './Payload';
 import RecognizedDeposits from './RecognizedDeposits';
 import DepositsTable from './DepositsTable';
+import AnnuitiesResult from './AnnuitiesResult';
 
 const AnnuityCalculator = () => {
-    const [deposits, setDeposits] = useState([]);
+    const [deposits, setDeposits] = useState(undefined);
     const [useYearly, setUseYearly] = useState(false);
     const [depositsYearly, setDepositYearly] = useState([]);
 
@@ -33,7 +34,8 @@ const AnnuityCalculator = () => {
         setDeposits(noDupsDeposites);
     }
 
-    const calculateAnnuitiesDeposits = async () => {
+    const calculateAnnuitiesDeposits = async (deposits) => {
+        debugger;
         const apiUrl = `${GET_SERVER_URL()}/annuityDepositsCalculator`;
 
         const response = await fetch(apiUrl, {
@@ -47,68 +49,27 @@ const AnnuityCalculator = () => {
         setDeposits(result.result);
     }
 
-    const generatePDF = async () => {
-        const input = document.getElementById('annuities-data-table');
-        const resultTableCanvas = await html2canvas(input);
-        const headerCanvas = await html2canvas(document.getElementById('annuities-header'));
-        const resultsImgData = resultTableCanvas.toDataURL('image/png');
-        const headerImgData = headerCanvas.toDataURL('image/png');
+    const getResultForComponent = () => {
+        const result = deposits.reduce((accumulator, currentValue) =>
+        ({
+            employee: accumulator.employee + currentValue.depositeFreeEmployee,
+            company: accumulator.company + currentValue.depositeFreeCompany,
+            compensation: accumulator.compensation + currentValue.depositeFreeCompensation,
+            total: accumulator.total + currentValue.total,
+        }),
+            { employee: 0, company: 0, compensation: 0, total: 0 })
 
-        const pdf = new jsPDF("p", "mm", "a4");
-
-        const imgProps = pdf.getImageProperties(resultsImgData);
-        const width = pdf.internal.pageSize.getWidth();
-        const height = (imgProps.height * width) / imgProps.width;
-
-        const pageHeight = 295;
-        let heightLeft = height;
-        let position = 30;
-
-        pdf.addImage(headerImgData, 'JPEG', -0.55 * width, 5);
-        pdf.addImage(resultsImgData, 'JPEG', 2, 30, width - 4, height);
-        heightLeft -= pageHeight;
-
-        while (heightLeft >= 0) {
-            position += heightLeft - height; // top padding for other pages
-            pdf.addPage();
-            pdf.addImage(resultsImgData, 'PNG', 0, position, width - 4, height);
-            heightLeft -= pageHeight;
-        }
-
-        pdf.save("חישוב הפקדות לקצבה מוכרת.pdf");
-    }
-
-    const convertMonthlyToYearly = () => {
-        const yearlyDeposits = deposits.reduce(function (res, value) {
-            const year =  new Date(value.paymentMonthDisplay).getFullYear();
-            if (!res[year]) {
-                res[year] = { ...value, year: year };
-            } else {
-                res[year].depositeEmpoloyee += value.depositeEmpoloyee;
-                res[year].depositeCompany += value.depositeCompany;
-                res[year].depositeCompensation += value.depositeCompensation;
-                res[year].depositeFreeEmployee += value.depositeFreeEmployee;
-                res[year].depositeFreeCompany += value.depositeFreeCompany;
-                res[year].depositeFreeCompensation += value.depositeFreeCompensation;
-                res[year].total += value.total;
-            }
-
-            return res;
-        }, {});
-
-        setDepositYearly(Object.values(yearlyDeposits))
-        setUseYearly(true);
+        return result
     }
 
     return (
         <div>
             <h1 id={"annuities-header"}>חישוב הפקדות לקצבה מוכרת</h1>
-            <Payload onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits} results={deposits} onClickGeneratePDF={generatePDF} onClickMoveToYearly={convertMonthlyToYearly}></Payload>
-           
-            <DepositsTable></DepositsTable>
-            
-            {/* <AnnuityDepositTable isYearly={useYearly} rows={useYearly ? depositsYearly : deposits}></AnnuityDepositTable> */}
-            {/* {useYearly ? <RecognizedDeposits></RecognizedDeposits> : <></>} */}
+            <Payload onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits}></Payload>
+
+            <DepositsTable onClickCalculateDeposits={calculateAnnuitiesDeposits}></DepositsTable>
+
+            {deposits ? <AnnuitiesResult result={getResultForComponent()}></AnnuitiesResult> : <></>}
         </div>
     );
 }

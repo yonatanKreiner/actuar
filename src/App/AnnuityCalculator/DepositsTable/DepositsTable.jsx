@@ -56,37 +56,41 @@ const DepositsTable = (props) => {
                         onChange={(e) => updateTableLocalState(index, 
                                                                 {
                                                                     year: e.target.value,
-                                                                    employee: row.employee,
-                                                                    company: row.company,
-                                                                    compensation: row.compensation
+                                                                    depositeEmpoloyee: row.depositeEmpoloyee,
+                                                                    depositeCompany: row.depositeCompany,
+                                                                    depositeCompensation: row.depositeCompensation
                                                                 })}/></td>
-                <td><input value={row.avgSalary}                      
+                <td><input value={row.depositeEmpoloyee}                      
                         onChange={(e) => updateTableLocalState(index, 
                                                                 {
                                                                     year: row.year,
-                                                                    employee: e.target.value,
-                                                                    company: row.company,
-                                                                    compensation: row.compensation
+                                                                    depositeEmpoloyee: e.target.value,
+                                                                    depositeCompany: row.depositeCompany,
+                                                                    depositeCompensation: row.depositeCompensation
                                                                 })}/></td>
-                <td><input value={row.annuityFreeFromTax}
+                <td><input value={row.depositeCompany}
                         onChange={(e) => updateTableLocalState(index, 
                                                                 {
                                                                     year: row.year,
-                                                                    employee: row.employee,
-                                                                    company: e.target.value,
-                                                                    compensation: row.compensation
+                                                                    depositeEmpoloyee: row.depositeEmpoloyee,
+                                                                    depositeCompany: e.target.value,
+                                                                    depositeCompensation: row.depositeCompensation
                                                                 })}/></td>
-                <td><input value={row.maxCompensation} 
+                <td><input value={row.depositeCompensation} 
                         onChange={(e) => updateTableLocalState(index, 
                                                                 {
                                                                     year: row.year,
-                                                                    employee: row.employee,
-                                                                    company: row.company,
-                                                                    compensation: e.target.value
+                                                                    depositeEmpoloyee: row.depositeEmpoloyee,
+                                                                    depositeCompany: row.depositeCompany,
+                                                                    depositeCompensation: e.target.value
                                                                 })}/></td>
             </tr>
 		));
 	});
+
+    const calculteResults = () => {
+        props.onClickCalculateDeposits(deposits)
+    }
 
 	return (
         <div>
@@ -96,7 +100,7 @@ const DepositsTable = (props) => {
             </div>
             <button className='btn btn-outline-warning' onClick={addTableLocalStateRow}>הוסף שורה</button>
             <button className='btn btn-outline-warning' onClick={removeTableLocalStateRow}>מחק שורה</button>
-            <button className='btn btn-outline-info' style={{width: 'fit-content'}}>חשב סה"כ הפקדות מוכרות</button>
+            <button className='btn btn-outline-info' onClick={calculteResults} style={{width: 'fit-content'}}>חשב סה"כ הפקדות מוכרות</button>
         </div>
 	);
 }

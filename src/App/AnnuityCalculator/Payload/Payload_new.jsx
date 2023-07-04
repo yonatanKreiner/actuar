@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
 import CsvReader from './CSVReader';
 
-const Payload = ({ onImport, onCalculate, results, onClickGeneratePDF, onClickMoveToYearly }) => {
+const Payload = ({ onImport }) => {
     const [userDetails, setUserDetails] = useState({ name: '', birthDate: new Date(), retirement: 67 })
 
     return (
