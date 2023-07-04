@@ -13,7 +13,7 @@ const Payload = ({ onImport, onCalculate, results, onClickGeneratePDF, onClickMo
                     justifyContent: 'space-evenly'
                 }}>
                     <div>
-                        שם לקוח:
+                        שם לקוח: &nbsp;
                         <input type='text' value={userDetails.name} onChange={(e) => setUserDetails({
                             name: e.target.value,
                             birthDate: userDetails.birthDate,
@@ -22,7 +22,7 @@ const Payload = ({ onImport, onCalculate, results, onClickGeneratePDF, onClickMo
                         } />
                     </div>
                     <div>
-                        תאריך לידה:
+                        תאריך לידה: &nbsp;
                         <DatePicker selected={new Date(userDetails.birthDate)}
                             onChange={(e) => setUserDetails({
                                 name: userDetails.name,
@@ -33,10 +33,11 @@ const Payload = ({ onImport, onCalculate, results, onClickGeneratePDF, onClickMo
                 </span>
                 <span>
                     <div>
-                        גיל:
+                        גיל: &nbsp;
+                        {new Date().getFullYear() - userDetails.birthDate.getFullYear()}
                     </div>
                     <div>
-                        גיל פרישה:
+                         גיל פרישה: &nbsp;
                         <input type='number' value={userDetails.retirement} onChange={(e) => setUserDetails({
                             name: userDetails.name,
                             birthDate: userDetails.birthDate,
