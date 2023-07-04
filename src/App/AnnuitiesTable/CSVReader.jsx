@@ -35,9 +35,9 @@ export default function CsvReader(props){
             props.importRows(csvData.map(row => (
                 {
                     year: parseInt(row.year),
-                    avgSalary: parseFloat(row.avgSalary),
-                    annuityFreeFromTax: parseFloat(row.annuityFreeFromTax),
-                    maxCompensation: parseFloat(row.maxCompensation)
+                    employeeMax: parseFloat(row.employeeMax),
+                    companyMax: parseFloat(row.companyMax),
+                    compensationMax: parseFloat(row.compensationMax)
                 })));
         }
 

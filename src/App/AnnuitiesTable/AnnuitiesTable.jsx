@@ -68,8 +68,8 @@ const AnnuitiesTable = (props) => {
                     <thead className="thead-light"> 
                         <tr>
                             <th>שנה</th>
-                            <th>שכר ממוצע במשק</th>
-                            <th>לקצבה הפתורה ממס בעת הפרישה</th>
+                            <th>תקרה להפקדה עובד</th>
+                            <th>תקרה להפקדה מעסיק</th>
                             <th>תקרה להפקדה לפיצויים</th>
                         </tr>
                     </thead>
@@ -88,33 +88,33 @@ const AnnuitiesTable = (props) => {
                         onChange={(e) => updateTableLocalState(index, 
                                                                 {
                                                                     year: e.target.value,
-                                                                    avgSalary: row.avgSalary,
-                                                                    annuityFreeFromTax: row.annuityFreeFromTax,
-                                                                    maxCompensation: row.maxCompensation
+                                                                    employeeMax: row.employeeMax,
+                                                                    companyMax: row.companyMax,
+                                                                    compensationMax: row.compensationMax
                                                                 })}/></td>
-                <td><input value={row.avgSalary}                      
+                <td><input value={row.employeeMax}                      
                         onChange={(e) => updateTableLocalState(index, 
                                                                 {
                                                                     year: row.year,
-                                                                    avgSalary: e.target.value,
-                                                                    annuityFreeFromTax: row.annuityFreeFromTax,
-                                                                    maxCompensation: row.maxCompensation
+                                                                    employeeMax: e.target.value,
+                                                                    companyMax: row.companyMax,
+                                                                    compensationMax: row.compensationMax
                                                                 })}/></td>
-                <td><input value={row.annuityFreeFromTax}
+                <td><input value={row.companyMax}
                         onChange={(e) => updateTableLocalState(index, 
                                                                 {
                                                                     year: row.year,
-                                                                    avgSalary: row.avgSalary,
-                                                                    annuityFreeFromTax: e.target.value,
-                                                                    maxCompensation: row.maxCompensation
+                                                                    employeeMax: row.employeeMax,
+                                                                    companyMax: e.target.value,
+                                                                    compensationMax: row.compensationMax
                                                                 })}/></td>
-                <td><input value={row.maxCompensation} 
+                <td><input value={row.compensationMax} 
                         onChange={(e) => updateTableLocalState(index, 
                                                                 {
                                                                     year: row.year,
-                                                                    avgSalary: row.avgSalary,
-                                                                    annuityFreeFromTax: row.annuityFreeFromTax,
-                                                                    maxCompensation: e.target.value
+                                                                    employeeMax: row.employeeMax,
+                                                                    companyMax: row.companyMax,
+                                                                    compensationMax: e.target.value
                                                                 })}/></td>
             </tr>
 		));
