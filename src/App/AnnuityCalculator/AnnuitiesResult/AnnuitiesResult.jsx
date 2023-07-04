@@ -1,7 +1,8 @@
 
 import React, {useState} from 'react'; 
+import { CSVLink } from "react-csv";
 
-const AnnuitiesResult = ({result}) => {
+const AnnuitiesResult = ({result, deposits}) => {
     const generateTable = (data) => {
         return (
             <div>
@@ -39,7 +40,24 @@ const AnnuitiesResult = ({result}) => {
             <div style={{display: 'flex',flexDirection: 'row',justifyContent: 'space-evenly'}}>
                 {generateTable(result)}
             </div>
-             <button className='btn btn-outline-info' style={{width: 'fit-content'}}>ייצא לאקסל</button>
+            <CSVLink
+                data={deposits}
+                headers={[
+                    {label:"שנה", key: "year"},
+                    {label:"הפקדת עובד", key: "depositeEmpoloyee"},
+                    {label:"הפקדה מעסיק", key: "depositeCompany"},
+                    {label:"הפקדה לפיצויים", key: "depositeCompensation"},
+                    {label:"הפקדה לקצבה מוכרת - עובד", key: "depositeFreeEmployee"},
+                    {label:"הפקדה לקצבה מוכרת - מעסיק", key: "depositeFreeCompany"},
+                    {label: "הפקדה לקצבה מוכרת - פיצויים", key: "depositeFreeCompensation"},
+                    {label: 'סה"כ הפקדה', key: "total"}
+                ]}
+                filename={"חישוב קצבאות.csv"}
+                className="btn-open-interest btn btn-outline-info"
+                target="_blank"
+            >
+                ייצא לאקסל
+            </CSVLink>
         </div>
 	);
 }

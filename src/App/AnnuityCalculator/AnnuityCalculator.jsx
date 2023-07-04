@@ -35,7 +35,6 @@ const AnnuityCalculator = () => {
     }
 
     const calculateAnnuitiesDeposits = async (deposits) => {
-        debugger;
         const apiUrl = `${GET_SERVER_URL()}/annuityDepositsCalculator`;
 
         const response = await fetch(apiUrl, {
@@ -69,7 +68,7 @@ const AnnuityCalculator = () => {
 
             <DepositsTable onClickCalculateDeposits={calculateAnnuitiesDeposits}></DepositsTable>
 
-            {deposits ? <AnnuitiesResult result={getResultForComponent()}></AnnuitiesResult> : <></>}
+            {deposits ? <AnnuitiesResult result={getResultForComponent()} deposits={deposits}></AnnuitiesResult> : <></>}
         </div>
     );
 }
