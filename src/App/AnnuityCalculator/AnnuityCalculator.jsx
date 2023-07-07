@@ -1,19 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
-import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
 
 import { GET_SERVER_URL } from '../config';
-import AnnuityDepositTable from './AnnuityDepositTable';
 import Payload from './Payload';
-import RecognizedDeposits from './RecognizedDeposits';
 import DepositsTable from './DepositsTable';
 import AnnuitiesResult from './AnnuitiesResult';
 
 const AnnuityCalculator = () => {
     const [deposits, setDeposits] = useState(undefined);
-    const [useYearly, setUseYearly] = useState(false);
-    const [depositsYearly, setDepositYearly] = useState([]);
 
     const importDepositsData = (depositsArray) => {
         const sortedDeposites = depositsArray.sort((x, y) => parseInt(x.paymentMonth) - parseInt(y.paymentMonth));
