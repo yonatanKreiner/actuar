@@ -13,6 +13,7 @@ const AnnuitiesResult = ({result, deposits}) => {
                             <th>תגמולי עובד</th>
                             <th>תגמולי מעסיק</th>
                             <th>פיצויים</th>
+                            <th>סה"כ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,6 +31,7 @@ const AnnuitiesResult = ({result, deposits}) => {
                 <td>{data.employee}</td>
                 <td>{data.company}</td>
                 <td>{data.compensation}</td>
+                <td>{data.total}</td>
             </tr>
 		);
 	});
