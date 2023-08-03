@@ -1,5 +1,6 @@
 
 import React, {useState} from 'react'; 
+import { CSVLink } from "react-csv";
 
 const KnownDepositsTable = ({continueSummeriesCalculation}) => {
     const [deposits, setDeposits] = useState([]);
@@ -98,8 +99,22 @@ const KnownDepositsTable = ({continueSummeriesCalculation}) => {
             <div style={{display: 'flex',flexDirection: 'row',justifyContent: 'space-evenly'}}>
                 {generateTable(deposits)}
             </div>
-            <button className='btn btn-outline-warning' onClick={addTableLocalStateRow}>הוסף שורה</button>
-            <button className='btn btn-outline-warning' onClick={removeTableLocalStateRow}>מחק שורה</button>
+            <button className='btn btn-outline-warning' onClick={addTableLocalStateRow}>הוסף קופה</button>
+            <button className='btn btn-outline-warning' onClick={removeTableLocalStateRow}>מחק קופה</button>
+            <CSVLink
+                data={deposits}
+                headers={[
+                    {label:"קופה", key: "name"},
+                    {label:"הפקדת עובד", key: "depositeEmpoloyee"},
+                    {label:"הפקדה מעסיק", key: "depositeCompany"},
+                    {label:"הפקדה לפיצויים", key: "depositeCompensation"},
+                ]}
+                filename={"חישוב קצבאות קופות.csv"}
+                className="btn-open-interest btn btn-outline-info"
+                target="_blank"
+            >
+                ייצא לאקסל
+            </CSVLink>
             <button className='btn btn-outline-info' onClick={calculteResults} style={{width: 'fit-content'}}>ביצוע תחשיב זכאות נוספת</button>
         </div>
 	);
