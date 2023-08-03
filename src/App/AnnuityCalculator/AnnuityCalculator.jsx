@@ -5,9 +5,14 @@ import { GET_SERVER_URL } from '../config';
 import Payload from './Payload';
 import DepositsTable from './DepositsTable';
 import AnnuitiesResult from './AnnuitiesResult';
+import KnownDepositsTable from './KnownDepositsTable';
+import AnnuitiesEligibilityCalc from './AnnuitiesEligibilityCalc';
 
 const AnnuityCalculator = () => {
     const [deposits, setDeposits] = useState(undefined);
+    const [knownDeposits, setKnownDeposits] = useState(undefined);
+    const [isShowTableOfExtraDetails, setIsShowTableOfExtraDetails] = useState(false);
+    const [isShowEligibilityCalc, setIsShowEligibilityCalc] = useState(false);
 
     const importDepositsData = (depositsArray) => {
         const sortedDeposites = depositsArray.sort((x, y) => parseInt(x.paymentMonth) - parseInt(y.paymentMonth));
@@ -55,6 +60,23 @@ const AnnuityCalculator = () => {
         return result
     }
 
+    const getResultForComponentKnown = () => {
+        const result = knownDeposits.reduce((accumulator, currentValue) =>
+        ({
+            employee: accumulator.employee +parseFloat(currentValue.depositeEmpoloyee),
+            company: accumulator.company + parseFloat(currentValue.depositeCompany),
+            compensation: accumulator.compensation + parseFloat(currentValue.depositeCompensation)
+        }),
+            { employee: 0, company: 0, compensation: 0})
+
+        return result.employee + result.company + result.compensation;
+    }
+
+    const prepareEligibilityCalculation = (knownDeposits) => {
+        setIsShowEligibilityCalc(true);
+        setKnownDeposits(knownDeposits)
+    }
+
     return (
         <div>
             <h1 id={"annuities-header"}>חישוב הפקדות לקצבה מוכרת</h1>
@@ -62,7 +84,14 @@ const AnnuityCalculator = () => {
 
             <DepositsTable onClickCalculateDeposits={calculateAnnuitiesDeposits}></DepositsTable>
 
-            {deposits ? <AnnuitiesResult result={getResultForComponent()} deposits={deposits}></AnnuitiesResult> : <></>}
+            {deposits ? <AnnuitiesResult result={getResultForComponent()}
+                                         deposits={deposits}
+                                         setShowExtraDepositDetailsTable={setIsShowTableOfExtraDetails}/> : <></>}
+            {isShowTableOfExtraDetails ? <KnownDepositsTable continueSummeriesCalculation={prepareEligibilityCalculation} /> : <></>}
+        
+            {isShowEligibilityCalc ? <AnnuitiesEligibilityCalc 
+                                        knownSumDeposits={getResultForComponentKnown()}
+                                        sumDeposits={getResultForComponent().total}/>:<></>}
         </div>
     );
 }

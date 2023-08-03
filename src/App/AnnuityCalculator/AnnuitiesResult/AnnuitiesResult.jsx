@@ -2,7 +2,7 @@
 import React, {useState} from 'react'; 
 import { CSVLink } from "react-csv";
 
-const AnnuitiesResult = ({result, deposits}) => {
+const AnnuitiesResult = ({result, deposits, setShowExtraDepositDetailsTable}) => {
     const generateTable = (data) => {
         return (
             <div>
@@ -60,6 +60,7 @@ const AnnuitiesResult = ({result, deposits}) => {
             >
                 ייצא לאקסל
             </CSVLink>
+            <button className='btn btn-outline-info' onClick={() => setShowExtraDepositDetailsTable(true)} style={{width: 'fit-content'}}>הוספת קופות</button>
         </div>
 	);
 }
