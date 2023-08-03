@@ -8,7 +8,7 @@ const AnnuitiesEligibilityCalc = ({sumDeposits, knownSumDeposits}) => {
         <div>
             <h3>תחשיב שווי זכאות נוספת</h3>
             <div>
-               סה"כ הפקדות ידועות בקופות - סה"כ הפקדות 
+            שווי זכאות תופסת = (סה"כ הפקדות ידועות בקופות - סה"כ הפקדות) X מקדם 
             </div>
             <div>
             {sumDeposits - knownSumDeposits} = {knownSumDeposits} - {sumDeposits} 
