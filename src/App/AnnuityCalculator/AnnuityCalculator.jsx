@@ -73,7 +73,7 @@ const AnnuityCalculator = () => {
     }
 
     const prepareEligibilityCalculation = (knownDeposits) => {
-        setIsShowEligibilityCalc(true);
+        setIsShowEligibilityCalc(!isShowEligibilityCalc);
         setKnownDeposits(knownDeposits)
     }
 
