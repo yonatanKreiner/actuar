@@ -13,7 +13,7 @@ const AnnuityCalculator = () => {
     const [knownDeposits, setKnownDeposits] = useState(undefined);
     const [isShowTableOfExtraDetails, setIsShowTableOfExtraDetails] = useState(false);
     const [isShowEligibilityCalc, setIsShowEligibilityCalc] = useState(false);
-    const [userDetails, setUserDetails] = useState({ name: '', birthDate: new Date(), retirement: 67 })
+    const [userDetails, setUserDetails] = useState({ name: '', id:'', gender: 'male', birthDate: new Date(), retirement: 67 })
 
 
     const importDepositsData = (depositsArray) => {
@@ -89,9 +89,10 @@ const AnnuityCalculator = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ data: { 
                                         client_name: userDetails.name,
-                                        client_id: '',
+                                        client_id: userDetails.id,
                                         client_age: (new Date().getFullYear() - userDetails.birthDate.getFullYear()),
-                                        client_retirement: 67,
+                                        client_retirement: userDetails.retirement,
+                                        client_gender: userDetails.gender === 'male' ? 'זכר' : 'נקבה',
                                         total_deposits: getResultForComponent().total,
                                         total_known_deposits: getResultForComponentKnown(),
                                         total_result: total_result
