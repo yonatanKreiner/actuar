@@ -1,14 +1,18 @@
 
 import React, {useState} from 'react'; 
 
-const AnnuitiesEligibilityCalc = ({sumDeposits, knownSumDeposits}) => {
+const AnnuitiesEligibilityCalc = ({sumDeposits, knownSumDeposits, generateAnnuitiesForm}) => {
     const [factor, setFactor] = useState(1);
+
+    const generateFormClick = () => {
+        generateAnnuitiesForm(((sumDeposits - knownSumDeposits) * factor).toFixed(2));
+    }
 
 	return (
         <div>
-            <h3>תחשיב שווי זכאות נוספת</h3>
+            <h3>תחשיב שווי זכאות מוכרת</h3>
             <div>
-            שווי זכאות תופסת = (סה"כ הפקדות ידועות בקופות - סה"כ הפקדות) X מקדם 
+            שווי זכאות מוכרת = (סה"כ הפקדות ידועות בקופות - סה"כ הפקדות) X מקדם 
             </div>
             <div>
             {sumDeposits - knownSumDeposits} = {knownSumDeposits} - {sumDeposits} 
@@ -20,7 +24,8 @@ const AnnuitiesEligibilityCalc = ({sumDeposits, knownSumDeposits}) => {
                                                                  placeholder='מקדם' onChange={(e) => setFactor(e.target.value)}/>
                
             </div>
-            {/* <button className='btn btn-outline-info' style={{width: 'fit-content'}}>הפק טופס</button> */}
+            <button className='btn btn-outline-info' onClick={generateFormClick}
+                    style={{width: 'fit-content'}}>הפק טופס</button>
         </div>
 	);
 }

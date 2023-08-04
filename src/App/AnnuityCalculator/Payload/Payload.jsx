@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
 import CsvReader from './CSVReader';
 
-const Payload = ({ onImport }) => {
-    const [userDetails, setUserDetails] = useState({ name: '', birthDate: new Date(), retirement: 67 })
+const Payload = ({ userDetails ,setUserDetails, onImport }) => {
 
     return (
         <div>

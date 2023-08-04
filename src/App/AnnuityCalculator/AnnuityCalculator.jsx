@@ -13,6 +13,8 @@ const AnnuityCalculator = () => {
     const [knownDeposits, setKnownDeposits] = useState(undefined);
     const [isShowTableOfExtraDetails, setIsShowTableOfExtraDetails] = useState(false);
     const [isShowEligibilityCalc, setIsShowEligibilityCalc] = useState(false);
+    const [userDetails, setUserDetails] = useState({ name: '', birthDate: new Date(), retirement: 67 })
+
 
     const importDepositsData = (depositsArray) => {
         const sortedDeposites = depositsArray.sort((x, y) => parseInt(x.paymentMonth) - parseInt(y.paymentMonth));
@@ -63,11 +65,11 @@ const AnnuityCalculator = () => {
     const getResultForComponentKnown = () => {
         const result = knownDeposits.reduce((accumulator, currentValue) =>
         ({
-            employee: accumulator.employee +parseFloat(currentValue.depositeEmpoloyee),
+            employee: accumulator.employee + parseFloat(currentValue.depositeEmpoloyee),
             company: accumulator.company + parseFloat(currentValue.depositeCompany),
             compensation: accumulator.compensation + parseFloat(currentValue.depositeCompensation)
         }),
-            { employee: 0, company: 0, compensation: 0})
+            { employee: 0, company: 0, compensation: 0 })
 
         return result.employee + result.company + result.compensation;
     }
@@ -77,21 +79,56 @@ const AnnuityCalculator = () => {
         setKnownDeposits(knownDeposits)
     }
 
+    const generateAnnuitiesForm = async (total_result) => {
+        debugger;
+        const apiUrl = `${GET_SERVER_URL()}/annuityForm`;
+
+        const response = await fetch(apiUrl, {
+            credentials: "include",
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ data: { 
+                                        client_name: userDetails.name,
+                                        client_id: '',
+                                        client_age: (new Date().getFullYear() - userDetails.birthDate.getFullYear()),
+                                        client_retirement: 67,
+                                        total_deposits: getResultForComponent().total,
+                                        total_known_deposits: getResultForComponentKnown(),
+                                        total_result: total_result
+                                    }
+                                })
+        });
+
+        const blob = await response.blob();
+
+        console.log(typeof (blob)) //let you have 'blob' here
+
+        var blobUrl = URL.createObjectURL(blob);
+
+        var link = document.createElement("a"); // Or maybe get it from the current document
+        link.href = blobUrl;
+        link.download = "תחשיב שווי זכאות מוכרת.docx";
+
+        // document.body.appendChild(link); // Or append it whereever you want
+        link.click() //can add an id to be specific if multiple anchor tag, and use #id
+    }
+
     return (
         <div>
             <h1 id={"annuities-header"}>חישוב הפקדות לקצבה מוכרת</h1>
-            <Payload onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits}></Payload>
+            <Payload userDetails={userDetails} setUserDetails={setUserDetails} onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits}></Payload>
 
             <DepositsTable onClickCalculateDeposits={calculateAnnuitiesDeposits}></DepositsTable>
 
             {deposits ? <AnnuitiesResult result={getResultForComponent()}
-                                         deposits={deposits}
-                                         setShowExtraDepositDetailsTable={setIsShowTableOfExtraDetails}/> : <></>}
+                deposits={deposits}
+                setShowExtraDepositDetailsTable={setIsShowTableOfExtraDetails} /> : <></>}
             {isShowTableOfExtraDetails ? <KnownDepositsTable continueSummeriesCalculation={prepareEligibilityCalculation} /> : <></>}
-        
-            {isShowEligibilityCalc ? <AnnuitiesEligibilityCalc 
-                                        knownSumDeposits={getResultForComponentKnown()}
-                                        sumDeposits={getResultForComponent().total}/>:<></>}
+
+            {isShowEligibilityCalc ? <AnnuitiesEligibilityCalc
+                knownSumDeposits={getResultForComponentKnown()}
+                sumDeposits={getResultForComponent().total}
+                generateAnnuitiesForm={generateAnnuitiesForm} /> : <></>}
         </div>
     );
 }
