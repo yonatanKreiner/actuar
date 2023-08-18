@@ -7,13 +7,15 @@ import DepositsTable from './DepositsTable';
 import AnnuitiesResult from './AnnuitiesResult';
 import KnownDepositsTable from './KnownDepositsTable';
 import AnnuitiesEligibilityCalc from './AnnuitiesEligibilityCalc';
+import PartTwoTablePayload from './PartTwoTablePayload';
 
 const AnnuityCalculator = () => {
     const [deposits, setDeposits] = useState(undefined);
     const [knownDeposits, setKnownDeposits] = useState(undefined);
     const [isShowTableOfExtraDetails, setIsShowTableOfExtraDetails] = useState(false);
     const [isShowEligibilityCalc, setIsShowEligibilityCalc] = useState(false);
-    const [userDetails, setUserDetails] = useState({ name: '', id:'', gender: 'male', birthDate: new Date(), retirement: 67 })
+    const [isShowPayloadAccordionForPartTwo, setIsShowPayloadAccordionForPartTwo] = useState(false);
+    const [userDetails, setUserDetails] = useState({ name: '', id: '', gender: 'male', birthDate: new Date(), retirement: 67 })
 
 
     const importDepositsData = (depositsArray) => {
@@ -80,44 +82,46 @@ const AnnuityCalculator = () => {
     }
 
     const generateAnnuitiesForm = async (total_result) => {
-        debugger;
         const apiUrl = `${GET_SERVER_URL()}/annuityForm`;
 
         const response = await fetch(apiUrl, {
             credentials: "include",
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ data: { 
-                                        client_name: userDetails.name,
-                                        client_id: userDetails.id,
-                                        client_age: (new Date().getFullYear() - userDetails.birthDate.getFullYear()),
-                                        client_retirement: userDetails.retirement,
-                                        client_gender: userDetails.gender === 'male' ? 'זכר' : 'נקבה',
-                                        total_deposits: getResultForComponent().total,
-                                        total_known_deposits: getResultForComponentKnown(),
-                                        total_result: total_result
-                                    }
-                                })
+            body: JSON.stringify({
+                data: {
+                    client_name: userDetails.name,
+                    client_id: userDetails.id,
+                    client_age: (new Date().getFullYear() - userDetails.birthDate.getFullYear()),
+                    client_retirement: userDetails.retirement,
+                    client_gender: userDetails.gender === 'male' ? 'זכר' : 'נקבה',
+                    total_deposits: getResultForComponent().total,
+                    total_known_deposits: getResultForComponentKnown(),
+                    total_result: total_result
+                }
+            })
         });
 
         const blob = await response.blob();
+        console.log(typeof (blob))
 
-        console.log(typeof (blob)) //let you have 'blob' here
+        const blobUrl = URL.createObjectURL(blob);
 
-        var blobUrl = URL.createObjectURL(blob);
-
-        var link = document.createElement("a"); // Or maybe get it from the current document
+        const link = document.createElement("a");
         link.href = blobUrl;
         link.download = "תחשיב שווי זכאות מוכרת.docx";
 
-        // document.body.appendChild(link); // Or append it whereever you want
-        link.click() //can add an id to be specific if multiple anchor tag, and use #id
+        link.click()
+    }
+
+    const onUpdateUserDetails = (newDetails) => {
+        setUserDetails(newDetails)
     }
 
     return (
         <div>
             <h1 id={"annuities-header"}>חישוב הפקדות לקצבה מוכרת</h1>
-            <Payload userDetails={userDetails} setUserDetails={setUserDetails} onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits}></Payload>
+            <Payload userDetails={userDetails} setUserDetails={onUpdateUserDetails} onImport={importDepositsData} onCalculate={calculateAnnuitiesDeposits}></Payload>
 
             <DepositsTable onClickCalculateDeposits={calculateAnnuitiesDeposits}></DepositsTable>
 
@@ -126,10 +130,17 @@ const AnnuityCalculator = () => {
                 setShowExtraDepositDetailsTable={setIsShowTableOfExtraDetails} /> : <></>}
             {isShowTableOfExtraDetails ? <KnownDepositsTable continueSummeriesCalculation={prepareEligibilityCalculation} /> : <></>}
 
-            {isShowEligibilityCalc ? <AnnuitiesEligibilityCalc
-                knownSumDeposits={getResultForComponentKnown()}
-                sumDeposits={getResultForComponent().total}
-                generateAnnuitiesForm={generateAnnuitiesForm} /> : <></>}
+            {isShowEligibilityCalc ? <div>
+                <AnnuitiesEligibilityCalc
+                    knownSumDeposits={getResultForComponentKnown()}
+                    sumDeposits={getResultForComponent().total}
+                    generateAnnuitiesForm={generateAnnuitiesForm} />
+                <button className='btn btn-outline-info'
+                    onClick={setIsShowPayloadAccordionForPartTwo(true)}
+                    style={{ width: 'fit-content' }}>התחל חלק שני של התחשיב</button>
+            </div> : <></>}
+
+             <PartTwoTablePayload/>
         </div>
     );
 }
