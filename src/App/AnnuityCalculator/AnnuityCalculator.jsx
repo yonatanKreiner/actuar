@@ -140,7 +140,7 @@ const AnnuityCalculator = () => {
                     style={{ width: 'fit-content' }}>התחל חלק שני של התחשיב</button>
             </div> : <></>}
 
-             <PartTwoTablePayload/>
+             {isShowPayloadAccordionForPartTwo ? <PartTwoTablePayload/> : <></>}
         </div>
     );
 }

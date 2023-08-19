@@ -37,19 +37,43 @@ const PartTwoTablePayload = () => {
 
     const generateDeposits = (policy, index) => {
         return (
-            policy.deposits.map(d => (
+            policy.deposits.map((d, dIndex) => (
                 <tr>
                     <td>
-                        <input value={d.year} type='number' />
+                        <input value={d.year} type='number'
+                            onChange={(e) => {
+                                let newPolicies = [...policiesTable]
+                                const updatePolicy = newPolicies[index];
+                                updatePolicy.deposits[dIndex].year = e.target.value;
+                                setPoliciesTable(newPolicies);
+                            }} />
                     </td>
                     <td>
-                        <input value={d.depositeEmpoloyee} />
+                        <input value={d.depositeEmpoloyee} type='number'
+                            onChange={(e) => {
+                                let newPolicies = [...policiesTable]
+                                const updatePolicy = newPolicies[index];
+                                updatePolicy.deposits[dIndex].depositeEmpoloyee = e.target.value;
+                                setPoliciesTable(newPolicies);
+                            }} />
                     </td>
                     <td>
-                        <input value={d.depositeCompany} />
+                        <input value={d.depositeCompany} type='number'
+                            onChange={(e) => {
+                                let newPolicies = [...policiesTable]
+                                const updatePolicy = newPolicies[index];
+                                updatePolicy.deposits[dIndex].depositeCompany = e.target.value;
+                                setPoliciesTable(newPolicies);
+                            }} />
                     </td>
                     <td>
-                        <input value={d.depositeCompensation} />
+                        <input value={d.depositeCompensation} type='number'
+                            onChange={(e) => {
+                                let newPolicies = [...policiesTable]
+                                const updatePolicy = newPolicies[index];
+                                updatePolicy.deposits[dIndex].depositeCompensation = e.target.value;
+                                setPoliciesTable(newPolicies);
+                            }} />
                     </td>
                 </tr>)
             )
@@ -71,16 +95,36 @@ const PartTwoTablePayload = () => {
                             <tbody>
                                 <tr>
                                     <td>
-                                        <input value={p.name} />
+                                        <input value={p.name} onChange={(e) => {
+                                            let newPolicies = [...policiesTable]
+                                            const updatePolicy = newPolicies[index];
+                                            updatePolicy.name = e.target.value;
+                                            setPoliciesTable(newPolicies);
+                                        }} />
                                     </td>
                                     <td>
-                                        <input value={p.id} />
+                                        <input value={p.id} onChange={(e) => {
+                                            let newPolicies = [...policiesTable]
+                                            const updatePolicy = newPolicies[index];
+                                            updatePolicy.id = e.target.value;
+                                            setPoliciesTable(newPolicies);
+                                        }} />
                                     </td>
                                     <td>
-                                        <input value={p.type} />
+                                        <input value={p.type} onChange={(e) => {
+                                            let newPolicies = [...policiesTable]
+                                            const updatePolicy = newPolicies[index];
+                                            updatePolicy.type = e.target.value;
+                                            setPoliciesTable(newPolicies);
+                                        }} />
                                     </td>
                                     <td>
-                                        <input value={p.order} type='number' />
+                                        <input value={p.order} type='number' onChange={(e) => {
+                                            let newPolicies = [...policiesTable]
+                                            const updatePolicy = newPolicies[index];
+                                            updatePolicy.order = e.target.value;
+                                            setPoliciesTable(newPolicies);
+                                        }} />
                                     </td>
                                 </tr>
                             </tbody>
@@ -103,10 +147,10 @@ const PartTwoTablePayload = () => {
                         <button className='btn btn-outline-warning' onClick={() => {
                             const newPolicies = [...policiesTable];
                             newPolicies[index].deposits.push({
-                                year: 0,
-                                depositeEmpoloyee: 0,
-                                depositeCompany: 0,
-                                depositeCompensation: 0
+                                year: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length-1].year :  new Date().getFullYear(),
+                                depositeEmpoloyee: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length-1].depositeEmpoloyee : 0,
+                                depositeCompany: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length-1].depositeCompany : 0,
+                                depositeCompensation: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length-1].depositeCompensation : 0,
                             })
 
                             setPoliciesTable(newPolicies);
