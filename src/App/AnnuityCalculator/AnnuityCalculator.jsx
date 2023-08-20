@@ -136,7 +136,7 @@ const AnnuityCalculator = () => {
                     sumDeposits={getResultForComponent().total}
                     generateAnnuitiesForm={generateAnnuitiesForm} />
                 <button className='btn btn-outline-info'
-                    onClick={setIsShowPayloadAccordionForPartTwo(true)}
+                    onClick={() => setIsShowPayloadAccordionForPartTwo(true)}
                     style={{ width: 'fit-content' }}>התחל חלק שני של התחשיב</button>
             </div> : <></>}
 
