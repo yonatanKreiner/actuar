@@ -78,10 +78,10 @@ const PartTwoResultsTable = ({policiesTable}) => {
                                 <th>שנת מס</th>
                                 <th>עובד לא פטור ממס</th>
                                 <th>עובד פטור ממס</th>
-                                <th>מעסיק פטור ממס</th>
                                 <th>מעסיק לא פטור ממס</th>
-                                <th>פיצויים פטור ממס</th>
+                                <th>מעסיק פטור ממס</th>
                                 <th>פיצויים לא פטור ממס</th>
+                                <th>פיצויים פטור ממס</th>
                             </thead>
                             <tbody>
                                 {generateDeposits(p)}

@@ -191,7 +191,7 @@ const PartTwoTablePayload = () => {
             <button className='btn btn-outline-warning' onClick={insertPolicy}>הוסף קופה</button>
             <button className='btn btn-outline-warning' onClick={removePolicy}>מחק קופה</button>
 
-            <button className='btn btn-info' onClick={calculatePoliciesTableResults}>חישוב טבלאות קופות</button>
+            <button className='btn btn-info' style={{width: 'fit-content'}} onClick={calculatePoliciesTableResults}>חישוב טבלאות קופות</button>
             {policiesResultsTable ? <PartTwoResultsTable policiesTable={policiesResultsTable}/> : <></>}
         </div>
     );
