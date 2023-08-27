@@ -103,7 +103,7 @@ const PartTwoTablePayload = () => {
                             <thead>
                                 <th>קופה</th>
                                 <th>מס תוכנית/פוליסה</th>
-                                <th>סוג</th>
+                                <th>(בסיסי/רגילה) סוג</th>
                                 <th>מדרג</th>
                             </thead>
                             <tbody>
