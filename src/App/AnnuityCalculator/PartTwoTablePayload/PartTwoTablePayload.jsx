@@ -8,10 +8,13 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import { useState } from 'react';
+import { GET_SERVER_URL } from '../../config';
+import PartTwoResultsTable from './PartTwoResultsTables';
 
 const PartTwoTablePayload = () => {
 
     const [policiesTable, setPoliciesTable] = useState([]);
+    const [policiesResultsTable, setPoliciesResultsTable] = useState(null);
 
     const insertPolicy = () => {
         const newPolicy = {
@@ -31,8 +34,19 @@ const PartTwoTablePayload = () => {
         setPoliciesTable(newPolicies);
     }
 
-    const addDeposit = () => {
+    const calculatePoliciesTableResults = async () => {
+        const apiUrl = `${GET_SERVER_URL()}/annuitiesPoliciesCalculation`;
 
+		const response = await fetch(apiUrl,{
+			credentials: "include",
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({policiesTable})
+		});
+
+        console.log(response);
+        const data = await response.json();
+        setPoliciesResultsTable(data.result)
     }
 
     const generateDeposits = (policy, index) => {
@@ -176,6 +190,9 @@ const PartTwoTablePayload = () => {
 
             <button className='btn btn-outline-warning' onClick={insertPolicy}>הוסף קופה</button>
             <button className='btn btn-outline-warning' onClick={removePolicy}>מחק קופה</button>
+
+            <button className='btn btn-info' onClick={calculatePoliciesTableResults}>חישוב טבלאות קופות</button>
+            {policiesResultsTable ? <PartTwoResultsTable policiesTable={policiesResultsTable}/> : <></>}
         </div>
     );
 }
