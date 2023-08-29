@@ -8,7 +8,7 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 
-const PartTwoResultsTable = ({policiesTable}) => {
+const PartTwoResultsTable = ({ policiesTable }) => {
 
     const generateDeposits = (policy) => {
         return (
@@ -21,7 +21,7 @@ const PartTwoResultsTable = ({policiesTable}) => {
                         {d.notExemptEmpoloyee}
                     </td>
                     <td>
-                       {d.exemptEmpoloyee}
+                        {d.exemptEmpoloyee}
                     </td>
                     <td>
                         {d.notExemptCompany}
@@ -55,7 +55,7 @@ const PartTwoResultsTable = ({policiesTable}) => {
                             <tbody>
                                 <tr>
                                     <td>
-                                       {p.name}
+                                        {p.name}
                                     </td>
                                     <td>
                                         {p.id}
@@ -93,11 +93,38 @@ const PartTwoResultsTable = ({policiesTable}) => {
         })
     }
 
+    const onClickExportToCSV = () => {
+        const totalPolicies = policiesTable.map(x => {
+            const title = [`קופה: ${x.name}`, `מספר תוכנית:${x.id}`, x.type, `מדרג: ${x.order}`].join(',');
+            const header = ['שנה', 'עובד לא פטור', 'עובד פטור', 'מעסיק לא פטור', 'מעסיק פטור', 'פיצויים לא פטור', 'פיצויים פטור'].join(',');
+
+            const data = x.deposits.map(d =>
+                [d.year, d.notExemptEmpoloyee, d.exemptEmpoloyee, d.notExemptCompany, d.exemptCompany, d.notExemptCompensation, d.exemptCompensation].join(','))
+
+            const totalPolicy = title +
+                '\n' +
+                header +
+                '\n' +
+                data.join('\n') +
+                '\n';
+
+            return totalPolicy;
+        });
+        const csvString = totalPolicies.join('\n');
+
+        const link = document.createElement('a');
+        link.download = 'הפקדות מוכרות לפי קופות.csv';
+        const universalBOM = "\uFEFF";
+        link.href = `data:text/csv;charset=UTF-8,${universalBOM}${csvString}`;
+        link.click();
+    }
+
     return (
         <div>
             <Accordion>
                 {generatePolicies()}
             </Accordion>
+            <button className='btn btn-outline-info' onClick={onClickExportToCSV}>ייצא לאקסל</button>
         </div>
     );
 }
