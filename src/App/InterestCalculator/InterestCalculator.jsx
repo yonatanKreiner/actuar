@@ -53,6 +53,8 @@ const InterestCalculator = () => {
 		setDebts([]);
 	}
 
+	const sleep = time => new Promise(res => setTimeout(res, time, "done sleeping"));
+
 	const handleCalculate = async () => {
 		try {
 			let resultsPromise = [];
@@ -71,6 +73,7 @@ const InterestCalculator = () => {
 					const resultsData = await results_arrays_promise
 					results_arrays.push(resultsData.flat());
 					resultsPromise = [];
+					await sleep(90000);
 				}
 			}
 
