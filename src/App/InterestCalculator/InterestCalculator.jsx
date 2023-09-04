@@ -74,7 +74,7 @@ const InterestCalculator = () => {
 					results_arrays.push(resultsData.flat());
 					resultsPromise = [];
 					if(i+CHUNK < debts.length){
-						await sleep(90000);	
+						await sleep(66000);	
 					}
 				}
 			}
