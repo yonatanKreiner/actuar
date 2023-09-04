@@ -68,7 +68,7 @@ const InterestCalculator = () => {
 				const chunkResultPromise = calcDepts(requestData);
 				resultsPromise.push(chunkResultPromise);
 
-				if (resultsPromise.length % 4 == 0 || i+CHUNK >= debts.length) {
+				if (resultsPromise.length % 6 == 0 || i+CHUNK >= debts.length) {
 					const results_arrays_promise = Promise.all(resultsPromise);
 					const resultsData = await results_arrays_promise
 					results_arrays.push(resultsData.flat());
