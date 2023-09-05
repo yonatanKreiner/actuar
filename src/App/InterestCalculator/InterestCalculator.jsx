@@ -58,7 +58,7 @@ const InterestCalculator = () => {
 	const handleCalculate = async () => {
 		try {
 			let resultsPromise = [];
-			const CHUNK = 3;
+			const CHUNK = 2;
 			const results_arrays = [];
 
 			for (let i = 0; i < debts.length; i += CHUNK) {
@@ -68,13 +68,13 @@ const InterestCalculator = () => {
 				const chunkResultPromise = calcDepts(requestData);
 				resultsPromise.push(chunkResultPromise);
 
-				if (resultsPromise.length % 6 == 0 || i+CHUNK >= debts.length) {
+				if (resultsPromise.length % 5 == 0 || i+CHUNK >= debts.length) {
 					const results_arrays_promise = Promise.all(resultsPromise);
 					const resultsData = await results_arrays_promise
 					results_arrays.push(resultsData.flat());
 					resultsPromise = [];
 					if(i+CHUNK < debts.length){
-						await sleep(66000);	
+						await sleep(45000);	
 					}
 				}
 			}
