@@ -37,12 +37,12 @@ const PartTwoTablePayload = () => {
     const calculatePoliciesTableResults = async () => {
         const apiUrl = `${GET_SERVER_URL()}/annuitiesPoliciesCalculation`;
 
-		const response = await fetch(apiUrl,{
-			credentials: "include",
+        const response = await fetch(apiUrl, {
+            credentials: "include",
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({policiesTable})
-		});
+            body: JSON.stringify({ policiesTable })
+        });
 
         console.log(response);
         const data = await response.json();
@@ -101,10 +101,10 @@ const PartTwoTablePayload = () => {
                     <AccordionItemButton>
                         <table style={{ direction: "rtl" }} className="table">
                             <thead>
-                                <th>קופה</th>
-                                <th>מס תוכנית/פוליסה</th>
-                                <th>(בסיסי/רגילה) סוג</th>
-                                <th>מדרג</th>
+                                <td>קופה</td>
+                                <td>מס תוכנית/פוליסה</td>
+                                <td>(בסיסי/רגילה) סוג</td>
+                                <td>מדרג</td>
                             </thead>
                             <tbody>
                                 <tr>
@@ -161,10 +161,10 @@ const PartTwoTablePayload = () => {
                         <button className='btn btn-outline-warning' onClick={() => {
                             const newPolicies = [...policiesTable];
                             newPolicies[index].deposits.push({
-                                year: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length-1].year :  new Date().getFullYear(),
-                                depositeEmpoloyee: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length-1].depositeEmpoloyee : 0,
-                                depositeCompany: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length-1].depositeCompany : 0,
-                                depositeCompensation: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length-1].depositeCompensation : 0,
+                                year: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length - 1].year + 1 : new Date().getFullYear(),
+                                depositeEmpoloyee: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length - 1].depositeEmpoloyee : 0,
+                                depositeCompany: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length - 1].depositeCompany : 0,
+                                depositeCompensation: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length - 1].depositeCompensation : 0,
                             })
 
                             setPoliciesTable(newPolicies);
@@ -191,8 +191,8 @@ const PartTwoTablePayload = () => {
             <button className='btn btn-outline-warning' onClick={insertPolicy}>הוסף קופה</button>
             <button className='btn btn-outline-warning' onClick={removePolicy}>מחק קופה</button>
 
-            <button className='btn btn-info' style={{width: 'fit-content'}} onClick={calculatePoliciesTableResults}>חישוב טבלאות קופות</button>
-            {policiesResultsTable ? <PartTwoResultsTable policiesTable={policiesResultsTable}/> : <></>}
+            <button className='btn btn-info' style={{ width: 'fit-content' }} onClick={calculatePoliciesTableResults}>חישוב טבלאות קופות</button>
+            {policiesResultsTable ? <PartTwoResultsTable policiesTable={policiesResultsTable} /> : <></>}
         </div>
     );
 }
