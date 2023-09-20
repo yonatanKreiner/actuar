@@ -161,7 +161,7 @@ const PartTwoTablePayload = () => {
                         <button className='btn btn-outline-warning' onClick={() => {
                             const newPolicies = [...policiesTable];
                             newPolicies[index].deposits.push({
-                                year: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length - 1].year + 1 : new Date().getFullYear(),
+                                year: newPolicies[index].deposits.length > 0 ? parseInt(newPolicies[index].deposits[newPolicies[index].deposits.length - 1].year) + 1 : new Date().getFullYear(),
                                 depositeEmpoloyee: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length - 1].depositeEmpoloyee : 0,
                                 depositeCompany: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length - 1].depositeCompany : 0,
                                 depositeCompensation: newPolicies[index].deposits.length > 0 ? newPolicies[index].deposits[newPolicies[index].deposits.length - 1].depositeCompensation : 0,
