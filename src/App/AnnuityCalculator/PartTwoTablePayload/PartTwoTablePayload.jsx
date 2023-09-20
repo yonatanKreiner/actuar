@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { GET_SERVER_URL } from '../../config';
 import PartTwoResultsTable from './PartTwoResultsTables';
 
-const PartTwoTablePayload = () => {
+const PartTwoTablePayload = ({userDetails}) => {
 
     const [policiesTable, setPoliciesTable] = useState([]);
     const [policiesResultsTable, setPoliciesResultsTable] = useState(null);
@@ -192,7 +192,7 @@ const PartTwoTablePayload = () => {
             <button className='btn btn-outline-warning' onClick={removePolicy}>מחק קופה</button>
 
             <button className='btn btn-info' style={{ width: 'fit-content' }} onClick={calculatePoliciesTableResults}>חישוב טבלאות קופות</button>
-            {policiesResultsTable ? <PartTwoResultsTable policiesTable={policiesResultsTable} /> : <></>}
+            {policiesResultsTable ? <PartTwoResultsTable userDetails={userDetails} policiesTable={policiesResultsTable} /> : <></>}
         </div>
     );
 }

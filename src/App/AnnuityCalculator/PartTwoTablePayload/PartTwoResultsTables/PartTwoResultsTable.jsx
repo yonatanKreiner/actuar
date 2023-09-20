@@ -7,8 +7,9 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
+import { GET_SERVER_URL } from '../../../config';
 
-const PartTwoResultsTable = ({ policiesTable }) => {
+const PartTwoResultsTable = ({ policiesTable, userDetails }) => {
 
     const generateDeposits = (policy) => {
         return (
@@ -119,12 +120,40 @@ const PartTwoResultsTable = ({ policiesTable }) => {
         link.click();
     }
 
+    const onClickExportReport = async () => {
+        const apiUrl = `${GET_SERVER_URL()}/annuityPoliciesForm`;
+
+        const response = await fetch(apiUrl, {
+            credentials: "include",
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                data: {
+                    policiesTable,
+                    userDetails
+                }
+            })
+        });
+
+        const blob = await response.blob();
+        console.log(typeof (blob))
+
+        const blobUrl = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = "תחשיב שווי זכאות מוכרת.docx";
+
+        link.click()
+    }
+
     return (
         <div>
             <Accordion>
                 {generatePolicies()}
             </Accordion>
             <button className='btn btn-outline-info' onClick={onClickExportToCSV}>ייצא לאקסל</button>
+            <button className='btn btn-outline-info' onClick={onClickExportReport}>הפרק דו"ח</button>
         </div>
     );
 }
