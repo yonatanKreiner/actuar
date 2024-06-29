@@ -1,7 +1,7 @@
 import './ResultItem.css';
 
 import PropTypes from 'prop-types';
-import React from 'react'; 
+import React from 'react';
 import ReactLoading from 'react-loading';
 import { CSVLink } from "react-csv";
 import { useState } from 'react';
@@ -12,16 +12,16 @@ const ResultItem = (props) => {
 
 	const onClickCalculate = async () => {
 		setIsLoading(true);
-		
-		const finalDebt = await props.calculateDept();	
-		
+
+		const finalDebt = await props.calculateDept();
+
 		setResult(finalDebt);
 		setIsLoading(false);
 	}
 
 	const onClickGeneratePDF = async () => {
 		setIsLoading(true);
-	
+
 		await props.generatePDF();
 
 		setIsLoading(false);
@@ -31,8 +31,11 @@ const ResultItem = (props) => {
 		<div className='result-block'>
 			<button type='button' onClick={() => onClickCalculate()} className='btn-result btn btn-primary'>חשב</button>
 			<br />
-			{isLoading ? <ReactLoading className="loader" color={'#2196F3'} /> : 
-				result ? 
+			{isLoading ? <>
+				<ReactLoading className="loader" color={'#2196F3'} />
+				<progress value={props.loadingProgress} max={props.maxProgress}></progress>
+			</> :
+				result ?
 					<div className="result-data-container">
 						<div>
 							<h1 id='resultElement'>סה"כ חוב</h1>
@@ -46,23 +49,23 @@ const ResultItem = (props) => {
 								return ({
 									sum: debt.sum,
 									isLegalInterest: debt.interestType === 'legal-interest' ? "ריבית צמודה" :
-														debt.interestType === 'illegal-interest' ? "ריבית פיגורים" :
-														debt.interestType === 'shekel-interest' ? "ריבית שקלית" : "הצמדה למדד",
-									startDate: `${startDate.getDate()}/${startDate.getMonth()+1}/${startDate.getFullYear()}`,
-									endDate: `${endDate.getDate()}/${endDate.getMonth()+1}/${endDate.getFullYear()}`,
+										debt.interestType === 'illegal-interest' ? "ריבית פיגורים" :
+											debt.interestType === 'shekel-interest' ? "ריבית שקלית" : "הצמדה למדד",
+									startDate: `${startDate.getDate()}/${startDate.getMonth() + 1}/${startDate.getFullYear()}`,
+									endDate: `${endDate.getDate()}/${endDate.getMonth() + 1}/${endDate.getFullYear()}`,
 									indexateSum: debt.indexateSum,
 									totalInterest: debt.totalInterest,
 									totalDebt: debt.totalDebt,
 								})
 							})}
 							headers={[
-								{label: "חוב", key: "sum"},
-								{label: "סוג ריבית", key: "isLegalInterest"},
-								{label: "מתאריך", key: "startDate"},
-								{label: "עד תאריך", key: "endDate"},
-								{label: "שווי הצמדה", key: "indexateSum"},
-								{label: "שווי ריבית", key: "totalInterest"},
-								{label: "סך הכל", key: "totalDebt"}
+								{ label: "חוב", key: "sum" },
+								{ label: "סוג ריבית", key: "isLegalInterest" },
+								{ label: "מתאריך", key: "startDate" },
+								{ label: "עד תאריך", key: "endDate" },
+								{ label: "שווי הצמדה", key: "indexateSum" },
+								{ label: "שווי ריבית", key: "totalInterest" },
+								{ label: "סך הכל", key: "totalDebt" }
 							]}
 							filename={"פסיקת ריבית.csv"}
 							className="btn btn-outline-info generate-pdf-btn"
@@ -73,12 +76,14 @@ const ResultItem = (props) => {
 					</div> : <></>
 			}
 		</div>
-		);
+	);
 }
 
 ResultItem.propTypes = {
 	calculateDept: PropTypes.func.isRequired,
 	generatePDF: PropTypes.func.isRequired,
+	loadingProgress: PropTypes.number,
+	maxProgress: PropTypes.number
 }
 
 export default ResultItem;

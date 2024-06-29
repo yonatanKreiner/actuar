@@ -11,6 +11,7 @@ import DebtsTable from './DebtsTable';
 import ResultItem from './ResultItem';
 
 const InterestCalculator = () => {
+	const [loadingProgress, setLoadingProgress] = useState(0)
 
 	const [debts, setDebts] = useState([
 		{ startDate: new Date(), sum: 100, interestType: 'legal-interest', endDate: new Date() }
@@ -74,7 +75,8 @@ const InterestCalculator = () => {
 					results_arrays.push(resultsData.flat());
 					resultsPromise = [];
 					if(i+CHUNK < debts.length){
-						await sleep(45000);	
+						setLoadingProgress(i+CHUNK);
+						await sleep(40000);	
 					}
 				}
 			}
@@ -174,7 +176,7 @@ const InterestCalculator = () => {
 				removeAllDepts={handleRemoveAllDebt}
 				debts={debts} />
 			<hr />
-			<ResultItem calculateDept={handleCalculate} generatePDF={generatePDF} />
+			<ResultItem calculateDept={handleCalculate} generatePDF={generatePDF} loadingProgress={loadingProgress} maxProgress={debts?.length} />
 		</div>
 	);
 }
