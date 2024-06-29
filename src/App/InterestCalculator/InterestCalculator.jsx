@@ -76,7 +76,7 @@ const InterestCalculator = () => {
 					resultsPromise = [];
 					if(i+CHUNK < debts.length){
 						setLoadingProgress(i+CHUNK);
-						await sleep(30000);	
+						await sleep(45000);	
 					}
 				}
 			}
